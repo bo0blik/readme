@@ -1,6 +1,6 @@
 # VLESS VPN design showcase
 
-Three static homepage concepts with a shared selection page. No installation or build is required.
+Four static homepage concepts with a shared selection page. No installation or build is required.
 
 The first concept includes a compact palette button beside the bot link. It offers twenty coordinated color themes and remembers the selection in local browser storage. The original colors remain the default. Theme controls support keyboard navigation, reduced motion, and browsers where storage is blocked. The palette panel scrolls to keep all twenty choices accessible on small screens.
 
@@ -10,6 +10,7 @@ The first concept includes a compact palette button beside the bot link. It offe
 - `variant1/`: first concept, including local fonts.
 - `variant2/`: second concept, converted to plain HTML, CSS and JavaScript.
 - `variant3/`: third concept, using its existing standalone HTML page.
+- `variant4/`: a separate copy of the first concept with the supplied geometric lynx logo, warm graphite/orange branding and its own saved color preference.
 
 The deployed copies use relative asset URLs and local pricing anchors so they work beneath a GitHub Pages repository path. Links to secondary pages not included in these concepts point to `https://vpn-vless.com`. Telegram destinations are retained from each concept.
 
