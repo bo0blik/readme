@@ -9,9 +9,11 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="lynx.css">
+  <link rel="stylesheet" href="hero-scenes.css">
   <link rel="icon" type="image/png" href="images/lynx.png">
   <script src="themes.js"></script>
   <script src="app.js" defer></script>
+  <script src="hero-switcher.js" defer></script>
 <meta name="robots" content="noindex,nofollow">
 </head>
 <body>
@@ -23,25 +25,56 @@
 </header>
 <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#locations">Локации</a><a href="#devices">Устройства</a><a href="#order">Тарифы</a><a href="#support">Поддержка</a><a href="https://vpn-vless.com/current-ip">Мой IP</a><a href="https://vpn-vless.com/how-to-install-vless">Инструкция</a></nav>
 <main id="main">
-  <section class="hero wrap" aria-labelledby="hero-title">
+  <section class="hero wrap hero-lab" id="hero-lab" data-hero="gaze" aria-labelledby="hero-title">
+    <div class="hero-selector" role="group" aria-label="Выбор концепции первого экрана">
+      <div class="hero-selector-label"><span class="eyebrow muted">ВЫБЕРИТЕ ПЕРВЫЙ ЭКРАН</span><strong id="hero-concept-name">Взгляд рыси</strong></div>
+      <div class="hero-selector-actions"><div class="hero-dots" aria-label="Пять концепций"><button type="button" data-hero-index="0" aria-label="1. Взгляд рыси" aria-pressed="true"></button><button type="button" data-hero-index="1" aria-label="2. Рывок" aria-pressed="false"></button><button type="button" data-hero-index="2" aria-label="3. VLESS как знак" aria-pressed="false"></button><button type="button" data-hero-index="3" aria-label="4. Своя территория" aria-pressed="false"></button><button type="button" data-hero-index="4" aria-label="5. От QR-кода до подключения" aria-pressed="false"></button></div><span class="hero-counter" id="hero-counter">01 / 05</span><button type="button" class="hero-arrow" id="hero-prev" aria-label="Предыдущая шапка">←</button><button type="button" class="hero-arrow" id="hero-next" aria-label="Следующая шапка">→</button></div>
+      <span class="sr-only" id="hero-announcement" role="status" aria-live="polite"></span>
+    </div>
     <div class="hero-copy">
-      <div class="eyebrow"><span class="live-dot"></span> СВОБОДА ДВИЖЕНИЯ. ЧУТКОСТЬ К БЕЗОПАСНОСТИ.</div>
+      <div class="eyebrow"><span class="live-dot"></span><span id="hero-kicker">ХАРАКТЕР В ДЕТАЛЯХ. СВОБОДА В СОЕДИНЕНИИ.</span></div>
       <h1 id="hero-title">Твоя сеть.<br>Твоя<br><span class="lime-text territory-word">территория.</span></h1>
       <p class="hero-subtitle">Безопасное интернет-соединение<br>для работы и поездок.</p>
       <p class="muted hero-description">Работайте, общайтесь и отдыхайте с шифрованным соединением для всех устройств.</p>
       <div class="hero-buttons"><a class="button lime" href="#order">Попробовать бесплатно <span>↗</span></a><a class="text-link" href="#order">Выбрать тариф <span>↗</span></a></div>
       <div class="hero-note"><span class="mini-check">✓</span> 24 часа на тест <span class="note-dot">·</span> Без регистрации</div>
     </div>
-    <div class="hero-art" role="img" aria-label="Геометрическая оранжевая рысь — символ VLESS VPN, окружённая линиями соединения">
-      <div class="art-grid"></div><div class="art-glow"></div>
-      <div class="orbital-system"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="orbit-traveler traveler-one"></div><div class="orbit-traveler traveler-two"></div><div class="core"><img src="images/lynx.png" width="512" height="512" alt="" fetchpriority="high"></div><span class="lynx-reticle reticle-one"></span><span class="lynx-reticle reticle-two"></span></div>
-      <div class="float-tag tag-protocol"><span class="tag-icon">↗</span><div><span class="tag-caption">ПРОТОКОЛ</span><strong>VLESS</strong></div><span class="tiny-dot"></span></div>
-      <div class="float-tag tag-encrypted"><span class="encrypted-icon">⌘</span> Шифрованное соединение</div>
-      <div class="art-coordinate coordinate-top">VLESS / LYNX EDITION</div><div class="art-coordinate coordinate-bottom">ТВОЯ ТЕРРИТОРИЯ В ЦИФРОВОМ МИРЕ <span>↗</span></div>
-      <span class="art-star star-one">✳</span><span class="art-star star-two">+</span>
+    <div class="hero-art concept-art" role="group" aria-label="Иллюстрация выбранной концепции">
+      <div class="hero-scene gaze-scene" data-scene="gaze" role="img" aria-label="Крупный фрагмент геометрической рыси: взгляд и оранжевые грани">
+        <div class="gaze-coordinate">01 / INSTINCT BY DESIGN</div><div class="gaze-backword" aria-hidden="true">LYNX</div>
+        <div class="eye-crop"><img src="images/lynx.png" width="512" height="512" alt="" fetchpriority="high"><div class="eye-sweep"></div></div>
+        <div class="gaze-line"></div><span class="gaze-detail">ЧУТКОСТЬ К ТОМУ,<br>ЧТО ВАЖНО.</span><span class="gaze-plus" aria-hidden="true">+</span>
+      </div>
+      <div class="hero-scene leap-scene" data-scene="leap" role="img" aria-label="Геометрическая рысь в прыжке через открытое пространство" hidden>
+        <span class="scene-coordinate">02 / FREEDOM IN MOTION</span><div class="leap-plane plane-back"></div><div class="leap-plane plane-front"></div><div class="leap-speedlines" aria-hidden="true"><i></i><i></i><i></i></div>
+        <svg class="leap-trail" viewBox="0 0 620 500" aria-hidden="true"><path d="M-20 390C120 380 140 280 310 290S500 300 645 120"/></svg>
+        <img class="leap-lynx" src="images/lynx-leap.png" width="1784" height="882" alt="" loading="eager"><span class="leap-caption">ДВИЖЕНИЕ — ТВОЯ ПРИРОДА.</span>
+      </div>
+      <div class="hero-scene type-scene" data-scene="type" role="img" aria-label="Фирменный знак VLESS: угловатая буква V со взглядом рыси" hidden>
+        <span class="scene-coordinate">03 / LESS NOISE. MORE CHARACTER.</span><div class="type-rule"></div>
+        <div class="wordmark"><svg viewBox="0 0 140 170" aria-hidden="true"><path d="M5 12H38L70 113 102 12H135L88 158H52Z" fill="currentColor"/><path d="M25 43 51 58 58 80 38 68ZM115 43 89 58 82 80 102 68Z" fill="var(--bg)"/><path d="M5 12 38 38V12ZM135 12 102 38V12Z" fill="var(--coral)"/></svg><span>LESS<span class="wordmark-period">.</span></span></div>
+        <p class="wordmark-caption">ЗАЩИЩЁННОЕ СОЕДИНЕНИЕ.<br>СОБСТВЕННЫЙ ХАРАКТЕР.</p><div class="type-bottom"><img src="images/lynx-mark.svg" width="38" height="38" alt=""><span>VLESS VPN<br><small>НА СВОЕЙ ТЕРРИТОРИИ</small></span><span class="type-arrow" aria-hidden="true">↗</span></div>
+      </div>
+      <div class="hero-scene terrain-scene" data-scene="terrain" hidden>
+        <div class="terrain-top"><span class="scene-coordinate">04 / YOUR DIGITAL TERRITORY</span><label class="terrain-country"><span class="sr-only">Локация на схеме</span><select id="hero-location"><option>Германия</option><option>Финляндия</option><option>Россия</option><option>США</option><option>Нидерланды</option><option>Эстония</option><option>Армения</option></select></label></div>
+        <svg class="terrain-map" viewBox="0 0 620 480" role="img" aria-label="Условный цифровой рельеф и маршрут от устройства до выбранной локации"><defs><linearGradient id="terrain-wash" x1="0" x2="1" y1="1" y2="0"><stop stop-color="var(--lime)" stop-opacity=".02"/><stop offset=".65" stop-color="var(--lime)" stop-opacity=".16"/><stop offset="1" stop-color="var(--lime)" stop-opacity=".02"/></linearGradient></defs>
+          <path class="terrain-floor" d="M20 290 340 100 605 250 290 440Z" fill="url(#terrain-wash)"/>
+          <g class="contours" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 290Q110 270 165 250T290 170 405 180 605 250"/><path d="M35 305Q120 280 178 260T302 190 420 196 589 265"/><path d="M55 319Q130 288 192 269T315 212 432 211 568 278"/><path d="M77 331Q143 301 205 283T328 230 445 226 545 291"/><path d="M99 345Q155 312 220 298T343 251 455 245 522 305"/><path d="M120 358Q169 326 236 312T356 270 467 264 500 319"/><path d="M143 372Q184 339 251 330T372 290 478 284"/><path d="M166 384Q200 353 268 348T388 309 457 325"/><path d="M188 397Q218 369 285 367T403 332 436 344"/><path d="M212 411Q235 387 303 385T414 354"/><path d="M235 425Q255 405 320 406T389 378"/>
+          <path d="M90 249Q140 220 190 231T290 179 395 167 530 205"/><path d="M120 230Q173 203 215 215T305 158 396 151 504 189"/><path d="M150 212Q199 187 239 196T320 139 397 134 478 174"/><path d="M180 194Q221 169 264 177T338 123 400 121 450 157"/></g>
+          <path class="terrain-route-shadow" d="M140 330Q240 380 315 268T470 190"/><path id="hero-route" class="terrain-route" d="M140 330Q240 380 315 268T470 190"/><g class="terrain-origin"><rect x="122" y="309" width="36" height="30" rx="4" fill="var(--bg)" stroke="var(--lime)"/><path d="M116 345H164" stroke="var(--lime)" stroke-width="2"/><text x="111" y="373">Твоё устройство</text></g><g id="terrain-destination" transform="translate(470 190)"><path d="M0-21 17-10 17 10 0 21-17 10-17-10Z" fill="var(--lime)"/><path d="m-5 0 4 4 8-9" fill="none" stroke="var(--bg)" stroke-width="2"/></g>
+        </svg><div class="terrain-bottom"><img src="images/lynx-mark.svg" width="27" height="27" alt=""><span>СХЕМА ЗАЩИЩЁННОГО МАРШРУТА</span><span id="hero-route-label">Германия ↗</span></div>
+      </div>
+      <div class="hero-scene setup-scene" data-scene="setup" hidden>
+        <span class="scene-coordinate">05 / ОТ ПЕРВОГО ШАГА ДО ПОДКЛЮЧЕНИЯ</span><div class="setup-cards">
+          <div class="setup-card instruction-card active" data-setup-card="0"><span class="setup-card-number">01 / TELEGRAM</span><div class="message-icon" aria-hidden="true">↗</div><strong>Всё начинается<br>с инструкции.</strong><p>Бот пришлёт информацию<br>для подключения.</p><div class="message-lines" aria-hidden="true"><i></i><i></i><i></i></div></div>
+          <div class="setup-card qr-card" data-setup-card="1"><span class="setup-card-number">02 / QR-КОД</span><div class="illustrative-qr" aria-label="Условная иллюстрация QR-кода, не ключ подключения"><i></i><i></i><i></i><b>QR</b></div><strong>Твой ключ<br>к подключению.</strong><small>ИЛЛЮСТРАЦИЯ</small></div>
+          <div class="setup-card device-card" data-setup-card="2"><span class="setup-card-number">03 / УСТРОЙСТВО</span><div class="setup-device"><img src="images/lynx-mark.svg" width="70" height="70" alt=""><span>VLESS VPN</span></div><strong>Пара настроек.<br>И можно пользоваться.</strong></div>
+        </div><div class="setup-stage-controls" role="group" aria-label="Шаги подключения"><button type="button" data-setup="0" aria-pressed="true">01 Инструкция</button><span aria-hidden="true">→</span><button type="button" data-setup="1" aria-pressed="false">02 QR-код</button><span aria-hidden="true">→</span><button type="button" data-setup="2" aria-pressed="false">03 Устройство</button></div><p class="setup-caption" id="setup-caption" aria-live="polite">Наглядная схема. Подключение и покупка — в Telegram-боте.</p>
+      </div>
     </div>
     <div class="hero-bottom"><span>МЕНЬШЕ ГРАНИЦ. БОЛЬШЕ ВОЗМОЖНОСТЕЙ.</span><a href="#use-cases" aria-label="К следующему разделу">Листай дальше <span>↓</span></a></div>
   </section>
+
   <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>РАБОТАЙ</span><b>✳</b><span>ПУТЕШЕСТВУЙ</span><b>✳</b><span>ОСТАВАЙСЯ НА СВЯЗИ</span><b>✳</b><span>УЧИСЬ</span><b>✳</b><span>РАБОТАЙ</span><b>✳</b><span>ПУТЕШЕСТВУЙ</span><b>✳</b><span>ОСТАВАЙСЯ НА СВЯЗИ</span><b>✳</b><span>УЧИСЬ</span><b>✳</b></div></div>
   <section class="section wrap" id="use-cases">
     <div class="section-top reveal"><span class="eyebrow muted">01 / ДЛЯ ЖИЗНИ ОНЛАЙН</span><span class="section-index">↘</span></div>

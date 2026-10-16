@@ -12,6 +12,8 @@ The first concept includes a compact palette button beside the bot link. It offe
 - `variant3/`: third concept, using its existing standalone HTML page.
 - `variant4/`: a separate copy of the first concept with the supplied geometric lynx logo, warm graphite/orange branding and its own saved color preference.
 
+Variant 4 contains five hero concepts on one page. Use the arrows or dots above the first screen to compare the gaze, leap, typographic mark, terrain and onboarding compositions. Selection is remembered locally; `variant4/?hero=1` through `variant4/?hero=5` can be shared directly. There is no autoplay. The full-body leap illustration was generated using the supplied logo as a visual reference. The onboarding scene is an illustration, not an active VPN client or usable QR key.
+
 The deployed copies use relative asset URLs and local pricing anchors so they work beneath a GitHub Pages repository path. Links to secondary pages not included in these concepts point to `https://vpn-vless.com`. Telegram destinations are retained from each concept.
 
 ## Local preview
