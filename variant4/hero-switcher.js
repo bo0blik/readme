@@ -63,11 +63,54 @@
     document.getElementById('hero-route-label').textContent = `${country} ↗`;
   });
   const captions = ['Наглядная схема. Подключение и покупка — в Telegram-боте.', 'Получите QR-код от бота и используйте его для настройки.', 'Следуйте инструкции для своего устройства. При сложностях поможем.'];
-  document.querySelectorAll('[data-setup]').forEach(button => button.addEventListener('click', () => {
-    const index = Number(button.dataset.setup);
-    document.querySelectorAll('[data-setup-card]').forEach(card => card.classList.toggle('active', Number(card.dataset.setupCard) === index));
-    document.querySelectorAll('[data-setup]').forEach(control => control.setAttribute('aria-pressed', String(control === button)));
+  const deck = document.querySelector('.setup-cards');
+  const cards = Array.from(deck.querySelectorAll('[data-setup-card]'));
+  const controls = Array.from(document.querySelectorAll('[data-setup]'));
+  let selectedStep = 0;
+  let hoveredStep = null;
+  let focusedStep = null;
+  function renderStep() {
+    const index = hoveredStep ?? focusedStep ?? selectedStep;
+    cards.forEach(card => {
+      const active = Number(card.dataset.setupCard) === index;
+      card.classList.toggle('active', active);
+      card.classList.toggle('is-previewed', active && (focusedStep !== null || hoveredStep !== null));
+      card.setAttribute('aria-pressed', String(active));
+    });
+    controls.forEach(control => control.setAttribute('aria-pressed', String(Number(control.dataset.setup) === index)));
     document.getElementById('setup-caption').textContent = captions[index];
+  }
+  // Track the stable deck rather than each moving card to avoid hover flicker.
+  deck.addEventListener('pointermove', event => {
+    if (event.pointerType !== 'mouse') return;
+    const card = event.target.closest('[data-setup-card]');
+    if (card && deck.contains(card)) {
+      hoveredStep = Number(card.dataset.setupCard);
+      renderStep();
+    }
+  });
+  deck.addEventListener('pointerleave', () => { hoveredStep = null; renderStep(); });
+  cards.forEach((card, index) => {
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `Показать шаг ${index + 1}: ${card.querySelector('strong').textContent.trim()}`);
+    card.addEventListener('focus', () => { hoveredStep = null; focusedStep = index; renderStep(); });
+    card.addEventListener('blur', () => { focusedStep = null; renderStep(); });
+    card.addEventListener('click', () => { selectedStep = index; renderStep(); });
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        selectedStep = index;
+        renderStep();
+      }
+    });
+  });
+  controls.forEach(button => button.addEventListener('click', () => {
+    selectedStep = Number(button.dataset.setup);
+    hoveredStep = null;
+    focusedStep = null;
+    renderStep();
   }));
+  renderStep();
   show(current, false);
 })();

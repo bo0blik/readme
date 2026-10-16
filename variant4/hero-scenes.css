@@ -21,3 +21,13 @@
 @media(max-width:760px){.hero-selector{min-height:61px}}
 @media(max-width:370px){.hero-selector-label strong{font-size:10px;max-width:125px}.hero-selector{padding:10px}.hero-counter{font-size:8px;margin:0 2px}.hero-selector-actions{gap:4px}.hero-arrow{width:27px;height:29px}.hero-lab h1{font-size:37px;min-height:145px}.hero-lab .hero-art{height:350px}.wordmark>svg{width:64px}.wordmark>span{font-size:52px;letter-spacing:-5px}.eye-crop img{width:520px;height:520px;top:-140px}.eye-crop{height:238px}.gaze-detail{bottom:25px}.gaze-line{bottom:16px}.leap-lynx{top:110px}.setup-card{padding:9px}.setup-card strong{font-size:8px}.setup-card p{font-size:7px}.illustrative-qr{width:66px;height:66px}.illustrative-qr i{width:15px;height:15px}.setup-device{width:61px}.setup-stage-controls button{font-size:7px}.setup-caption{font-size:8px}.terrain-bottom>span:nth-child(2){max-width:115px;font-size:5px}.terrain-bottom>span:last-child{font-size:8px}}
 @media(prefers-reduced-motion:reduce){.hero-scene,.eye-sweep,.leap-lynx,.leap-trail path,.terrain-route{animation:none!important}.hero-scene:not([hidden]){transform:none;transition:none}.leap-trail path{stroke-dashoffset:0}.eye-sweep{display:none}}
+
+/* Reserve room for rotated corners; the active card unfolds above the stack. */
+.setup-scene{overflow:visible}
+.setup-cards{width:calc(100% - 76px);margin-inline:auto;isolation:isolate}
+.setup-card{cursor:pointer;transform-origin:50% 65%;transition:transform .32s cubic-bezier(.22,1,.36,1),rotate .32s cubic-bezier(.22,1,.36,1),border-color .25s,opacity .25s,box-shadow .32s}
+.setup-card.active{rotate:0deg;transform:translateY(-16px);box-shadow:0 18px 36px #0006}
+.setup-card.is-previewed{rotate:0deg;transform:translateY(-30px) scale(1.025);z-index:6!important;box-shadow:0 24px 44px #0007}
+.setup-card:focus-visible{outline:2px solid var(--lime);outline-offset:5px}
+@media(max-width:760px){.setup-cards{width:calc(100% - 52px)}.setup-card.active{transform:translateY(-10px)}.setup-card.is-previewed{transform:translateY(-20px) scale(1.015)}}
+@media(prefers-reduced-motion:reduce){.setup-card{transition:none}}
