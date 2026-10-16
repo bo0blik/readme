@@ -2,6 +2,8 @@
 
 Three static homepage concepts with a shared selection page. No installation or build is required.
 
+The first concept includes a compact palette button beside the bot link. It offers ten coordinated color themes and remembers the selection in local browser storage. The original colors remain the default. Theme controls support keyboard navigation, reduced motion, and browsers where storage is blocked.
+
 ## Pages
 
 - `index.html`: concept selector.
