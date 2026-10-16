@@ -1,0 +1,4773 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#05070f" />
+    <meta
+      name="description"
+      content="VLESS VPN — безопасное интернет-соединение для работы и поездок. Шифрованное соединение для всех устройств, бесплатный тест 24 часа."
+    />
+    <title>VLESS VPN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+         TOKENS
+      ============================================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #05070f;
+        --bg-2: #080d1a;
+        --surface: rgba(255, 255, 255, 0.045);
+        --surface-2: rgba(255, 255, 255, 0.075);
+        --border: rgba(255, 255, 255, 0.1);
+        --border-strong: rgba(255, 255, 255, 0.2);
+        --text: #eef2f9;
+        --muted: #a5b0c6;
+        --muted-2: #78849d;
+        --accent: #4f8cff;
+        --accent-2: #22d3ee;
+        --accent-3: #a78bfa;
+        --ok: #34d399;
+        --radius: 18px;
+        --radius-lg: 28px;
+        --maxw: 1200px;
+        --font: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
+          monospace;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+        scroll-padding-top: 108px;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      body.is-locked {
+        overflow: hidden;
+      }
+
+      ::selection {
+        background: rgba(79, 140, 255, 0.35);
+        color: #fff;
+      }
+
+      /* scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #05070f;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--accent), var(--accent-3));
+        border-radius: 99px;
+        border: 3px solid #05070f;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent-2);
+        outline-offset: 3px;
+        border-radius: 10px;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .icon {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ============================================================
+         BACKGROUND SYSTEM
+      ============================================================ */
+      .bg-base {
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        background: radial-gradient(
+            120% 80% at 50% -20%,
+            #0d1730 0%,
+            #070b16 45%,
+            #05070f 100%
+          );
+      }
+
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.5;
+        z-index: -2;
+        pointer-events: none;
+        will-change: transform;
+      }
+
+      .orb--1 {
+        width: 46vw;
+        height: 46vw;
+        top: -14vw;
+        left: -10vw;
+        background: radial-gradient(circle, rgba(79, 140, 255, 0.55), transparent 68%);
+        animation: drift1 22s var(--ease-io) infinite alternate;
+      }
+
+      .orb--2 {
+        width: 38vw;
+        height: 38vw;
+        top: 12vh;
+        right: -12vw;
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.4), transparent 68%);
+        animation: drift2 26s var(--ease-io) infinite alternate;
+      }
+
+      .orb--3 {
+        width: 42vw;
+        height: 42vw;
+        bottom: -16vw;
+        left: 28vw;
+        background: radial-gradient(circle, rgba(167, 139, 250, 0.38), transparent 68%);
+        animation: drift3 30s var(--ease-io) infinite alternate;
+      }
+
+      @keyframes drift1 {
+        to {
+          transform: translate3d(8vw, 6vh, 0) scale(1.15);
+        }
+      }
+      @keyframes drift2 {
+        to {
+          transform: translate3d(-7vw, 10vh, 0) scale(0.85);
+        }
+      }
+      @keyframes drift3 {
+        to {
+          transform: translate3d(6vw, -8vh, 0) scale(1.1);
+        }
+      }
+
+      .grid-lines {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.5;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.038) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.038) 1px, transparent 1px);
+        background-size: 74px 74px;
+        mask-image: radial-gradient(120% 90% at 50% 0%, #000 10%, transparent 72%);
+        -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 10%, transparent 72%);
+      }
+
+      .grain {
+        position: fixed;
+        inset: -50%;
+        z-index: 40;
+        pointer-events: none;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+        animation: grainShift 1.1s steps(3) infinite;
+        mix-blend-mode: overlay;
+      }
+
+      @keyframes grainShift {
+        0% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(-2%, 1.5%);
+        }
+        66% {
+          transform: translate(1.5%, -1%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      /* cursor spotlight */
+      .cursor-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 460px;
+        height: 460px;
+        margin: -230px 0 0 -230px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        background: radial-gradient(
+          circle,
+          rgba(79, 140, 255, 0.14),
+          rgba(34, 211, 238, 0.06) 40%,
+          transparent 66%
+        );
+        will-change: transform;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .cursor-glow.is-on {
+          opacity: 1;
+        }
+      }
+
+      /* scroll progress */
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        z-index: 90;
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+        background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+        box-shadow: 0 0 18px rgba(79, 140, 255, 0.85);
+      }
+
+      /* ============================================================
+         PRELOADER
+      ============================================================ */
+      .boot {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: grid;
+        place-items: center;
+        background: #05070f;
+        transition: opacity 0.6s var(--ease), visibility 0.6s;
+      }
+
+      .boot.is-done {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .boot__inner {
+        width: min(320px, 78vw);
+        text-align: center;
+      }
+
+      .boot__mark {
+        width: 62px;
+        height: 62px;
+        margin: 0 auto 20px;
+        border-radius: 20px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent-3));
+        box-shadow: 0 0 0 0 rgba(79, 140, 255, 0.5);
+        animation: bootPulse 1.6s ease-out infinite;
+      }
+
+      @keyframes bootPulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(79, 140, 255, 0.45);
+        }
+        100% {
+          box-shadow: 0 0 0 34px rgba(79, 140, 255, 0);
+        }
+      }
+
+      .boot__bar {
+        height: 3px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.09);
+        overflow: hidden;
+      }
+
+      .boot__bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        border-radius: 99px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        animation: bootFill 1.15s var(--ease-io) forwards;
+      }
+
+      @keyframes bootFill {
+        to {
+          width: 100%;
+        }
+      }
+
+      .boot__text {
+        margin-top: 14px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      /* ============================================================
+         LAYOUT
+      ============================================================ */
+      .container {
+        width: 100%;
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: 22px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 16px;
+        top: -70px;
+        z-index: 210;
+        padding: 12px 18px;
+        border-radius: 12px;
+        background: #fff;
+        color: #05070f;
+        font-weight: 700;
+        text-decoration: none;
+        transition: top 0.18s ease;
+      }
+      .skip-link:focus-visible {
+        top: 14px;
+      }
+
+      .section {
+        position: relative;
+        padding: 104px 0;
+      }
+
+      .section--tight {
+        padding: 64px 0;
+      }
+
+      .section--alt::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.028),
+          rgba(255, 255, 255, 0)
+        );
+        border-block: 1px solid rgba(255, 255, 255, 0.06);
+        pointer-events: none;
+      }
+
+      .section__inner {
+        position: relative;
+      }
+
+      /* ---------- headings ---------- */
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 15px;
+        border-radius: 999px;
+        border: 1px solid rgba(79, 140, 255, 0.34);
+        background: linear-gradient(
+          100deg,
+          rgba(79, 140, 255, 0.16),
+          rgba(34, 211, 238, 0.08)
+        );
+        color: #bcd4ff;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin: 0 0 20px;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent-2);
+        box-shadow: 0 0 12px var(--accent-2);
+        animation: blink 2.4s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.25;
+        }
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.1;
+        letter-spacing: -0.032em;
+        font-weight: 800;
+      }
+
+      h2 {
+        font-size: clamp(1.85rem, 3.9vw, 2.85rem);
+      }
+
+      h3 {
+        font-size: 1.08rem;
+        letter-spacing: -0.012em;
+      }
+
+      .lead {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.35vw, 1.1rem);
+        max-width: 62ch;
+      }
+
+      .section-head {
+        max-width: 730px;
+        margin-bottom: 48px;
+      }
+
+      .section-head--center {
+        margin-inline: auto;
+        text-align: center;
+      }
+      .section-head--center .lead {
+        margin-inline: auto;
+      }
+
+      .grad-text {
+        background: linear-gradient(
+          100deg,
+          #8fbaff 0%,
+          #22d3ee 40%,
+          #a78bfa 75%,
+          #8fbaff 100%
+        );
+        background-size: 220% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: gradSlide 7s linear infinite;
+      }
+
+      @keyframes gradSlide {
+        to {
+          background-position: 220% 0;
+        }
+      }
+
+      /* ============================================================
+         REVEAL SYSTEM
+      ============================================================ */
+      [data-reveal] {
+        opacity: 0;
+        transform: translate3d(0, 34px, 0);
+        transition: opacity 0.85s var(--ease), transform 0.85s var(--ease),
+          filter 0.85s var(--ease);
+      }
+
+      [data-reveal="left"] {
+        transform: translate3d(-46px, 0, 0);
+      }
+      [data-reveal="right"] {
+        transform: translate3d(46px, 0, 0);
+      }
+      [data-reveal="zoom"] {
+        transform: scale(0.9);
+      }
+      [data-reveal="blur"] {
+        filter: blur(14px);
+        transform: translate3d(0, 20px, 0);
+      }
+
+      [data-reveal].is-in {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+
+      /* ============================================================
+         NOTICES
+      ============================================================ */
+      .notices {
+        position: relative;
+        background: linear-gradient(
+          90deg,
+          rgba(79, 140, 255, 0.15),
+          rgba(34, 211, 238, 0.07)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+
+      .notices::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.09),
+          transparent
+        );
+        transform: translateX(-100%);
+        animation: sweep 7s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes sweep {
+        0% {
+          transform: translateX(-100%);
+        }
+        55%,
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      .notices__inner {
+        display: grid;
+        gap: 4px;
+        padding: 11px 0;
+      }
+
+      .notice {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13.4px;
+        line-height: 1.5;
+        color: #d6def0;
+        animation: noticeIn 0.7s var(--ease) both;
+      }
+
+      .notice:nth-child(2) {
+        animation-delay: 0.12s;
+      }
+
+      @keyframes noticeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+      }
+
+      .notice .icon {
+        width: 17px;
+        height: 17px;
+        margin-top: 3px;
+        color: var(--accent-2);
+      }
+
+      .notice__close {
+        margin-left: auto;
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border: 0;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.07);
+        color: #cfd8ea;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+      .notice__close:hover {
+        background: rgba(255, 255, 255, 0.16);
+        transform: rotate(90deg);
+      }
+      .notice__close .icon {
+        width: 14px;
+        height: 14px;
+        margin: 0;
+        color: inherit;
+      }
+
+      /* ============================================================
+         HEADER
+      ============================================================ */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 70;
+        border-bottom: 1px solid transparent;
+        transition: background 0.35s ease, border-color 0.35s ease,
+          backdrop-filter 0.35s ease;
+      }
+
+      .header.is-stuck {
+        background: rgba(5, 7, 15, 0.78);
+        backdrop-filter: blur(18px) saturate(140%);
+        -webkit-backdrop-filter: blur(18px) saturate(140%);
+        border-bottom-color: rgba(255, 255, 255, 0.09);
+      }
+
+      .header__inner {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        min-height: 74px;
+        padding-block: 12px;
+        transition: min-height 0.35s var(--ease);
+      }
+
+      .header.is-stuck .header__inner {
+        min-height: 64px;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-size: 17.5px;
+        white-space: nowrap;
+      }
+
+      .logo__mark {
+        position: relative;
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent-3));
+        box-shadow: 0 12px 26px -12px rgba(79, 140, 255, 0.9);
+        transition: transform 0.45s var(--ease);
+      }
+
+      .logo:hover .logo__mark {
+        transform: rotate(-8deg) scale(1.06);
+      }
+
+      .logo__mark::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 15px;
+        border: 1px solid rgba(79, 140, 255, 0.35);
+        animation: ring 3.4s ease-out infinite;
+      }
+
+      @keyframes ring {
+        0% {
+          transform: scale(0.9);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1.35);
+          opacity: 0;
+        }
+      }
+
+      .logo__mark .icon {
+        width: 20px;
+        height: 20px;
+        stroke-width: 2;
+      }
+
+      .logo span small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 9.5px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        color: var(--muted-2);
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      .nav {
+        margin-left: auto;
+      }
+
+      .nav__list {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav__link {
+        position: relative;
+        display: block;
+        padding: 9px 13px;
+        border-radius: 10px;
+        font-size: 14.4px;
+        font-weight: 500;
+        color: #bcc6da;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .nav__link::after {
+        content: "";
+        position: absolute;
+        left: 13px;
+        right: 13px;
+        bottom: 4px;
+        height: 1.5px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+        transition: transform 0.35s var(--ease);
+      }
+
+      .nav__link:hover {
+        color: #fff;
+      }
+      .nav__link:hover::after {
+        transform: scaleX(1);
+      }
+
+      .header__actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .link-plain {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 15px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        color: #cfd8ea;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s var(--ease);
+      }
+
+      .link-plain::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent 20%,
+          rgba(255, 255, 255, 0.14) 50%,
+          transparent 80%
+        );
+        transform: translateX(-120%);
+        transition: transform 0.65s var(--ease);
+      }
+
+      .link-plain:hover {
+        color: #fff;
+        border-color: var(--border-strong);
+        transform: translateY(-1px);
+      }
+      .link-plain:hover::before {
+        transform: translateX(120%);
+      }
+
+      .link-plain .icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .burger {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        cursor: pointer;
+        place-items: center;
+        position: relative;
+      }
+
+      .burger .icon {
+        transition: transform 0.35s var(--ease), opacity 0.25s ease;
+      }
+      .burger[aria-expanded="true"] .icon--menu {
+        transform: rotate(90deg);
+        opacity: 0;
+      }
+      .burger .icon--close {
+        position: absolute;
+        transform: rotate(-90deg);
+        opacity: 0;
+      }
+      .burger[aria-expanded="true"] .icon--close {
+        transform: rotate(0);
+        opacity: 1;
+      }
+
+      .mobile-nav {
+        display: none;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(5, 7, 15, 0.97);
+      }
+
+      .mobile-nav.is-open {
+        display: block;
+        animation: navDown 0.4s var(--ease) both;
+      }
+
+      @keyframes navDown {
+        from {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+      }
+
+      .mobile-nav__list {
+        list-style: none;
+        margin: 0;
+        padding: 14px 0;
+        display: grid;
+        gap: 4px;
+      }
+
+      .mobile-nav__list li {
+        animation: navItem 0.5s var(--ease) both;
+      }
+
+      @keyframes navItem {
+        from {
+          opacity: 0;
+          transform: translateX(-22px);
+        }
+      }
+
+      .mobile-nav__list a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-radius: 13px;
+        text-decoration: none;
+        color: #d7dfef;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.035);
+      }
+      .mobile-nav__list a::after {
+        content: "→";
+        color: var(--muted-2);
+      }
+      .mobile-nav__list a:hover {
+        background: rgba(255, 255, 255, 0.09);
+        color: #fff;
+      }
+
+      .mobile-nav__row {
+        display: grid;
+        gap: 10px;
+        padding-bottom: 22px;
+      }
+
+      /* ============================================================
+         BUTTONS
+      ============================================================ */
+      .btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 28px;
+        border-radius: 15px;
+        border: 1px solid transparent;
+        font-family: inherit;
+        font-size: 15.5px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-decoration: none;
+        cursor: pointer;
+        isolation: isolate;
+        overflow: hidden;
+        transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+          background 0.3s ease, border-color 0.3s ease;
+      }
+
+      .btn .icon {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.35s var(--ease);
+      }
+
+      .btn:hover .icon {
+        transform: translateX(4px);
+      }
+
+      .btn--primary {
+        background: linear-gradient(120deg, var(--accent), #6d5cf6 60%, var(--accent-2));
+        background-size: 200% 100%;
+        color: #fff;
+        box-shadow: 0 18px 40px -20px rgba(79, 140, 255, 0.95),
+          inset 0 1px 0 rgba(255, 255, 255, 0.28);
+      }
+
+      .btn--primary::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          100deg,
+          transparent 25%,
+          rgba(255, 255, 255, 0.32) 50%,
+          transparent 75%
+        );
+        transform: translateX(-130%);
+        transition: transform 0.8s var(--ease);
+      }
+
+      .btn--primary:hover {
+        transform: translateY(-3px);
+        background-position: 100% 0;
+        box-shadow: 0 26px 54px -20px rgba(79, 140, 255, 1);
+      }
+      .btn--primary:hover::after {
+        transform: translateX(130%);
+      }
+
+      .btn--ghost {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--border-strong);
+        color: #fff;
+        backdrop-filter: blur(6px);
+      }
+
+      .btn--ghost::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(
+          120% 140% at 50% 120%,
+          rgba(79, 140, 255, 0.4),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      .btn--ghost:hover {
+        transform: translateY(-3px);
+        border-color: rgba(143, 186, 255, 0.6);
+      }
+      .btn--ghost:hover::before {
+        opacity: 1;
+      }
+
+      .btn--sm {
+        padding: 12px 20px;
+        font-size: 14.6px;
+        border-radius: 13px;
+      }
+
+      .btn--wide {
+        width: 100%;
+      }
+
+      /* ============================================================
+         CARDS / GRID
+      ============================================================ */
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+      .grid--2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid--3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .grid--4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card {
+        position: relative;
+        padding: 26px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          165deg,
+          rgba(255, 255, 255, 0.075),
+          rgba(255, 255, 255, 0.02)
+        );
+        box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.9);
+        overflow: hidden;
+        transform-style: preserve-3d;
+        transition: transform 0.5s var(--ease), border-color 0.4s ease,
+          box-shadow 0.5s var(--ease);
+      }
+
+      /* mouse spotlight */
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: radial-gradient(
+          260px circle at var(--mx, 50%) var(--my, 0%),
+          rgba(79, 140, 255, 0.22),
+          transparent 62%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+
+      .card:hover {
+        border-color: rgba(143, 186, 255, 0.42);
+        box-shadow: 0 34px 70px -32px rgba(31, 74, 158, 0.85);
+      }
+      .card:hover::before {
+        opacity: 1;
+      }
+
+      .card__num {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        color: rgba(255, 255, 255, 0.22);
+      }
+
+      .card__icon {
+        width: 50px;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: linear-gradient(
+          150deg,
+          rgba(79, 140, 255, 0.24),
+          rgba(167, 139, 250, 0.1)
+        );
+        border: 1px solid rgba(79, 140, 255, 0.3);
+        color: #a9c8ff;
+        margin-bottom: 18px;
+        transition: transform 0.5s var(--ease), box-shadow 0.5s ease,
+          color 0.4s ease;
+      }
+
+      .card:hover .card__icon {
+        transform: translateY(-4px) rotate(-6deg) scale(1.06);
+        color: #fff;
+        box-shadow: 0 16px 32px -14px rgba(79, 140, 255, 0.85);
+      }
+
+      .card__icon .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .card p {
+        margin: 11px 0 0;
+        color: var(--muted);
+        font-size: 14.9px;
+      }
+
+      .card__glowline {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(143, 186, 255, 0.7),
+          transparent
+        );
+        transform: scaleX(0);
+        transition: transform 0.7s var(--ease);
+      }
+      .card:hover .card__glowline {
+        transform: scaleX(1);
+      }
+
+      /* ============================================================
+         HERO
+      ============================================================ */
+      .hero {
+        position: relative;
+        padding: 66px 0 80px;
+        overflow: hidden;
+      }
+
+      .hero__grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .hero__title {
+        font-size: clamp(2.15rem, 5.2vw, 3.85rem);
+        line-height: 1.03;
+      }
+
+      .hero__title .line {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 0.06em;
+      }
+
+      .hero__title .line__in {
+        display: block;
+        transform: translateY(110%);
+        opacity: 0;
+      }
+
+      body.is-ready .hero__title .line__in {
+        animation: lineUp 1.05s var(--ease) forwards;
+      }
+
+      body.is-ready .hero__title .line:nth-child(2) .line__in {
+        animation-delay: 0.1s;
+      }
+      body.is-ready .hero__title .line:nth-child(3) .line__in {
+        animation-delay: 0.2s;
+      }
+
+      @keyframes lineUp {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .hero__fade {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      body.is-ready .hero__fade {
+        animation: fadeUp 0.9s var(--ease) forwards;
+      }
+      body.is-ready .hero__fade--1 {
+        animation-delay: 0.05s;
+      }
+      body.is-ready .hero__fade--2 {
+        animation-delay: 0.34s;
+      }
+      body.is-ready .hero__fade--3 {
+        animation-delay: 0.48s;
+      }
+      body.is-ready .hero__fade--4 {
+        animation-delay: 0.62s;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .hero__badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 34px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 15px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: #c8d2e6;
+        font-size: 13.4px;
+        font-weight: 500;
+        backdrop-filter: blur(6px);
+        transition: transform 0.3s var(--ease), border-color 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .chip:hover {
+        transform: translateY(-2px);
+        border-color: rgba(143, 186, 255, 0.45);
+        background: rgba(79, 140, 255, 0.1);
+      }
+
+      .chip .icon {
+        width: 15px;
+        height: 15px;
+        color: var(--ok);
+      }
+
+      /* ---- hero visual: orbital shield ---- */
+      .orbit-wrap {
+        position: relative;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        will-change: transform;
+      }
+
+      .orbit-wrap svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .spin-slow {
+        transform-origin: 50% 50%;
+        animation: spin 34s linear infinite;
+      }
+      .spin-mid {
+        transform-origin: 50% 50%;
+        animation: spin 22s linear infinite reverse;
+      }
+      .spin-fast {
+        transform-origin: 50% 50%;
+        animation: spin 14s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .dash-flow {
+        stroke-dasharray: 6 16;
+        animation: dashMove 2.4s linear infinite;
+      }
+      .dash-flow--rev {
+        animation-direction: reverse;
+      }
+
+      @keyframes dashMove {
+        to {
+          stroke-dashoffset: -44;
+        }
+      }
+
+      .node-pulse {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: nodePulse 2.6s ease-in-out infinite;
+      }
+
+      @keyframes nodePulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.55);
+          opacity: 0.55;
+        }
+      }
+
+      .orbit-core {
+        position: absolute;
+        width: 34%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: radial-gradient(
+          circle at 32% 28%,
+          rgba(255, 255, 255, 0.32),
+          rgba(79, 140, 255, 0.28) 38%,
+          rgba(11, 18, 36, 0.9) 72%
+        );
+        border: 1px solid rgba(160, 200, 255, 0.35);
+        box-shadow: 0 0 70px -10px rgba(79, 140, 255, 0.65),
+          inset 0 0 40px rgba(79, 140, 255, 0.22);
+        animation: coreFloat 6s ease-in-out infinite;
+      }
+
+      .orbit-core .icon {
+        width: 34%;
+        height: 34%;
+        stroke-width: 1.6;
+      }
+
+      @keyframes coreFloat {
+        0%,
+        100% {
+          transform: translateY(-6px);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      .orbit-chip {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #d3ddf0;
+        background: rgba(10, 16, 30, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.9);
+        animation: chipFloat 7s ease-in-out infinite;
+      }
+
+      .orbit-chip i {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent-2);
+        box-shadow: 0 0 10px var(--accent-2);
+      }
+
+      .orbit-chip--1 {
+        top: 4%;
+        left: 6%;
+      }
+      .orbit-chip--2 {
+        bottom: 12%;
+        right: 0;
+        animation-delay: -2.2s;
+      }
+      .orbit-chip--3 {
+        bottom: 1%;
+        left: 16%;
+        animation-delay: -4.4s;
+      }
+
+      @keyframes chipFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-11px);
+        }
+      }
+
+      /* ============================================================
+         MARQUEE
+      ============================================================ */
+      .marquee {
+        position: relative;
+        padding: 18px 0;
+        border-block: 1px solid rgba(255, 255, 255, 0.07);
+        background: linear-gradient(
+          90deg,
+          rgba(79, 140, 255, 0.07),
+          rgba(167, 139, 250, 0.05)
+        );
+        overflow: hidden;
+        mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 12%,
+          #000 88%,
+          transparent
+        );
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 12%,
+          #000 88%,
+          transparent
+        );
+      }
+
+      .marquee__track {
+        display: flex;
+        width: max-content;
+        animation: marquee 34s linear infinite;
+      }
+
+      .marquee:hover .marquee__track {
+        animation-play-state: paused;
+      }
+
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .marquee__group {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        padding-right: 34px;
+      }
+
+      .marquee__item {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #9fb0cd;
+        white-space: nowrap;
+      }
+
+      .marquee__item .flag {
+        font-size: 17px;
+      }
+
+      .marquee__dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: rgba(143, 186, 255, 0.6);
+      }
+
+      /* ============================================================
+         LOCATIONS
+      ============================================================ */
+      .loc-layout {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 44px;
+        align-items: center;
+      }
+
+      .globe {
+        position: relative;
+        aspect-ratio: 1;
+        max-width: 420px;
+        margin-inline: auto;
+        width: 100%;
+      }
+
+      .globe svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .globe__halo {
+        position: absolute;
+        inset: -12%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(79, 140, 255, 0.22),
+          transparent 62%
+        );
+        animation: halo 5s ease-in-out infinite;
+      }
+
+      @keyframes halo {
+        0%,
+        100% {
+          transform: scale(0.96);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+      }
+
+      .globe__marker {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: markerPop 2.8s ease-in-out infinite;
+      }
+
+      @keyframes markerPop {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.5);
+          opacity: 0.6;
+        }
+      }
+
+      .locations {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        list-style: none;
+        margin: 0 0 28px;
+        padding: 0;
+      }
+
+      .loc {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 15px 17px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.035);
+        font-weight: 600;
+        overflow: hidden;
+        transition: transform 0.4s var(--ease), border-color 0.35s ease,
+          background 0.35s ease;
+      }
+
+      .loc::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, var(--accent-2), var(--accent-3));
+        transform: scaleY(0);
+        transform-origin: 50% 0;
+        transition: transform 0.45s var(--ease);
+      }
+
+      .loc:hover {
+        transform: translateX(6px);
+        border-color: rgba(143, 186, 255, 0.45);
+        background: rgba(79, 140, 255, 0.09);
+      }
+      .loc:hover::after {
+        transform: scaleY(1);
+      }
+
+      .loc__flag {
+        font-size: 24px;
+        line-height: 1;
+        transition: transform 0.4s var(--ease);
+      }
+      .loc:hover .loc__flag {
+        transform: scale(1.18) rotate(-6deg);
+      }
+
+      .loc small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        font-weight: 500;
+        color: var(--muted-2);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .cta-note {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 18px;
+        padding: 22px 26px;
+        border-radius: var(--radius-lg);
+        border: 1px dashed rgba(79, 140, 255, 0.42);
+        background: linear-gradient(
+          100deg,
+          rgba(79, 140, 255, 0.11),
+          rgba(34, 211, 238, 0.05)
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-note::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          100deg,
+          transparent 30%,
+          rgba(143, 186, 255, 0.12) 50%,
+          transparent 70%
+        );
+        transform: translateX(-100%);
+        animation: sweep 6s ease-in-out infinite;
+      }
+
+      .cta-note p {
+        margin: 0;
+        color: #d3ddf0;
+        font-size: 14.9px;
+        position: relative;
+      }
+
+      .cta-note .btn {
+        margin-left: auto;
+        position: relative;
+      }
+
+      /* ============================================================
+         HOW IT WORKS
+      ============================================================ */
+      .how {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 30px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .stat {
+        padding: 18px 20px;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          165deg,
+          rgba(255, 255, 255, 0.07),
+          rgba(255, 255, 255, 0.015)
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat__value {
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        background: linear-gradient(120deg, #fff, #9dc0ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .stat__label {
+        margin-top: 8px;
+        font-size: 12.8px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      .thesis-list {
+        list-style: none;
+        margin: 26px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .thesis-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #cdd7e9;
+        font-size: 15px;
+      }
+
+      .thesis-list .icon {
+        width: 17px;
+        height: 17px;
+        color: var(--ok);
+      }
+
+      .rotator {
+        position: relative;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          165deg,
+          rgba(255, 255, 255, 0.075),
+          rgba(255, 255, 255, 0.02)
+        );
+        padding: 30px;
+        box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.95);
+        overflow: hidden;
+      }
+
+      .rotator::before {
+        content: "";
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        right: -80px;
+        top: -80px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(34, 211, 238, 0.24),
+          transparent 66%
+        );
+        animation: halo 6s ease-in-out infinite;
+      }
+
+      .rotator__label {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+        font-weight: 500;
+      }
+
+      .rotator__label .icon {
+        width: 16px;
+        height: 16px;
+        color: var(--accent-2);
+      }
+
+      .rotator__viewport {
+        margin-top: 22px;
+        min-height: 116px;
+        display: grid;
+        align-items: center;
+      }
+
+      .rotator__item {
+        grid-area: 1 / 1;
+        font-size: clamp(1.3rem, 2.6vw, 1.85rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.16;
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+        transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+        pointer-events: none;
+      }
+
+      .rotator__item.is-active {
+        opacity: 1;
+        transform: none;
+      }
+
+      .rotator__controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 24px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+      }
+
+      .rotator__btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.05);
+        color: #d5deee;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: background 0.25s ease, transform 0.25s var(--ease),
+          border-color 0.25s ease;
+      }
+
+      .rotator__btn:hover {
+        background: rgba(255, 255, 255, 0.13);
+        color: #fff;
+        transform: scale(1.06);
+        border-color: var(--border-strong);
+      }
+
+      .rotator__btn .icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .rotator__dots {
+        display: flex;
+        gap: 8px;
+        margin-inline: auto;
+        padding: 0;
+        list-style: none;
+      }
+
+      .rotator__dots button {
+        width: 26px;
+        height: 5px;
+        padding: 0;
+        border-radius: 99px;
+        border: 0;
+        background: rgba(255, 255, 255, 0.16);
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s var(--ease);
+      }
+
+      .rotator__dots button:hover {
+        background: rgba(255, 255, 255, 0.34);
+      }
+
+      .rotator__dots button[aria-current="true"] {
+        background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+        transform: scaleY(1.3);
+      }
+
+      /* ============================================================
+         DEVICES
+      ============================================================ */
+      .devices {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        list-style: none;
+        margin: 0 0 30px;
+        padding: 0;
+      }
+
+      .device {
+        position: relative;
+        padding: 26px 18px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          170deg,
+          rgba(255, 255, 255, 0.065),
+          rgba(255, 255, 255, 0.015)
+        );
+        text-align: center;
+        overflow: hidden;
+        transition: transform 0.45s var(--ease), border-color 0.35s ease;
+      }
+
+      .device::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 -60% 0;
+        height: 120%;
+        background: radial-gradient(
+          60% 50% at 50% 100%,
+          rgba(79, 140, 255, 0.28),
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.45s ease;
+      }
+
+      .device:hover {
+        transform: translateY(-8px);
+        border-color: rgba(143, 186, 255, 0.42);
+      }
+      .device:hover::after {
+        opacity: 1;
+      }
+
+      .device > * {
+        position: relative;
+      }
+
+      .device .icon {
+        width: 34px;
+        height: 34px;
+        color: #9dc0ff;
+        margin-bottom: 14px;
+        stroke-width: 1.5;
+        transition: transform 0.45s var(--ease), color 0.35s ease;
+      }
+
+      .device:hover .icon {
+        transform: translateY(-4px) scale(1.08);
+        color: #fff;
+      }
+
+      .device strong {
+        display: block;
+        font-size: 15.6px;
+      }
+
+      .device span {
+        display: block;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+        margin-top: 5px;
+      }
+
+      .feature-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .feature-strip li {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 15px 17px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        font-size: 14.3px;
+        color: #ccd6e8;
+        font-weight: 500;
+        transition: transform 0.35s var(--ease), border-color 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .feature-strip li:hover {
+        transform: translateY(-3px);
+        border-color: rgba(143, 186, 255, 0.4);
+        background: rgba(79, 140, 255, 0.08);
+      }
+
+      .feature-strip .icon {
+        width: 17px;
+        height: 17px;
+        color: var(--accent-2);
+      }
+
+      /* ============================================================
+         STEPS / TIMELINE
+      ============================================================ */
+      .timeline {
+        position: relative;
+        max-width: 780px;
+        margin-inline: auto;
+        padding-left: 34px;
+      }
+
+      .timeline__line {
+        position: absolute;
+        left: 19px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.09);
+        overflow: hidden;
+      }
+
+      .timeline__fill {
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 0%;
+        background: linear-gradient(180deg, var(--accent-2), var(--accent), var(--accent-3));
+        box-shadow: 0 0 16px rgba(79, 140, 255, 0.8);
+        transition: height 0.5s var(--ease);
+      }
+
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 16px;
+        counter-reset: step;
+      }
+
+      .step {
+        position: relative;
+        display: flex;
+        gap: 18px;
+        padding: 22px 24px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          165deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.015)
+        );
+        transition: transform 0.45s var(--ease), border-color 0.35s ease,
+          background 0.35s ease;
+      }
+
+      .step::before {
+        counter-increment: step;
+        content: counter(step, decimal-leading-zero);
+        position: absolute;
+        left: -34px;
+        top: 22px;
+        width: 40px;
+        height: 40px;
+        border-radius: 13px;
+        display: grid;
+        place-items: center;
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 700;
+        color: #cfe0ff;
+        background: #0a1120;
+        border: 1px solid rgba(79, 140, 255, 0.4);
+        transition: background 0.4s ease, color 0.4s ease,
+          box-shadow 0.4s ease, transform 0.45s var(--ease);
+      }
+
+      .step.is-active::before {
+        background: linear-gradient(135deg, var(--accent), var(--accent-3));
+        color: #fff;
+        box-shadow: 0 0 0 5px rgba(79, 140, 255, 0.14),
+          0 14px 30px -14px rgba(79, 140, 255, 0.9);
+        transform: scale(1.06);
+      }
+
+      .step:hover {
+        transform: translateX(6px);
+        border-color: rgba(143, 186, 255, 0.4);
+        background: rgba(79, 140, 255, 0.07);
+      }
+
+      .step strong {
+        display: block;
+        font-size: 16.4px;
+      }
+
+      .step span {
+        display: block;
+        color: var(--muted);
+        font-size: 14.6px;
+        margin-top: 4px;
+      }
+
+      .help-note {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 34px;
+        padding: 20px 22px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid var(--border);
+        font-size: 14.9px;
+        color: #cbd5e7;
+        text-align: center;
+      }
+
+      .help-note a {
+        color: #8fc0ff;
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(143, 192, 255, 0.4);
+        transition: color 0.25s ease, border-color 0.25s ease;
+      }
+
+      .help-note a:hover {
+        color: #c9e0ff;
+        border-color: rgba(201, 224, 255, 0.8);
+      }
+
+      /* ============================================================
+         PRICING
+      ============================================================ */
+      .plans {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .plan {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 28px 26px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          170deg,
+          rgba(255, 255, 255, 0.08),
+          rgba(255, 255, 255, 0.02)
+        );
+        box-shadow: 0 28px 64px -40px rgba(0, 0, 0, 0.95);
+        overflow: hidden;
+        transition: transform 0.5s var(--ease), border-color 0.4s ease,
+          box-shadow 0.5s var(--ease);
+      }
+
+      .plan::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(79, 140, 255, 0.14),
+          transparent 42%
+        );
+        opacity: 0;
+        transition: opacity 0.45s ease;
+      }
+
+      .plan::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 45%;
+        height: 100%;
+        background: linear-gradient(
+          100deg,
+          transparent,
+          rgba(255, 255, 255, 0.11),
+          transparent
+        );
+        transform: skewX(-18deg);
+        transition: left 0.85s var(--ease);
+      }
+
+      .plan:hover {
+        transform: translateY(-10px);
+        border-color: rgba(143, 186, 255, 0.45);
+        box-shadow: 0 40px 80px -38px rgba(31, 74, 158, 0.9);
+      }
+      .plan:hover::before {
+        opacity: 1;
+      }
+      .plan:hover::after {
+        left: 120%;
+      }
+
+      .plan > * {
+        position: relative;
+      }
+
+      .plan--free {
+        border-color: rgba(52, 211, 153, 0.42);
+        background: linear-gradient(
+          170deg,
+          rgba(52, 211, 153, 0.15),
+          rgba(255, 255, 255, 0.02)
+        );
+      }
+
+      .plan--best {
+        border-color: rgba(79, 140, 255, 0.6);
+        box-shadow: 0 30px 70px -34px rgba(79, 140, 255, 0.85);
+      }
+
+      .plan--best::before {
+        opacity: 0.7;
+      }
+
+      .plan__tag {
+        align-self: flex-start;
+        padding: 7px 13px;
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        color: #c9d3e6;
+      }
+
+      .plan--free .plan__tag {
+        background: rgba(52, 211, 153, 0.18);
+        border-color: rgba(52, 211, 153, 0.42);
+        color: #86efb6;
+      }
+
+      .plan--best .plan__tag {
+        background: rgba(79, 140, 255, 0.22);
+        border-color: rgba(79, 140, 255, 0.5);
+        color: #bcd4ff;
+      }
+
+      .plan__period {
+        margin-top: 20px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .plan__name {
+        margin-top: 7px;
+        font-size: 1.28rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+      }
+
+      .plan__price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-top: 18px;
+        font-size: 2.3rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        background: linear-gradient(120deg, #fff, #a8c6ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .plan__price span {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--muted-2);
+        -webkit-text-fill-color: var(--muted-2);
+      }
+
+      .plan__list {
+        list-style: none;
+        margin: 22px 0 26px;
+        padding: 22px 0 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.09);
+        display: grid;
+        gap: 12px;
+        flex: 1;
+      }
+
+      .plan__list li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 14.6px;
+        color: #cdd7e9;
+      }
+
+      .plan__list .icon {
+        width: 16px;
+        height: 16px;
+        margin-top: 3px;
+        color: var(--ok);
+        flex: 0 0 auto;
+      }
+
+      .terms-note {
+        margin-top: 32px;
+        padding: 22px 26px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--muted);
+        font-size: 14.6px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .terms-note::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, var(--accent-2), var(--accent-3));
+      }
+
+      .terms-note strong {
+        color: #e6ecf7;
+      }
+
+      .link-inline {
+        color: #8fc0ff;
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(143, 192, 255, 0.45);
+        cursor: pointer;
+        background: none;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: inherit;
+        transition: color 0.25s ease, border-color 0.25s ease;
+      }
+
+      .link-inline:hover {
+        color: #c6ddff;
+        border-color: rgba(198, 221, 255, 0.8);
+      }
+
+      /* ============================================================
+         SUPPORT / BLOG
+      ============================================================ */
+      .support-card {
+        position: relative;
+        text-align: center;
+        padding: 60px 30px;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(79, 140, 255, 0.28);
+        background: linear-gradient(
+          170deg,
+          rgba(79, 140, 255, 0.18),
+          rgba(255, 255, 255, 0.02)
+        );
+        box-shadow: 0 34px 80px -46px rgba(31, 74, 158, 0.95);
+        overflow: hidden;
+      }
+
+      .support-card::before,
+      .support-card::after {
+        content: "";
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        filter: blur(20px);
+        opacity: 0.5;
+      }
+
+      .support-card::before {
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.35), transparent 66%);
+        top: -140px;
+        left: -80px;
+        animation: drift2 18s ease-in-out infinite alternate;
+      }
+
+      .support-card::after {
+        background: radial-gradient(circle, rgba(167, 139, 250, 0.35), transparent 66%);
+        bottom: -150px;
+        right: -90px;
+        animation: drift1 20s ease-in-out infinite alternate;
+      }
+
+      .support-card > * {
+        position: relative;
+      }
+
+      .support-card__icon {
+        width: 68px;
+        height: 68px;
+        margin: 0 auto 22px;
+        border-radius: 22px;
+        display: grid;
+        place-items: center;
+        background: rgba(79, 140, 255, 0.24);
+        border: 1px solid rgba(79, 140, 255, 0.42);
+        color: #bcd4ff;
+        animation: coreFloat 5.5s ease-in-out infinite;
+      }
+
+      .support-card__icon .icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .typing {
+        display: inline-flex;
+        gap: 6px;
+        margin-top: 22px;
+      }
+
+      .typing i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #8fc0ff;
+        animation: typing 1.4s ease-in-out infinite;
+      }
+
+      .typing i:nth-child(2) {
+        animation-delay: 0.18s;
+      }
+      .typing i:nth-child(3) {
+        animation-delay: 0.36s;
+      }
+
+      @keyframes typing {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.45;
+        }
+        50% {
+          transform: translateY(-7px);
+          opacity: 1;
+        }
+      }
+
+      .blog-empty {
+        text-align: center;
+        padding: 52px 28px;
+        border-radius: var(--radius-lg);
+        border: 1px dashed var(--border-strong);
+        background: rgba(255, 255, 255, 0.025);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .blog-empty .icon {
+        width: 36px;
+        height: 36px;
+        color: var(--muted-2);
+        animation: coreFloat 6s ease-in-out infinite;
+      }
+
+      .blog-empty p {
+        color: var(--muted);
+        margin: 16px 0 24px;
+      }
+
+      /* ============================================================
+         FOOTER
+      ============================================================ */
+      .footer {
+        position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(180deg, rgba(4, 7, 14, 0.5), rgba(4, 7, 14, 0.9));
+        padding: 54px 0 32px;
+        margin-top: 60px;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(79, 140, 255, 0.8),
+          rgba(167, 139, 250, 0.8),
+          transparent
+        );
+        background-size: 50% 100%;
+        animation: borderRun 6s linear infinite;
+      }
+
+      @keyframes borderRun {
+        to {
+          background-position: 200% 0;
+        }
+      }
+
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 32px;
+      }
+
+      .footer h3 {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+        margin-bottom: 18px;
+      }
+
+      .footer__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 11px;
+      }
+
+      .footer__list a,
+      .footer__list button {
+        color: #c4cee1;
+        text-decoration: none;
+        font-size: 14.6px;
+        background: none;
+        border: 0;
+        padding: 0;
+        text-align: left;
+        cursor: pointer;
+        font-family: inherit;
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        transition: color 0.25s ease, gap 0.3s var(--ease);
+      }
+
+      .footer__list a::before,
+      .footer__list button::before {
+        content: "";
+        width: 0;
+        height: 1.5px;
+        background: var(--accent-2);
+        transition: width 0.3s var(--ease);
+      }
+
+      .footer__list a:hover,
+      .footer__list button:hover {
+        color: #fff;
+        gap: 8px;
+      }
+
+      .footer__list a:hover::before,
+      .footer__list button:hover::before {
+        width: 16px;
+      }
+
+      .footer__about {
+        color: var(--muted);
+        font-size: 14.3px;
+        max-width: 34ch;
+      }
+
+      .footer__address {
+        font-style: normal;
+        color: var(--muted-2);
+        font-size: 14px;
+        line-height: 1.7;
+        margin-top: 16px;
+      }
+
+      .footer__bottom {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted-2);
+        font-size: 13.5px;
+      }
+
+      .socials {
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+      }
+
+      .social {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: #cfd8ea;
+        text-decoration: none;
+        font-size: 13.6px;
+        font-weight: 600;
+        transition: transform 0.3s var(--ease), border-color 0.3s ease,
+          color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .social:hover {
+        color: #fff;
+        transform: translateY(-3px);
+        border-color: rgba(143, 186, 255, 0.5);
+        box-shadow: 0 16px 32px -18px rgba(79, 140, 255, 0.9);
+      }
+
+      .social .icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ============================================================
+         DIALOGS
+      ============================================================ */
+      .dialog-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 120;
+        display: none;
+        background: rgba(3, 6, 14, 0.78);
+        backdrop-filter: blur(9px);
+        -webkit-backdrop-filter: blur(9px);
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      .dialog-backdrop.is-open {
+        display: block;
+        animation: backdropIn 0.3s ease both;
+      }
+
+      @keyframes backdropIn {
+        from {
+          opacity: 0;
+        }
+      }
+
+      .dialog {
+        max-width: 800px;
+        margin: 5vh auto;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-strong);
+        background: linear-gradient(170deg, #121c31, #0a1120);
+        box-shadow: 0 50px 110px -32px rgba(0, 0, 0, 0.96);
+        overflow: hidden;
+        animation: dialogIn 0.45s var(--ease) both;
+      }
+
+      @keyframes dialogIn {
+        from {
+          opacity: 0;
+          transform: translateY(26px) scale(0.96);
+        }
+      }
+
+      .dialog--narrow {
+        max-width: 560px;
+      }
+
+      .dialog__head {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 26px 28px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        background: linear-gradient(
+          100deg,
+          rgba(79, 140, 255, 0.14),
+          transparent 70%
+        );
+      }
+
+      .dialog__title {
+        font-size: 1.22rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        margin: 0;
+      }
+
+      .dialog__close {
+        margin-left: auto;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.05);
+        color: #d5deee;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: background 0.25s ease, transform 0.3s var(--ease);
+      }
+
+      .dialog__close:hover {
+        background: rgba(255, 255, 255, 0.14);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+
+      .dialog__body {
+        padding: 26px 28px;
+        max-height: 62vh;
+        overflow-y: auto;
+      }
+
+      .dialog__foot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px 28px 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.09);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .dialog__foot .btn {
+        margin-left: auto;
+      }
+
+      .rules h3 {
+        font-size: 1.04rem;
+        margin-top: 28px;
+      }
+      .rules h3:first-child {
+        margin-top: 0;
+      }
+
+      .rules h4 {
+        margin: 22px 0 8px;
+        font-size: 0.99rem;
+        color: #dfe6f3;
+      }
+
+      .rules p {
+        color: var(--muted);
+        font-size: 15px;
+        margin: 8px 0;
+      }
+
+      .rules ul {
+        margin: 10px 0;
+        padding-left: 20px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .rules li {
+        margin-bottom: 8px;
+      }
+
+      .rules strong {
+        color: #e7edf8;
+      }
+
+      .contact-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      .contact-list li {
+        animation: navItem 0.5s var(--ease) both;
+      }
+      .contact-list li:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+      .contact-list li:nth-child(3) {
+        animation-delay: 0.16s;
+      }
+
+      .contact-list a {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 17px 19px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        text-decoration: none;
+        transition: transform 0.35s var(--ease), border-color 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .contact-list a:hover {
+        transform: translateX(6px);
+        border-color: rgba(143, 186, 255, 0.5);
+        background: rgba(79, 140, 255, 0.1);
+      }
+
+      .contact-list .icon {
+        width: 21px;
+        height: 21px;
+        color: #9dc0ff;
+      }
+
+      .contact-list strong {
+        display: block;
+        font-size: 15.4px;
+        color: #fff;
+      }
+
+      .contact-list span {
+        display: block;
+        font-size: 13.4px;
+        color: var(--muted-2);
+      }
+
+      .contact-list .arrow {
+        margin-left: auto;
+        color: var(--muted-2);
+        transition: transform 0.35s var(--ease), color 0.3s ease;
+      }
+
+      .contact-list a:hover .arrow {
+        transform: translateX(4px);
+        color: #fff;
+      }
+
+      .dialog__body > p {
+        color: var(--muted);
+        margin-top: 0;
+      }
+
+      /* ============================================================
+         RESPONSIVE
+      ============================================================ */
+      @media (max-width: 1120px) {
+        .plans,
+        .devices,
+        .feature-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .footer__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .loc-layout {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .nav,
+        .header__actions .link-plain--support {
+          display: none;
+        }
+        .burger {
+          display: grid;
+        }
+        .hero__grid,
+        .how {
+          grid-template-columns: 1fr;
+        }
+        .hero__visual {
+          order: 2;
+          max-width: 480px;
+          margin-inline: auto;
+          width: 100%;
+        }
+        .grid--3,
+        .grid--4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .section {
+          padding: 78px 0;
+        }
+        .cursor-glow {
+          display: none;
+        }
+      }
+
+      @media (max-width: 660px) {
+        .container {
+          padding-inline: 17px;
+        }
+        .grid--2,
+        .grid--3,
+        .grid--4,
+        .plans,
+        .devices,
+        .feature-strip,
+        .locations,
+        .stats,
+        .footer__grid {
+          grid-template-columns: 1fr;
+        }
+        .hero__actions .btn {
+          width: 100%;
+        }
+        .cta-note .btn,
+        .cta-note .btn--wide {
+          width: 100%;
+          margin-left: 0;
+        }
+        .dialog__foot .btn {
+          margin-left: 0;
+          width: 100%;
+        }
+        .dialog {
+          margin: 0;
+        }
+        .dialog__body {
+          max-height: 56vh;
+          padding: 20px;
+        }
+        .dialog__head,
+        .dialog__foot {
+          padding-inline: 20px;
+        }
+        .socials {
+          margin-left: 0;
+          width: 100%;
+        }
+        .social {
+          flex: 1;
+          justify-content: center;
+        }
+        .section {
+          padding: 62px 0;
+        }
+        .timeline {
+          padding-left: 26px;
+        }
+        .timeline__line {
+          left: 11px;
+        }
+        .step::before {
+          left: -26px;
+          width: 24px;
+          height: 24px;
+          border-radius: 8px;
+          font-size: 10px;
+          top: 26px;
+        }
+        .orbit-chip--2 {
+          right: -4%;
+        }
+      }
+
+      /* ============================================================
+         REDUCED MOTION
+      ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+        [data-reveal],
+        .hero__fade,
+        .hero__title .line__in {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+        .marquee__track {
+          animation: none !important;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+        .boot {
+          display: none !important;
+        }
+        .cursor-glow,
+        .grain {
+          display: none !important;
+        }
+      }
+    </style>
+    <noscript>
+      <style>
+        .boot,
+        .cursor-glow,
+        .grain {
+          display: none !important;
+        }
+        [data-reveal],
+        .hero__fade,
+        .hero__title .line__in {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+        .marquee__track {
+          animation: none !important;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+      </style>
+    </noscript>
+  <meta name="robots" content="noindex,nofollow">
+</head>
+  <body>
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute">
+      <defs>
+        <symbol id="i-shield" viewBox="0 0 24 24">
+          <path d="M12 3l7 3v5.5c0 4.3-2.9 8.2-7 9.5-4.1-1.3-7-5.2-7-9.5V6l7-3z" />
+          <path d="M9.2 12.2l2 2 3.6-3.9" />
+        </symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24">
+          <rect x="4.5" y="10.5" width="15" height="10" rx="2.5" />
+          <path d="M8 10.5V8a4 4 0 018 0v2.5M12 14.5v2.5" />
+        </symbol>
+        <symbol id="i-user" viewBox="0 0 24 24">
+          <circle cx="12" cy="8.5" r="3.6" />
+          <path d="M5 20c1.2-3.4 3.8-5 7-5s5.8 1.6 7 5" />
+        </symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24">
+          <rect x="3.5" y="8" width="17" height="11.5" rx="2.5" />
+          <path d="M9 8V6.5A1.5 1.5 0 0110.5 5h3A1.5 1.5 0 0115 6.5V8M3.5 13h17" />
+        </symbol>
+        <symbol id="i-cap" viewBox="0 0 24 24">
+          <path d="M3 9.5l9-4 9 4-9 4-9-4z" />
+          <path d="M7 11.8V16c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4.2M20 10v5" />
+        </symbol>
+        <symbol id="i-plane" viewBox="0 0 24 24">
+          <path d="M3 13.5l18-7-4 8.5-4.5 4-1.5-4.5L3 13.5z" />
+        </symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5S9.6 5.8 12 3.5z" />
+        </symbol>
+        <symbol id="i-bolt" viewBox="0 0 24 24">
+          <path d="M13.5 3L6 13.5h5l-1.5 7.5L18 10.5h-5L13.5 3z" />
+        </symbol>
+        <symbol id="i-user-x" viewBox="0 0 24 24">
+          <circle cx="10" cy="8.5" r="3.4" />
+          <path d="M3.5 20c1.1-3.2 3.5-4.8 6.5-4.8 1 0 2 .2 2.8.6M16 15l5 5m0-5l-5 5" />
+        </symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M12 7.5V12l3.2 2" />
+        </symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24">
+          <rect x="4" y="5.5" width="16" height="14.5" rx="2.5" />
+          <path d="M4 10h16M9 3.5v4M15 3.5v4" />
+        </symbol>
+        <symbol id="i-app" viewBox="0 0 24 24">
+          <rect x="7" y="3" width="10" height="18" rx="2.5" />
+          <path d="M11 18h2" />
+        </symbol>
+        <symbol id="i-card" viewBox="0 0 24 24">
+          <rect x="3" y="6" width="18" height="12" rx="2.5" />
+          <path d="M3 10.5h18M6.5 14.5h3" />
+        </symbol>
+        <symbol id="i-monitor" viewBox="0 0 24 24">
+          <rect x="3" y="4.5" width="18" height="12" rx="2" />
+          <path d="M9 20h6M12 16.5V20" />
+        </symbol>
+        <symbol id="i-laptop" viewBox="0 0 24 24">
+          <rect x="4.5" y="5" width="15" height="10" rx="2" />
+          <path d="M2.5 18.5h19" />
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24">
+          <rect x="7.5" y="2.5" width="9" height="19" rx="2.5" />
+          <path d="M11 18.5h2" />
+        </symbol>
+        <symbol id="i-tablet" viewBox="0 0 24 24">
+          <rect x="5" y="3" width="14" height="18" rx="2.5" />
+          <path d="M11 18h2" />
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24">
+          <path d="M5 12.8l4.3 4.2L19 7.5" />
+        </symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </symbol>
+        <symbol id="i-arrow-left" viewBox="0 0 24 24">
+          <path d="M19 12H5M11 6l-6 6 6 6" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </symbol>
+        <symbol id="i-telegram" viewBox="0 0 24 24">
+          <path d="M21 4.5L2.8 11.3l5.4 1.9 1.4 5.6 3-3.3 4 3.1L21 4.5z" />
+          <path d="M8.2 13.2L21 4.5l-8.4 9.7" />
+        </symbol>
+        <symbol id="i-chat" viewBox="0 0 24 24">
+          <path d="M20.5 12c0 4.1-3.8 7.4-8.5 7.4-1 0-2-.2-2.9-.5L4.5 20.5l1.3-3.6C4.5 15.6 3.5 13.9 3.5 12c0-4.1 3.8-7.4 8.5-7.4s8.5 3.3 8.5 7.4z" />
+        </symbol>
+        <symbol id="i-book" viewBox="0 0 24 24">
+          <path d="M4 5.5A2 2 0 016 3.5h13v15H6a2 2 0 00-2 2v-15z" />
+          <path d="M4 18.5A2 2 0 016 16.5h13" />
+        </symbol>
+        <symbol id="i-info" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M12 11v5.5M12 7.8v.6" />
+        </symbol>
+        <symbol id="i-wifi" viewBox="0 0 24 24">
+          <path d="M4 9.5a12 12 0 0116 0M7 13a8 8 0 0110 0" />
+          <path d="M10 16.4a3.6 3.6 0 014 0M12 19.6v.2" />
+        </symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24">
+          <path d="M6 3.5h7l5 5v12H6z" />
+          <path d="M13 3.5v5h5M9 13h6M9 16.5h6" />
+        </symbol>
+        <symbol id="i-tag" viewBox="0 0 24 24">
+          <path d="M11 3.5H4.5V10l9.5 9.5 6-6L11 3.5z" />
+          <path d="M8 7.5v.2" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <!-- background layers -->
+    <div class="bg-base" aria-hidden="true"></div>
+    <div class="orb orb--1" aria-hidden="true"></div>
+    <div class="orb orb--2" aria-hidden="true"></div>
+    <div class="orb orb--3" aria-hidden="true"></div>
+    <div class="grid-lines" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <!-- preloader -->
+    <div class="boot" id="boot" aria-hidden="true">
+      <div class="boot__inner">
+        <div class="boot__mark">
+          <svg class="icon" style="width: 28px; height: 28px"><use href="#i-shield" /></svg>
+        </div>
+        <div class="boot__bar"><i></i></div>
+        <p class="boot__text">VLESS VPN · защищённое соединение</p>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#main">Перейти к основному содержанию</a>
+
+    <!-- ===== NOTICES ===== -->
+    <div class="notices" id="notices">
+      <div class="container notices__inner">
+        <div class="notice" role="note">
+          <svg class="icon" aria-hidden="true"><use href="#i-info" /></svg>
+          <p style="margin: 0">
+            Перед использованием сервиса внимательно прочитайте условия. Если вы
+            нарушите правила, подписка будет заблокирована без возмещения
+            средств.
+            <button type="button" class="link-inline" data-open="terms">
+              Условия использования
+            </button>
+          </p>
+          <button
+            type="button"
+            class="notice__close"
+            data-dismiss="notice"
+            aria-label="Скрыть сообщение об условиях использования"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <div class="notice" role="note">
+          <svg class="icon" aria-hidden="true"><use href="#i-chat" /></svg>
+          <p style="margin: 0">
+            Если у вас возникнут проблемы с сервисом, обратитесь в поддержку по
+            указанным контактам:
+            <a href="https://t.me/vpn_vless_sup" target="_blank" rel="noopener">t.me/vpn_vless_sup</a>.
+          </p>
+          <button
+            type="button"
+            class="notice__close"
+            data-dismiss="notice"
+            aria-label="Скрыть сообщение о поддержке"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+      <div class="container header__inner">
+        <a class="logo" href="./" aria-label="VLESS VPN — на главную">
+          <span class="logo__mark" aria-hidden="true">
+            <svg class="icon"><use href="#i-shield" /></svg>
+          </span>
+          <span>VLESS VPN<small>secure connection</small></span>
+        </a>
+
+        <nav class="nav" aria-label="Основная навигация">
+          <ul class="nav__list">
+            <li><a class="nav__link" href="./">Главная</a></li>
+            <li><a class="nav__link" href="#tariffs">Тарифы</a></li>
+            <li><a class="nav__link" href="https://vpn-vless.com/support">Поддержка</a></li>
+            <li><a class="nav__link" href="https://vpn-vless.com/current-ip">Мой IP</a></li>
+            <li><a class="nav__link" href="https://vpn-vless.com/blog">Гайды</a></li>
+            <li><a class="nav__link" href="https://vpn-vless.com/how-to-install-vless">Инструкция</a></li>
+          </ul>
+        </nav>
+
+        <div class="header__actions">
+          <button type="button" class="link-plain" data-open="terms">
+            <svg class="icon" aria-hidden="true"><use href="#i-doc" /></svg>
+            Условия
+          </button>
+          <a
+            class="link-plain link-plain--support"
+            href="https://t.me/vpn_vless_sup"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+            Поддержка
+          </a>
+          <button
+            type="button"
+            class="burger"
+            id="burger"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Открыть меню навигации"
+          >
+            <svg class="icon icon--menu" aria-hidden="true"><use href="#i-menu" /></svg>
+            <svg class="icon icon--close" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="container">
+          <ul class="mobile-nav__list">
+            <li><a href="./">Главная</a></li>
+            <li><a href="#tariffs">Тарифы</a></li>
+            <li><a href="https://vpn-vless.com/support">Поддержка</a></li>
+            <li><a href="https://vpn-vless.com/current-ip">Мой IP</a></li>
+            <li><a href="https://vpn-vless.com/blog">Гайды</a></li>
+            <li><a href="https://vpn-vless.com/how-to-install-vless">Инструкция</a></li>
+          </ul>
+          <div class="mobile-nav__row">
+            <a
+              class="btn btn--ghost btn--sm"
+              href="https://t.me/vpn_vless_sup"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+              Поддержка
+            </a>
+            <button type="button" class="btn btn--ghost btn--sm" data-open="terms">
+              <svg class="icon" aria-hidden="true"><use href="#i-doc" /></svg>
+              Условия использования
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ===== HERO ===== -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__grid">
+          <div>
+            <p class="eyebrow hero__fade hero__fade--1">
+              VLESS · защищённый канал
+            </p>
+            <h1 class="hero__title" id="hero-title">
+              <span class="line"><span class="line__in">Безопасное</span></span>
+              <span class="line"><span class="line__in">интернет-соединение</span></span>
+              <span class="line"><span class="line__in grad-text">для работы и поездок</span></span>
+            </h1>
+            <p class="lead hero__fade hero__fade--2">
+              Работайте, общайтесь и отдыхайте с шифрованным соединением для
+              всех устройств.
+            </p>
+            <div class="hero__actions hero__fade hero__fade--3">
+              <a class="btn btn--primary" href="#tariffs">
+                Купить
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+              <a class="btn btn--ghost" href="#tariffs">
+                <svg class="icon" aria-hidden="true"><use href="#i-bolt" /></svg>
+                Бесплатный тест
+              </a>
+            </div>
+            <ul class="hero__badges hero__fade hero__fade--4">
+              <li class="chip">
+                <svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>
+                Безлимитный трафик
+              </li>
+              <li class="chip">
+                <svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>
+                Без логина и пароля
+              </li>
+              <li class="chip">
+                <svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>
+                Настройка за пару минут
+              </li>
+            </ul>
+          </div>
+
+          <!-- orbital visual -->
+          <div class="hero__visual" id="hero-parallax">
+            <div class="orbit-wrap" aria-hidden="true">
+              <svg viewBox="0 0 400 400">
+                <defs>
+                  <linearGradient id="gOrbit" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#4f8cff" stop-opacity="0.9" />
+                    <stop offset="55%" stop-color="#22d3ee" stop-opacity="0.55" />
+                    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.85" />
+                  </linearGradient>
+                </defs>
+
+                <!-- soft rings -->
+                <circle cx="200" cy="200" r="188" fill="none" stroke="rgba(255,255,255,0.05)" />
+                <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.06)" />
+
+                <g class="spin-slow">
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="170"
+                    fill="none"
+                    stroke="url(#gOrbit)"
+                    stroke-width="1.4"
+                    class="dash-flow"
+                  />
+                  <circle cx="200" cy="30" r="4" fill="#22d3ee" class="node-pulse" />
+                  <circle cx="370" cy="200" r="3" fill="#a78bfa" class="node-pulse" />
+                  <circle cx="200" cy="370" r="3.5" fill="#4f8cff" class="node-pulse" />
+                  <circle cx="30" cy="200" r="3" fill="#8fbaff" class="node-pulse" />
+                </g>
+
+                <g class="spin-mid">
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="132"
+                    fill="none"
+                    stroke="rgba(143,186,255,0.5)"
+                    stroke-width="1"
+                    class="dash-flow dash-flow--rev"
+                  />
+                  <circle cx="332" cy="200" r="4.5" fill="#4f8cff" class="node-pulse" />
+                  <circle cx="68" cy="200" r="3" fill="#22d3ee" class="node-pulse" />
+                </g>
+
+                <g class="spin-fast">
+                  <ellipse
+                    cx="200"
+                    cy="200"
+                    rx="108"
+                    ry="42"
+                    fill="none"
+                    stroke="rgba(34,211,238,0.45)"
+                    stroke-width="1"
+                    class="dash-flow"
+                  />
+                  <ellipse
+                    cx="200"
+                    cy="200"
+                    rx="42"
+                    ry="108"
+                    fill="none"
+                    stroke="rgba(167,139,250,0.4)"
+                    stroke-width="1"
+                    class="dash-flow dash-flow--rev"
+                  />
+                </g>
+
+                <!-- static glow ring -->
+                <circle cx="200" cy="200" r="76" fill="none" stroke="rgba(255,255,255,0.14)" />
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="76"
+                  fill="none"
+                  stroke="url(#gOrbit)"
+                  stroke-width="1.6"
+                  class="dash-flow"
+                />
+              </svg>
+
+              <div class="orbit-core">
+                <svg class="icon"><use href="#i-shield" /></svg>
+              </div>
+
+              <span class="orbit-chip orbit-chip--1"><i></i>VLESS</span>
+              <span class="orbit-chip orbit-chip--2"><i></i>QR-код</span>
+              <span class="orbit-chip orbit-chip--3"><i></i>7 локаций</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== MARQUEE ===== -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <div class="marquee__group">
+            <span class="marquee__item"><span class="flag">🇩🇪</span> Германия</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇫🇮</span> Финляндия</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇷🇺</span> Россия</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇺🇸</span> США</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇳🇱</span> Нидерланды</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇪🇪</span> Эстония</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇦🇲</span> Армения</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">VLESS</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">Безлимитный трафик</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">QR-код подключения</span>
+            <span class="marquee__dot"></span>
+          </div>
+          <div class="marquee__group">
+            <span class="marquee__item"><span class="flag">🇩🇪</span> Германия</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇫🇮</span> Финляндия</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇷🇺</span> Россия</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇺🇸</span> США</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇳🇱</span> Нидерланды</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇪🇪</span> Эстония</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item"><span class="flag">🇦🇲</span> Армения</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">VLESS</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">Безлимитный трафик</span>
+            <span class="marquee__dot"></span>
+            <span class="marquee__item">QR-код подключения</span>
+            <span class="marquee__dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== FOR WHOM ===== -->
+      <section class="section" id="for-whom" aria-labelledby="for-whom-title">
+        <div class="container section__inner">
+          <div class="section-head section-head--center" data-reveal="blur">
+            <p class="eyebrow">Сценарии</p>
+            <h2 id="for-whom-title">Для кого этот сервис?</h2>
+            <p class="lead">
+              Четыре распространённых сценария использования защищённого
+              соединения.
+            </p>
+          </div>
+          <div class="grid grid--4" data-stagger data-tilt-group>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">01</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-user" /></svg></span>
+              <h3>Лично для тебя</h3>
+              <p>Тем, кто ценит безопасность своих действий в Интернете.</p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">02</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-briefcase" /></svg></span>
+              <h3>Удалённая работа</h3>
+              <p>
+                Исключить утечку конфиденциальной информации и повысить
+                безопасность в сети.
+              </p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">03</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-cap" /></svg></span>
+              <h3>Образование</h3>
+              <p>Студентам и преподавателям для подключения к онлайн-платформам.</p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">04</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-plane" /></svg></span>
+              <h3>В путешествиях</h3>
+              <p>Для сохранения своих данных в публичных Wi-Fi сетях кафе или отелей.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== LOCATIONS ===== -->
+      <section class="section section--alt" id="locations" aria-labelledby="locations-title">
+        <div class="container section__inner">
+          <div class="loc-layout">
+            <div class="globe" data-reveal="left" aria-hidden="true">
+              <div class="globe__halo"></div>
+              <svg viewBox="0 0 400 400">
+                <defs>
+                  <linearGradient id="gGlobe" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#4f8cff" stop-opacity="0.85" />
+                    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.55" />
+                  </linearGradient>
+                  <radialGradient id="gFill" cx="35%" cy="30%" r="75%">
+                    <stop offset="0%" stop-color="#22406e" stop-opacity="0.85" />
+                    <stop offset="100%" stop-color="#060a14" stop-opacity="0.95" />
+                  </radialGradient>
+                </defs>
+
+                <circle cx="200" cy="200" r="132" fill="url(#gFill)" stroke="url(#gGlobe)" stroke-width="1.4" />
+
+                <!-- parallels -->
+                <g fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="1">
+                  <ellipse cx="200" cy="200" rx="132" ry="132" />
+                  <ellipse cx="200" cy="200" rx="132" ry="98" />
+                  <ellipse cx="200" cy="200" rx="132" ry="58" />
+                  <ellipse cx="200" cy="200" rx="132" ry="20" />
+                </g>
+
+                <!-- meridians -->
+                <g fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1">
+                  <ellipse cx="200" cy="200" rx="20" ry="132" />
+                  <ellipse cx="200" cy="200" rx="58" ry="132" />
+                  <ellipse cx="200" cy="200" rx="98" ry="132" />
+                </g>
+
+                <g class="spin-slow">
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="158"
+                    fill="none"
+                    stroke="url(#gGlobe)"
+                    stroke-width="1.2"
+                    class="dash-flow"
+                  />
+                  <circle cx="200" cy="42" r="4" fill="#22d3ee" class="globe__marker" />
+                  <circle cx="358" cy="200" r="3.5" fill="#a78bfa" class="globe__marker" />
+                  <circle cx="200" cy="358" r="4" fill="#4f8cff" class="globe__marker" />
+                  <circle cx="42" cy="200" r="3.5" fill="#8fbaff" class="globe__marker" />
+                </g>
+
+                <g class="spin-mid">
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="180"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.12)"
+                    stroke-width="1"
+                    class="dash-flow dash-flow--rev"
+                  />
+                </g>
+
+                <!-- surface markers -->
+                <g>
+                  <circle cx="150" cy="150" r="4.5" fill="#22d3ee" class="globe__marker" />
+                  <circle cx="150" cy="150" r="9" fill="none" stroke="rgba(34,211,238,0.5)" />
+                  <circle cx="238" cy="132" r="4" fill="#8fbaff" class="globe__marker" />
+                  <circle cx="262" cy="228" r="4" fill="#a78bfa" class="globe__marker" />
+                  <circle cx="176" cy="262" r="4" fill="#4f8cff" class="globe__marker" />
+                  <circle cx="120" cy="212" r="3.5" fill="#8fbaff" class="globe__marker" />
+                  <circle cx="286" cy="178" r="3.5" fill="#22d3ee" class="globe__marker" />
+                </g>
+              </svg>
+            </div>
+
+            <div>
+              <div class="section-head" data-reveal="right" style="margin-bottom: 32px">
+                <p class="eyebrow">Локации</p>
+                <h2 id="locations-title">Доступные локации</h2>
+                <p class="lead">
+                  Сервис предлагает различные регионы удалённого подключения под
+                  разные задачи.
+                </p>
+              </div>
+
+              <ul class="locations" data-stagger>
+                <li class="loc" data-reveal>
+                  <span class="loc__flag" aria-hidden="true">🇩🇪</span>
+                  <span>Германия<small>Germany</small></span>
+                </li>
+                <li class="loc" data-reveal>
+                  <span class="loc__flag" aria-hidden="true">🇫🇮</span>
+                  <span>Финляндия<small>Finland</small></span>
+                </li>
+                <li class="loc" data-reveal>
+                  <span class="loc__flag" aria-hidden="true">🇷🇺</span>
+                  <span>Россия<small>Russia</small></span>
+                </li>
+                <li class="loc" data-reveal>
+                  <span class="loc__flag" aria-hidden="true">🇺🇸</span>
+                  <span>США<small>USA</small></span>
+                </li>
+                <li class="loc" data-reveal>
+                  <span class="loc__flag" aria-hidden="true">🇳🇱</span>
+                  <span>Нидерланды<small>Netherlands</small></span>
+                </li>
+                <li class="loc" data-reveal>
+                  <span class="loc__flag" aria-hidden="true">🇪🇪</span>
+                  <span>Эстония<small>Estonia</small></span>
+                </li>
+                <li class="loc" data-reveal>
+                  <span class="loc__flag" aria-hidden="true">🇦🇲</span>
+                  <span>Армения<small>Armenia</small></span>
+                </li>
+              </ul>
+
+              <div class="cta-note" data-reveal="zoom">
+                <p style="flex: 1; min-width: 240px">
+                  Хотите проверить соединение до покупки? Оформите бесплатный
+                  тест на 24 часа в Telegram-боте.
+                </p>
+                <a
+                  class="btn btn--primary btn--sm"
+                  href="https://t.me/Vless_vpn_fast_bot"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+                  Бесплатный тест
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HOW IT WORKS ===== -->
+      <section class="section" id="how" aria-labelledby="how-title">
+        <div class="container section__inner how">
+          <div data-reveal="left">
+            <p class="eyebrow">Принцип работы</p>
+            <h2 id="how-title">Как это работает?</h2>
+            <p class="lead" style="margin-bottom: 8px">
+              VLESS используется для передачи данных по защищённому каналу.
+              Сервис заявляет защиту данных от постороннего вмешательства, в том
+              числе в открытых Wi-Fi сетях.
+            </p>
+
+            <ul class="stats" data-stagger>
+              <li class="stat" data-reveal>
+                <p class="stat__value"><span data-count="7">0</span></p>
+                <p class="stat__label">регионов подключения</p>
+              </li>
+              <li class="stat" data-reveal>
+                <p class="stat__value"><span data-count="24">0</span></p>
+                <p class="stat__label">часа бесплатный тест</p>
+              </li>
+              <li class="stat" data-reveal>
+                <p class="stat__value"><span data-count="2">0</span></p>
+                <p class="stat__label">минуты на настройку</p>
+              </li>
+              <li class="stat" data-reveal>
+                <p class="stat__value"><span data-count="0">0</span> ₽</p>
+                <p class="stat__label">стоимость пробного периода</p>
+              </li>
+            </ul>
+
+            <ul class="thesis-list" data-stagger>
+              <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Стабильное подключение.</li>
+              <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Высокая безопасность трафика.</li>
+              <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Не собирает конфиденциальную информацию.</li>
+              <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Безопасный доступ в общественных Wi-Fi сетях.</li>
+              <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Максимальная скорость без ограничений.</li>
+            </ul>
+          </div>
+
+          <div class="rotator" id="rotator" data-reveal="right" aria-roledescription="карусель" aria-label="Тезисы о сервисе">
+            <p class="rotator__label">
+              <svg class="icon" aria-hidden="true"><use href="#i-wifi" /></svg>
+              Что даёт подключение
+            </p>
+            <div class="rotator__viewport" aria-live="polite" aria-atomic="true">
+              <p class="rotator__item is-active" data-index="0">Стабильное подключение.</p>
+              <p class="rotator__item" data-index="1">Высокая безопасность трафика.</p>
+              <p class="rotator__item" data-index="2">Не собирает конфиденциальную информацию.</p>
+              <p class="rotator__item" data-index="3">Безопасный доступ в общественных Wi-Fi сетях.</p>
+              <p class="rotator__item" data-index="4">Максимальная скорость без ограничений.</p>
+            </div>
+            <div class="rotator__controls">
+              <button type="button" class="rotator__btn" data-rotator="prev" aria-label="Предыдущий тезис">
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg>
+              </button>
+              <ul class="rotator__dots" id="rotator-dots"></ul>
+              <button type="button" class="rotator__btn" data-rotator="next" aria-label="Следующий тезис">
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WHY US ===== -->
+      <section class="section section--alt" id="why" aria-labelledby="why-title">
+        <div class="container section__inner">
+          <div class="section-head section-head--center" data-reveal="blur">
+            <p class="eyebrow">Преимущества</p>
+            <h2 id="why-title">Почему выбирают нас?</h2>
+          </div>
+          <div class="grid grid--3" data-stagger data-tilt-group>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">01</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-lock" /></svg></span>
+              <h3>Шифрование трафика</h3>
+              <p>Защита интернет-трафика с использованием современного протокола.</p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">02</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-user-x" /></svg></span>
+              <h3>Без регистрации</h3>
+              <p>
+                По заявлению сервиса, персональные данные не собираются; логин и
+                пароль не требуются.
+              </p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">03</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-clock" /></svg></span>
+              <h3>Быстрая настройка</h3>
+              <p>
+                Установка занимает не более двух минут, подключение происходит в
+                один клик.
+              </p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">04</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-calendar" /></svg></span>
+              <h3>Гибкий доступ</h3>
+              <p>
+                Периоды доступа: день, неделя, месяц и год. Опубликованные
+                тарифы приведены в разделе тарифов ниже.
+              </p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">05</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-app" /></svg></span>
+              <h3>Удобное приложение</h3>
+              <p>Подключение через приложение или вручную через конфигурационный файл.</p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card__glowline" aria-hidden="true"></span>
+              <span class="card__num">06</span>
+              <span class="card__icon"><svg class="icon"><use href="#i-card" /></svg></span>
+              <h3>Онлайн-оплата</h3>
+              <p>Оплата онлайн через гарант-сервис, в том числе криптовалютой.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== DEVICES ===== -->
+      <section class="section" id="devices" aria-labelledby="devices-title">
+        <div class="container section__inner">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">Устройства</p>
+            <h2 id="devices-title">Любое устройство</h2>
+            <p class="lead">
+              Сервис предназначен для смартфонов, планшетов, ноутбуков и
+              настольных компьютеров. Также подключение доступно на Smart TV.
+            </p>
+          </div>
+
+          <ul class="devices" data-stagger>
+            <li class="device" data-reveal>
+              <svg class="icon" aria-hidden="true"><use href="#i-monitor" /></svg>
+              <strong>Windows</strong><span>Компьютер</span>
+            </li>
+            <li class="device" data-reveal>
+              <svg class="icon" aria-hidden="true"><use href="#i-laptop" /></svg>
+              <strong>macOS</strong><span>Ноутбук</span>
+            </li>
+            <li class="device" data-reveal>
+              <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
+              <strong>Android</strong><span>Смартфон</span>
+            </li>
+            <li class="device" data-reveal>
+              <svg class="icon" aria-hidden="true"><use href="#i-tablet" /></svg>
+              <strong>iPhone / iOS</strong><span>Смартфон и планшет</span>
+            </li>
+          </ul>
+
+          <ul class="feature-strip" data-stagger>
+            <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-bolt" /></svg> Безлимитная скорость на всех устройствах</li>
+            <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-tag" /></svg> Доступная цена</li>
+            <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-clock" /></svg> Низкий пинг</li>
+            <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-user-x" /></svg> Не собираем персональные данные</li>
+            <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-lock" /></svg> Не требует логина и пароля</li>
+            <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-chat" /></svg> Честные отзывы</li>
+            <li data-reveal><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg> Поможем с настройкой</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== HOW TO CONNECT ===== -->
+      <section class="section section--alt" id="connect" aria-labelledby="connect-title">
+        <div class="container section__inner">
+          <div class="section-head section-head--center" data-reveal="blur">
+            <p class="eyebrow">Подключение</p>
+            <h2 id="connect-title">Как подключить?</h2>
+          </div>
+
+          <div class="timeline" id="timeline">
+            <div class="timeline__line" aria-hidden="true"><span class="timeline__fill" id="timeline-fill"></span></div>
+            <ol class="steps" data-stagger>
+              <li class="step" data-reveal>
+                <span>
+                  <strong>Нажмите кнопку «Выбрать тариф»</strong>
+                  <span>Она ведёт к списку тарифов на этой странице.</span>
+                </span>
+              </li>
+              <li class="step" data-reveal>
+                <span>
+                  <strong>Выберите тариф и оплатите доступ</strong>
+                  <span>Оформление происходит в Telegram-боте сервиса.</span>
+                </span>
+              </li>
+              <li class="step" data-reveal>
+                <span>
+                  <strong>Получите инструкцию и QR-код для подключения</strong>
+                  <span>Готовый способ настройки без ручного ввода данных.</span>
+                </span>
+              </li>
+              <li class="step" data-reveal>
+                <span>
+                  <strong>Настройте подключение за пару минут</strong>
+                  <span>Через приложение или конфигурационный файл.</span>
+                </span>
+              </li>
+              <li class="step" data-reveal>
+                <span><strong>Готово — можно пользоваться</strong></span>
+              </li>
+            </ol>
+          </div>
+
+          <div style="display: flex; justify-content: center; margin-top: 36px" data-reveal="zoom">
+            <a class="btn btn--primary" href="#tariffs">
+              Выбрать тариф
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+            </a>
+          </div>
+
+          <p class="help-note" data-reveal>
+            <svg class="icon" style="color: #9dc0ff" aria-hidden="true"><use href="#i-chat" /></svg>
+            Возникли сложности? Свяжитесь с поддержкой:
+            <a href="https://t.me/vpn_vless_sup" target="_blank" rel="noopener">t.me/vpn_vless_sup</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== PRICING ===== -->
+      <section class="section" id="tariffs" aria-labelledby="tariffs-title">
+        <div class="container section__inner">
+          <div class="section-head section-head--center" data-reveal="blur">
+            <p class="eyebrow">Тарифы</p>
+            <h2 id="tariffs-title">Выберите тарифный план</h2>
+            <p class="lead">
+              Оформите подписку на удобный для вас срок. Чем дольше подписка,
+              тем выгоднее её стоимость.
+            </p>
+          </div>
+
+          <div class="plans" data-stagger>
+            <article class="plan plan--free" data-reveal>
+              <span class="plan__tag">Бесплатный период</span>
+              <p class="plan__period">24 часа</p>
+              <h3 class="plan__name">Тест</h3>
+              <p class="plan__price">0 ₽</p>
+              <ul class="plan__list">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Бесплатный тест 24 часа</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> QR-код для подключения</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Безлимитный трафик</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Без ограничений</li>
+              </ul>
+              <a
+                class="btn btn--ghost btn--wide btn--sm"
+                href="https://t.me/Vless_vpn_fast_bot"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+                Бесплатно
+              </a>
+            </article>
+
+            <article class="plan" data-reveal>
+              <span class="plan__tag">1 месяц</span>
+              <p class="plan__period">Стандарт</p>
+              <h3 class="plan__name">1 месяц</h3>
+              <p class="plan__price">249 ₽</p>
+              <ul class="plan__list">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Полный доступ</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> QR-код для подключения</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Безлимитный трафик</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Без ограничений</li>
+              </ul>
+              <a
+                class="btn btn--primary btn--wide btn--sm"
+                href="https://t.me/Vless_vpn_fast_bot"
+                target="_blank"
+                rel="noopener"
+              >
+                Купить
+              </a>
+            </article>
+
+            <article class="plan plan--best" data-reveal>
+              <span class="plan__tag">2 месяца · −10%</span>
+              <p class="plan__period">Со скидкой</p>
+              <h3 class="plan__name">2 месяца</h3>
+              <p class="plan__price">450 ₽</p>
+              <ul class="plan__list">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Полный доступ</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> QR-код для подключения</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Безлимитный трафик</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Без ограничений</li>
+              </ul>
+              <a
+                class="btn btn--primary btn--wide btn--sm"
+                href="https://t.me/Vless_vpn_fast_bot"
+                target="_blank"
+                rel="noopener"
+              >
+                Купить
+              </a>
+            </article>
+
+            <article class="plan" data-reveal>
+              <span class="plan__tag">3 месяца · −20%</span>
+              <p class="plan__period">Максимальная выгода</p>
+              <h3 class="plan__name">3 месяца</h3>
+              <p class="plan__price">600 ₽</p>
+              <ul class="plan__list">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Полный доступ</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> QR-код для подключения</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Безлимитный трафик</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg> Без ограничений</li>
+              </ul>
+              <a
+                class="btn btn--primary btn--wide btn--sm"
+                href="https://t.me/Vless_vpn_fast_bot"
+                target="_blank"
+                rel="noopener"
+              >
+                Купить
+              </a>
+            </article>
+          </div>
+
+          <p class="terms-note" data-reveal>
+            <strong>Важно.</strong> При оформлении пробного периода или покупки
+            платной подписки вы принимаете
+            <button type="button" class="link-inline" data-open="terms">Условия использования</button>.
+            Рекомендуем ознакомиться перед оформлением доступа к сервису VLESS
+            VPN.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== SUPPORT ===== -->
+      <section class="section section--alt" id="support" aria-labelledby="support-title">
+        <div class="container section__inner">
+          <div class="support-card" data-reveal="zoom">
+            <span class="support-card__icon">
+              <svg class="icon"><use href="#i-chat" /></svg>
+            </span>
+            <h2 id="support-title">Остались вопросы?</h2>
+            <p class="lead" style="margin-inline: auto; text-align: center">
+              Наша служба заботы поможет вам разобраться с любым вопросом о
+              нашем продукте и решит любые проблемы с подключением.
+            </p>
+            <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
+            <div style="margin-top: 28px">
+              <a
+                class="btn btn--primary"
+                href="https://t.me/vpn_vless_sup"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+                Чат с поддержкой
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== BLOG ===== -->
+      <section class="section section--tight" id="blog" aria-labelledby="blog-title">
+        <div class="container section__inner">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">Блог</p>
+            <h2 id="blog-title">Блог VLESS</h2>
+            <p class="lead">Гайды и инструкции по подключению и настройке.</p>
+          </div>
+          <div class="blog-empty" id="blog-list" role="region" aria-live="polite" data-reveal="blur">
+            <svg class="icon" aria-hidden="true"><use href="#i-book" /></svg>
+            <p style="max-width: 46ch; margin-inline: auto">
+              Публикации пока недоступны: список статей не удалось загрузить.
+              Гайды и инструкции размещаются в разделе «Гайды».
+            </p>
+            <a class="btn btn--ghost btn--sm" href="https://vpn-vless.com/blog">
+              Перейти в раздел «Гайды»
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div data-reveal>
+            <a
+              class="logo"
+              href="./"
+              style="margin-bottom: 18px"
+              aria-label="VLESS VPN — на главную"
+            >
+              <span class="logo__mark" aria-hidden="true">
+                <svg class="icon"><use href="#i-shield" /></svg>
+              </span>
+              <span>VLESS VPN<small>secure connection</small></span>
+            </a>
+            <p class="footer__about" style="margin: 0">
+              Сервис защищённого соединения для работы, образования и поездок.
+            </p>
+            <address class="footer__address">
+              Satano Networks Ltd.<br />
+              123 Main Street.<br />
+              Nicosia 1010.<br />
+              Cyprus.
+            </address>
+          </div>
+
+          <nav aria-label="Навигация подвала" data-reveal>
+            <h3>Разделы</h3>
+            <ul class="footer__list">
+              <li><a href="./">Главная</a></li>
+              <li><a href="#tariffs">Тарифы</a></li>
+              <li><a href="https://vpn-vless.com/blog">Блог</a></li>
+              <li><button type="button" data-open="contacts">Контакты</button></li>
+            </ul>
+          </nav>
+
+          <div data-reveal>
+            <h3>Ещё</h3>
+            <ul class="footer__list">
+              <li><a href="https://vpn-vless.com/support">Поддержка</a></li>
+              <li><a href="https://vpn-vless.com/current-ip">Мой IP</a></li>
+              <li><a href="https://vpn-vless.com/how-to-install-vless">Инструкция</a></li>
+              <li><button type="button" data-open="terms">Условия использования</button></li>
+            </ul>
+          </div>
+
+          <div data-reveal>
+            <h3>Telegram</h3>
+            <ul class="footer__list">
+              <li>
+                <a href="https://t.me/vless_vpn_fast" target="_blank" rel="noopener">Telegram-канал</a>
+              </li>
+              <li>
+                <a href="https://t.me/Vless_vpn_fast_bot" target="_blank" rel="noopener">Telegram-бот</a>
+              </li>
+              <li>
+                <a href="https://t.me/vpn_vless_sup" target="_blank" rel="noopener">Поддержка</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span>© Все права защищены</span>
+          <span aria-hidden="true">·</span>
+          <span>VLESS VPN</span>
+          <div class="socials">
+            <a class="social" href="https://t.me/vless_vpn_fast" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+              Канал
+            </a>
+            <a class="social" href="https://t.me/Vless_vpn_fast_bot" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+              Бот
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== DIALOG: TERMS ===== -->
+    <div class="dialog-backdrop" id="dlg-terms" hidden>
+      <div
+        class="dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dlg-terms-title"
+        aria-describedby="dlg-terms-desc"
+      >
+        <div class="dialog__head">
+          <h2 class="dialog__title" id="dlg-terms-title">
+            Условия использования интернет-сервиса
+          </h2>
+          <button
+            type="button"
+            class="dialog__close"
+            data-close
+            aria-label="Закрыть окно условий использования"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <div class="dialog__body rules" id="dlg-terms-desc" tabindex="-1">
+          <h3>Правила использования сервиса VLESS</h3>
+
+          <h4>1. Запрещено использовать VPN для:</h4>
+          <ul>
+            <li>
+              противоправных действий (взлом, мошенничество, распространение
+              вредоносного ПО и др.);
+            </li>
+            <li>
+              доступа к запрещённым материалам (наркотики, детская порнография,
+              терроризм и пр.);
+            </li>
+            <li>
+              рассылки спама, DDoS-атак, майнинга и любых других действий,
+              нарушающих законы или правила площадок.
+            </li>
+          </ul>
+
+          <h4>2. Ответственность</h4>
+          <p>
+            Пользователь несёт полную ответственность за свои действия при
+            использовании VPN.
+          </p>
+          <p>
+            Администрация оставляет за собой право заблокировать подписку без
+            возврата средств при нарушении правил.
+          </p>
+
+          <h4>3. Конфиденциальность</h4>
+          <p>
+            Мы не ведём логи вашей интернет-активности и не передаём данные
+            третьим лицам (за исключением случаев, предусмотренных законом).
+          </p>
+
+          <h4>4. Ограничения и поддержка</h4>
+          <p>Использование одной подписки на нескольких пользователей строго запрещено.</p>
+          <p>
+            При возникновении проблем ознакомьтесь с инструкциями или обратитесь
+            в поддержку через бота.
+          </p>
+
+          <h4>5. Оплата и возвраты</h4>
+          <p>
+            Все оплаченные подписки возврату и обмену не подлежат, кроме
+            случаев, если услуга не была оказана по технической причине со
+            стороны сервиса.
+          </p>
+          <p>Бесплатная тестовая подписка выдаётся только один раз на пользователя.</p>
+
+          <h4>6. Изменения в правилах</h4>
+          <p>
+            Администрация вправе вносить изменения в правила без
+            предварительного уведомления.
+          </p>
+
+          <h3>Публичная оферта</h3>
+          <p>
+            Настоящий документ является публичной офертой для заключения
+            договора на предоставление услуг VPN.
+          </p>
+          <p>
+            Используя бота и/или приобретая подписку, вы соглашаетесь с
+            условиями оферты и правилами сервиса.
+          </p>
+          <p>
+            Сервис предоставляет доступ к VPN для анонимного и безопасного
+            выхода в интернет. Технические параметры и стоимость подписок
+            указаны в боте.
+          </p>
+          <p>
+            Сервис не несёт ответственности за возможные перебои в работе по
+            техническим причинам или действиям третьих лиц.
+          </p>
+          <p>
+            Сервис вправе изменять условия оферты, стоимость и содержание услуг
+            в одностороннем порядке.
+          </p>
+          <p>
+            В случае нарушения правил ваш доступ к VPN может быть ограничен или
+            заблокирован без возврата средств.
+          </p>
+        </div>
+        <div class="dialog__foot">
+          <button type="button" class="btn btn--ghost btn--sm" data-close>Закрыть</button>
+          <button type="button" class="btn btn--primary btn--sm" data-agree>
+            Я согласен(-а)
+            <svg class="icon" aria-hidden="true"><use href="#i-check" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DIALOG: CONTACTS ===== -->
+    <div class="dialog-backdrop" id="dlg-contacts" hidden>
+      <div
+        class="dialog dialog--narrow"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dlg-contacts-title"
+      >
+        <div class="dialog__head">
+          <h2 class="dialog__title" id="dlg-contacts-title">Контакты</h2>
+          <button
+            type="button"
+            class="dialog__close"
+            data-close
+            aria-label="Закрыть окно контактов"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
+        </div>
+        <div class="dialog__body">
+          <p style="margin-bottom: 18px">
+            Выберите удобный способ связи с сервисом VLESS VPN.
+          </p>
+          <ul class="contact-list">
+            <li>
+              <a href="https://vpn-vless.com/support">
+                <svg class="icon" aria-hidden="true"><use href="#i-chat" /></svg>
+                <span>
+                  <strong>Поддержка клиентов</strong>
+                  <span>Раздел поддержки сервиса</span>
+                </span>
+                <svg class="icon arrow" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://t.me/vless_vpn_fast" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+                <span>
+                  <strong>Наш Telegram-канал с новостями</strong>
+                  <span>t.me/vless_vpn_fast</span>
+                </span>
+                <svg class="icon arrow" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://t.me/Vless_vpn_fast_bot" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#i-telegram" /></svg>
+                <span>
+                  <strong>Telegram-бот</strong>
+                  <span>t.me/Vless_vpn_fast_bot</span>
+                </span>
+                <svg class="icon arrow" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="dialog__foot">
+          <button type="button" class="btn btn--ghost btn--sm" data-close>Закрыть</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        var FOCUSABLE =
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+        function reduced() {
+          return (
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          );
+        }
+
+        var finePointer =
+          window.matchMedia &&
+          window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+        /* ================= PRELOADER ================= */
+        var boot = document.getElementById("boot");
+        var bootHidden = false;
+
+        function finishBoot() {
+          if (bootHidden) return;
+          bootHidden = true;
+          if (boot) boot.classList.add("is-done");
+          document.body.classList.add("is-ready");
+          window.setTimeout(function () {
+            if (boot && boot.parentNode) boot.parentNode.removeChild(boot);
+          }, 700);
+        }
+
+        if (reduced()) {
+          finishBoot();
+        } else {
+          window.setTimeout(finishBoot, 1250);
+          window.addEventListener("load", function () {
+            window.setTimeout(finishBoot, 900);
+          });
+        }
+
+        /* ================= SCROLL PROGRESS + HEADER ================= */
+        var progress = document.getElementById("progress");
+        var header = document.getElementById("header");
+        var ticking = false;
+
+        function onScrollFrame() {
+          ticking = false;
+          var top = window.pageYOffset || document.documentElement.scrollTop;
+          var max =
+            document.documentElement.scrollHeight - window.innerHeight || 1;
+          if (progress) progress.style.transform = "scaleX(" + Math.min(top / max, 1) + ")";
+          if (header) header.classList.toggle("is-stuck", top > 24);
+
+          /* timeline fill */
+          if (timelineFill) {
+            var r = timeline.getBoundingClientRect();
+            var vh = window.innerHeight;
+            var p = (vh * 0.78 - r.top) / (r.height || 1);
+            timelineFill.style.height = Math.max(0, Math.min(p, 1)) * 100 + "%";
+          }
+        }
+
+        function requestScroll() {
+          if (!ticking) {
+            ticking = true;
+            window.requestAnimationFrame(onScrollFrame);
+          }
+        }
+
+        var timeline = document.getElementById("timeline");
+        var timelineFill = document.getElementById("timeline-fill");
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            requestScroll();
+          },
+          { passive: true }
+        );
+        window.addEventListener("resize", requestScroll);
+        requestScroll();
+
+        /* ================= MOBILE MENU ================= */
+        var burger = document.getElementById("burger");
+        var mobileNav = document.getElementById("mobile-nav");
+
+        function setMenu(open) {
+          mobileNav.classList.toggle("is-open", open);
+          burger.setAttribute("aria-expanded", open ? "true" : "false");
+          burger.setAttribute(
+            "aria-label",
+            open ? "Закрыть меню навигации" : "Открыть меню навигации"
+          );
+          var items = mobileNav.querySelectorAll(".mobile-nav__list li");
+          for (var i = 0; i < items.length; i++) {
+            items[i].style.animationDelay = (open ? 60 + i * 55 : 0) + "ms";
+          }
+        }
+
+        burger.addEventListener("click", function () {
+          setMenu(!mobileNav.classList.contains("is-open"));
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!mobileNav.classList.contains("is-open")) return;
+          if (mobileNav.contains(e.target) || burger.contains(e.target)) return;
+          setMenu(false);
+        });
+
+        /* ================= NOTICES ================= */
+        document.querySelectorAll("[data-dismiss]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var notice = btn.closest(".notice");
+            if (!notice) return;
+            notice.style.transition = "opacity .3s ease, transform .3s ease";
+            notice.style.opacity = "0";
+            notice.style.transform = "translateY(-6px)";
+            window.setTimeout(function () {
+              notice.remove();
+              if (!document.querySelector(".notice")) {
+                var wrap = document.getElementById("notices");
+                if (wrap) wrap.remove();
+              }
+            }, 300);
+          });
+        });
+
+        /* ================= REVEAL + STAGGER ================= */
+        var revealEls = document.querySelectorAll("[data-reveal]");
+
+        document.querySelectorAll("[data-stagger]").forEach(function (group) {
+          var kids = group.querySelectorAll(":scope > [data-reveal]");
+          for (var i = 0; i < kids.length; i++) {
+            kids[i].style.transitionDelay = i * 80 + "ms";
+          }
+        });
+
+        if ("IntersectionObserver" in window && !reduced()) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-in");
+                io.unobserve(entry.target);
+              });
+            },
+            { rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
+          );
+          revealEls.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          revealEls.forEach(function (el) {
+            el.classList.add("is-in");
+          });
+        }
+
+        /* steps become "active" while scrolling through the timeline */
+        var stepEls = document.querySelectorAll(".step");
+        if ("IntersectionObserver" in window) {
+          var so = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) entry.target.classList.add("is-active");
+                else entry.target.classList.remove("is-active");
+              });
+            },
+            { rootMargin: "-25% 0px -45% 0px" }
+          );
+          stepEls.forEach(function (el) {
+            so.observe(el);
+          });
+        }
+
+        /* ================= COUNTERS ================= */
+        function runCounter(el) {
+          var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+          if (reduced() || target === 0) {
+            el.textContent = String(target);
+            return;
+          }
+          var start = null;
+          var dur = 1100;
+          function frame(ts) {
+            if (!start) start = ts;
+            var t = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = String(Math.round(target * eased));
+            if (t < 1) window.requestAnimationFrame(frame);
+          }
+          window.requestAnimationFrame(frame);
+        }
+
+        var counters = document.querySelectorAll("[data-count]");
+        if ("IntersectionObserver" in window) {
+          var co = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                runCounter(entry.target);
+                co.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.6 }
+          );
+          counters.forEach(function (el) {
+            co.observe(el);
+          });
+        } else {
+          counters.forEach(runCounter);
+        }
+
+        /* ================= CURSOR GLOW ================= */
+        var glow = document.getElementById("cursor-glow");
+        if (glow && finePointer && !reduced()) {
+          var gx = window.innerWidth / 2;
+          var gy = window.innerHeight / 2;
+          var tx = gx;
+          var ty = gy;
+          var glowRaf = null;
+
+          function loopGlow() {
+            gx += (tx - gx) * 0.12;
+            gy += (ty - gy) * 0.12;
+            glow.style.transform = "translate3d(" + gx + "px," + gy + "px,0)";
+            glowRaf = window.requestAnimationFrame(loopGlow);
+          }
+
+          window.addEventListener(
+            "mousemove",
+            function (e) {
+              tx = e.clientX;
+              ty = e.clientY;
+              glow.classList.add("is-on");
+              if (!glowRaf) glowRaf = window.requestAnimationFrame(loopGlow);
+            },
+            { passive: true }
+          );
+
+          document.addEventListener("mouseleave", function () {
+            glow.classList.remove("is-on");
+          });
+        }
+
+        /* ================= CARD SPOTLIGHT + 3D TILT ================= */
+        var tiltGroups = document.querySelectorAll("[data-tilt-group]");
+
+        if (finePointer && !reduced()) {
+          document.querySelectorAll(".card, .plan, .loc, .device").forEach(function (el) {
+            el.addEventListener("mousemove", function (e) {
+              var r = el.getBoundingClientRect();
+              var x = e.clientX - r.left;
+              var y = e.clientY - r.top;
+              el.style.setProperty("--mx", x + "px");
+              el.style.setProperty("--my", y + "px");
+            });
+          });
+
+          tiltGroups.forEach(function (group) {
+            group.querySelectorAll(":scope > .card").forEach(function (card) {
+              card.addEventListener("mousemove", function (e) {
+                var r = card.getBoundingClientRect();
+                var px = (e.clientX - r.left) / r.width - 0.5;
+                var py = (e.clientY - r.top) / r.height - 0.5;
+                card.style.transform =
+                  "perspective(900px) rotateY(" + px * 9 + "deg) rotateX(" +
+                  -py * 9 + "deg) translateY(-6px)";
+              });
+              card.addEventListener("mouseleave", function () {
+                card.style.transform = "";
+              });
+            });
+          });
+        }
+
+        /* ================= HERO PARALLAX ================= */
+        var heroVis = document.getElementById("hero-parallax");
+        if (heroVis && finePointer && !reduced()) {
+          var wrap = heroVis.querySelector(".orbit-wrap");
+          heroVis.addEventListener("mousemove", function (e) {
+            var r = heroVis.getBoundingClientRect();
+            var px = (e.clientX - r.left) / r.width - 0.5;
+            var py = (e.clientY - r.top) / r.height - 0.5;
+            wrap.style.transform =
+              "translate3d(" + px * -22 + "px," + py * -22 + "px,0)";
+          });
+          heroVis.addEventListener("mouseleave", function () {
+            wrap.style.transform = "";
+          });
+        }
+
+        /* ================= DIALOGS ================= */
+        var activeDialog = null;
+        var lastFocused = null;
+
+        function getFocusable(dialog) {
+          return Array.prototype.filter.call(
+            dialog.querySelectorAll(FOCUSABLE),
+            function (el) {
+              return el.offsetParent !== null || el === document.activeElement;
+            }
+          );
+        }
+
+        function openDialog(name) {
+          var backdrop = document.getElementById("dlg-" + name);
+          if (!backdrop) return;
+          if (activeDialog) closeDialog(true);
+
+          lastFocused = document.activeElement;
+          backdrop.hidden = false;
+          backdrop.classList.add("is-open");
+          document.body.classList.add("is-locked");
+
+          var dialog = backdrop.querySelector(".dialog");
+          var focusables = getFocusable(dialog);
+          var target = dialog.querySelector(".dialog__body") || focusables[0];
+          (target || dialog).focus();
+
+          activeDialog = { backdrop: backdrop, dialog: dialog };
+        }
+
+        function closeDialog(silent) {
+          if (!activeDialog) return;
+          var ref = activeDialog;
+          activeDialog = null;
+
+          ref.backdrop.classList.remove("is-open");
+          ref.backdrop.hidden = true;
+          document.body.classList.remove("is-locked");
+
+          if (!silent && lastFocused && document.contains(lastFocused)) {
+            lastFocused.focus();
+          }
+          lastFocused = null;
+        }
+
+        document.addEventListener("click", function (e) {
+          var opener = e.target.closest("[data-open]");
+          if (opener) {
+            e.preventDefault();
+            setMenu(false);
+            openDialog(opener.getAttribute("data-open"));
+            return;
+          }
+
+          var closer = e.target.closest("[data-close]");
+          if (closer) {
+            closeDialog();
+            return;
+          }
+
+          var agree = e.target.closest("[data-agree]");
+          if (agree) {
+            closeDialog();
+            var target = document.getElementById("tariffs");
+            if (target) {
+              target.scrollIntoView({
+                behavior: reduced() ? "auto" : "smooth",
+                block: "start"
+              });
+            }
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (!activeDialog) return;
+
+          if (e.key === "Escape") {
+            e.preventDefault();
+            closeDialog();
+            return;
+          }
+
+          if (e.key !== "Tab") return;
+
+          var focusables = getFocusable(activeDialog.dialog);
+          if (!focusables.length) return;
+
+          var first = focusables[0];
+          var last = focusables[focusables.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        });
+
+        document.querySelectorAll(".dialog-backdrop").forEach(function (bp) {
+          bp.addEventListener("mousedown", function (e) {
+            if (e.target === bp) closeDialog();
+          });
+        });
+
+        /* ================= ROTATOR ================= */
+        var rotator = document.getElementById("rotator");
+        if (rotator) {
+          var items = Array.prototype.slice.call(
+            rotator.querySelectorAll(".rotator__item")
+          );
+          var dotsWrap = document.getElementById("rotator-dots");
+          var current = 0;
+          var timer = null;
+
+          items.forEach(function (item, i) {
+            var li = document.createElement("li");
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.setAttribute("aria-label", "Показать тезис " + (i + 1));
+            btn.setAttribute("aria-current", i === 0 ? "true" : "false");
+            btn.addEventListener("click", function () {
+              show(i);
+              restart();
+            });
+            li.appendChild(btn);
+            dotsWrap.appendChild(li);
+          });
+
+          var dots = Array.prototype.slice.call(
+            dotsWrap.querySelectorAll("button")
+          );
+
+          function show(index) {
+            current = (index + items.length) % items.length;
+            items.forEach(function (item, i) {
+              item.classList.toggle("is-active", i === current);
+            });
+            dots.forEach(function (dot, i) {
+              dot.setAttribute("aria-current", i === current ? "true" : "false");
+            });
+          }
+
+          function restart() {
+            if (timer) window.clearInterval(timer);
+            if (reduced()) return;
+            timer = window.setInterval(function () {
+              show(current + 1);
+            }, 4200);
+          }
+
+          rotator.querySelectorAll("[data-rotator]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              show(
+                btn.getAttribute("data-rotator") === "next" ? current + 1 : current - 1
+              );
+              restart();
+            });
+          });
+
+          rotator.addEventListener("mouseenter", function () {
+            if (timer) window.clearInterval(timer);
+          });
+          rotator.addEventListener("mouseleave", restart);
+          rotator.addEventListener("focusin", function () {
+            if (timer) window.clearInterval(timer);
+          });
+          rotator.addEventListener("focusout", restart);
+
+          document.addEventListener("keydown", function (e) {
+            if (!rotator.contains(document.activeElement)) return;
+            if (e.key === "ArrowRight") {
+              show(current + 1);
+              restart();
+            } else if (e.key === "ArrowLeft") {
+              show(current - 1);
+              restart();
+            }
+          });
+
+          restart();
+        }
+      })();
+    </script>
+  </body>
+</html>

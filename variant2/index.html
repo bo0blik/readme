@@ -1,0 +1,2001 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="VLESS VPN — безопасное интернет-соединение для работы и поездок. Шифрованный канал для всех устройств, 7 локаций, бесплатный тест." name="description"/>
+<meta content="#07070c" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&amp;family=Golos+Text:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<title>VLESS VPN — безопасное интернет-соединение</title>
+<link href="styles.css" rel="stylesheet"/><link href="interactions.css" rel="stylesheet"/><script defer="" src="app.js"></script><meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+<div class="relative min-h-screen bg-ink font-body text-white">
+ <div aria-hidden="true" class="noise">
+ </div>
+ <header class="fixed inset-x-0 top-0 z-[90]" style="">
+  <div class="border-b border-lime/15 bg-ink-800/95 backdrop-blur-md">
+   <div class="mx-auto flex max-w-7xl items-center justify-center gap-2.5 px-4 py-2">
+    <svg aria-hidden="true" class="lucide lucide-triangle-alert lucide-alert-triangle shrink-0 text-lime" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13" xmlns="http://www.w3.org/2000/svg">
+     <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3">
+     </path>
+     <path d="M12 9v4">
+     </path>
+     <path d="M12 17h.01">
+     </path>
+    </svg>
+    <p class="text-[11px] leading-snug text-white/55 sm:text-xs">
+     Нарушение правил может привести к блокировке подписки без возврата. При проблемах —
+     <a class="text-lime underline decoration-lime/40 underline-offset-2 transition-colors hover:decoration-lime" href="https://vpn-vless.com/support">
+      поддержка
+     </a>
+    </p>
+   </div>
+  </div>
+  <div class="border-b border-white/5 bg-ink/85 backdrop-blur-xl">
+   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
+    <a aria-label="VLESS VPN — на главную" class="group flex items-center gap-2.5" href="./">
+     <span class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-lime shadow-[0_0_24px_rgba(200,255,46,0.35)]">
+      <svg aria-hidden="true" fill="none" height="19" viewbox="0 0 24 24" width="19">
+       <circle cx="12" cy="12" fill="#07070C" r="3.1">
+       </circle>
+       <ellipse cx="12" cy="12" rx="9.4" ry="4.1" stroke="#07070C" stroke-width="1.5" transform="rotate(-24 12 12)">
+       </ellipse>
+       <circle cx="12" cy="12" opacity="0.55" r="9.4" stroke="#07070C" stroke-dasharray="2 3" stroke-width="1.5">
+       </circle>
+      </svg>
+     </span>
+     <span class="font-display text-base font-bold tracking-wide text-white">
+      VLESS
+      <span class="text-lime">
+       .
+      </span>
+     </span>
+    </a>
+    <nav aria-label="Основная навигация" class="hidden items-center gap-7 lg:flex">
+     <a class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 transition-colors duration-200 hover:text-lime" href="./">
+      Главная
+     </a>
+     <a class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 transition-colors duration-200 hover:text-lime" href="#tarify">
+      Тарифы
+     </a>
+     <a class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/support">
+      Поддержка
+     </a>
+     <a class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/current-ip">
+      Мой IP
+     </a>
+     <a class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/blog">
+      Гайды
+     </a>
+     <a class="font-mono text-[11px] uppercase tracking-[0.16em] text-white/55 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/how-to-install-vless">
+      Инструкция
+     </a>
+    </nav>
+    <div class="flex items-center gap-3">
+     <a class="hidden items-center gap-2 rounded-full border border-white/12 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white/70 transition-all duration-200 hover:border-lime/50 hover:text-lime md:inline-flex" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+      <svg aria-hidden="true" class="lucide lucide-send" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13" xmlns="http://www.w3.org/2000/svg">
+       <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+       </path>
+       <path d="m21.854 2.147-10.94 10.939">
+       </path>
+      </svg>
+      Бот
+     </a>
+     <a class="hidden rounded-full bg-lime px-5 py-2 font-display text-xs font-semibold text-ink transition-all duration-200 hover:shadow-[0_0_28px_rgba(200,255,46,0.4)] active:scale-95 sm:block" href="#tarify">
+      Купить
+     </a>
+     <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Открыть меню" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 text-white/80 transition-all duration-200 hover:border-lime/50 hover:text-lime active:scale-90 lg:hidden" id="menu-toggle">
+      <svg aria-hidden="true" class="lucide lucide-menu" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+       <path d="M4 5h16">
+       </path>
+       <path d="M4 12h16">
+       </path>
+       <path d="M4 19h16">
+       </path>
+      </svg>
+     </button>
+    </div>
+   </div>
+  </div>
+  <nav aria-label="Мобильная навигация" class="border-b border-white/8 bg-ink-800/98 backdrop-blur-xl lg:hidden" hidden="" id="mobile-menu">
+   <div class="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4">
+    <a class="rounded-xl px-3 py-3 font-display text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/5 hover:text-lime" href="./">
+     Главная
+    </a>
+    <a class="rounded-xl px-3 py-3 font-display text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/5 hover:text-lime" href="#tarify">
+     Тарифы
+    </a>
+    <a class="rounded-xl px-3 py-3 font-display text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/5 hover:text-lime" href="https://vpn-vless.com/support">
+     Поддержка
+    </a>
+    <a class="rounded-xl px-3 py-3 font-display text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/5 hover:text-lime" href="https://vpn-vless.com/current-ip">
+     Мой IP
+    </a>
+    <a class="rounded-xl px-3 py-3 font-display text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/5 hover:text-lime" href="https://vpn-vless.com/blog">
+     Гайды
+    </a>
+    <a class="rounded-xl px-3 py-3 font-display text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/5 hover:text-lime" href="https://vpn-vless.com/how-to-install-vless">
+     Инструкция
+    </a>
+    <div class="mt-3 flex flex-wrap gap-2 border-t border-white/8 pt-4">
+     <a class="inline-flex items-center gap-2 rounded-full bg-lime px-4 py-2.5 font-display text-xs font-semibold text-ink" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+      <svg aria-hidden="true" class="lucide lucide-send" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="13" xmlns="http://www.w3.org/2000/svg">
+       <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+       </path>
+       <path d="m21.854 2.147-10.94 10.939">
+       </path>
+      </svg>
+      Telegram-бот
+     </a>
+     <button class="rounded-full border border-white/15 px-4 py-2.5 font-mono text-[11px] uppercase tracking-wider text-white/70 transition-colors hover:border-lime/50 hover:text-lime" data-terms="">
+      Условия использования
+     </button>
+    </div>
+   </div>
+  </nav>
+ </header>
+ <main>
+  <section class="relative overflow-hidden pb-14 pt-[7.5rem] sm:pt-[8rem] lg:pb-24 lg:pt-[9.5rem]" id="hero">
+   <div aria-hidden="true" class="pointer-events-none absolute -right-44 top-4 h-[560px] w-[560px] rounded-full bg-violet/25 blur-[150px]">
+   </div>
+   <div aria-hidden="true" class="pointer-events-none absolute -left-56 bottom-[-8rem] h-[500px] w-[500px] rounded-full bg-lime/10 blur-[140px]">
+   </div>
+   <div aria-hidden="true" class="pointer-events-none absolute -bottom-10 right-[-3%] select-none font-display text-[21vw] font-black leading-none tracking-tighter text-transparent opacity-[0.055]" style="-webkit-text-stroke: 1.5px rgb(200, 255, 46)">
+    VLESS
+   </div>
+   <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:gap-6">
+    <div class="max-w-2xl">
+     <div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-lime/25 bg-lime/[0.07] px-4 py-2" data-reveal="" style="">
+      <span class="relative flex h-2 w-2">
+       <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60 [animation-duration:2.2s]">
+       </span>
+       <span class="relative inline-flex h-2 w-2 rounded-full bg-lime">
+       </span>
+      </span>
+      <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-lime">
+       VLESS VPN — защищённое соединение
+      </span>
+     </div>
+     <h1 class="font-display text-[1.9rem] font-bold leading-[1.14] tracking-tight text-white sm:text-5xl xl:text-[3.3rem]" style="opacity: 1">
+      Безопасное
+      <span class="text-lime">
+       интернет-соединение
+      </span>
+      для работы и поездок
+     </h1>
+     <p class="mt-6 max-w-md text-base leading-relaxed text-white/60 sm:text-lg" style="opacity: 1">
+      Работайте, общайтесь и отдыхайте с шифрованным соединением для всех устройств.
+     </p>
+     <div class="mt-9 flex flex-wrap items-center gap-4" data-reveal="" style="">
+      <a class="group inline-flex items-center gap-3 rounded-full bg-lime px-8 py-4 font-display text-sm font-semibold text-ink shadow-[0_0_40px_rgba(200,255,46,0.25)] transition-shadow duration-200 hover:shadow-[0_0_60px_rgba(200,255,46,0.45)]" href="#tarify" tabindex="0">
+       Купить
+       <svg aria-hidden="true" class="lucide lucide-arrow-right transition-transform duration-200 group-hover:translate-x-1" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="17" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12h14">
+        </path>
+        <path d="m12 5 7 7-7 7">
+        </path>
+       </svg>
+      </a>
+      <a class="inline-flex items-center gap-3 rounded-full border border-white/18 px-8 py-4 font-display text-sm font-semibold text-white/85 transition-all duration-200 hover:border-lime/60 hover:text-lime" href="#tarify" tabindex="0">
+       <svg aria-hidden="true" class="lucide lucide-play text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z">
+        </path>
+       </svg>
+       Бесплатный тест
+      </a>
+     </div>
+     <ul class="mt-10 flex flex-wrap gap-x-7 gap-y-3" style="opacity: 1">
+      <li class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/45">
+       <svg aria-hidden="true" class="lucide lucide-earth lucide-globe-2 text-lime/80" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54">
+        </path>
+        <path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17">
+        </path>
+        <path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05">
+        </path>
+        <circle cx="12" cy="12" r="10">
+        </circle>
+       </svg>
+       7 стран
+      </li>
+      <li class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/45">
+       <svg aria-hidden="true" class="lucide lucide-gauge text-lime/80" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+        <path d="m12 14 4-4">
+        </path>
+        <path d="M3.34 19a10 10 0 1 1 17.32 0">
+        </path>
+       </svg>
+       Безлимитный трафик
+      </li>
+      <li class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/45">
+       <svg aria-hidden="true" class="lucide lucide-shield-check text-lime/80" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+        </path>
+        <path d="m9 12 2 2 4-4">
+        </path>
+       </svg>
+       Без регистрации
+      </li>
+     </ul>
+    </div>
+    <div class="relative mx-auto w-full max-w-[560px]" data-reveal="" style="">
+     <div aria-hidden="true" class="absolute inset-[-12%] rounded-full bg-violet/20 blur-[90px]">
+     </div>
+     <div class="relative" id="connection-scene">
+      <svg aria-hidden="true" class="h-auto w-full" focusable="false" viewbox="0 0 640 640">
+       <defs>
+        <radialgradient id="glowLime">
+         <stop offset="0%" stop-color="#C8FF2E" stop-opacity="0.2">
+         </stop>
+         <stop offset="55%" stop-color="#C8FF2E" stop-opacity="0.05">
+         </stop>
+         <stop offset="100%" stop-color="#C8FF2E" stop-opacity="0">
+         </stop>
+        </radialgradient>
+        <radialgradient id="glowViolet">
+         <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.5">
+         </stop>
+         <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0">
+         </stop>
+        </radialgradient>
+        <radialgradient cx="36%" cy="30%" id="sphereGrad" r="85%">
+         <stop offset="0%" stop-color="rgba(255,255,255,0.16)">
+         </stop>
+         <stop offset="52%" stop-color="rgba(139,92,246,0.1)">
+         </stop>
+         <stop offset="100%" stop-color="rgba(7,7,12,0.4)">
+         </stop>
+        </radialgradient>
+        <radialgradient id="nucleusGrad">
+         <stop offset="0%" stop-color="#E6FFA0">
+         </stop>
+         <stop offset="55%" stop-color="#C8FF2E">
+         </stop>
+         <stop offset="100%" stop-color="#8FBF00">
+         </stop>
+        </radialgradient>
+        <filter height="340%" id="softBlur" width="340%" x="-120%" y="-120%">
+         <fegaussianblur stddeviation="5">
+         </fegaussianblur>
+        </filter>
+        <pattern height="30" id="dotsGrid" patternunits="userSpaceOnUse" width="30">
+         <circle cx="1.6" cy="1.6" fill="rgba(255,255,255,0.12)" r="1.6">
+         </circle>
+        </pattern>
+        <radialgradient id="fadeGrad">
+         <stop offset="45%" stop-color="#ffffff">
+         </stop>
+         <stop offset="100%" stop-color="#000000">
+         </stop>
+        </radialgradient>
+        <mask id="fadeMask">
+         <rect fill="url(#fadeGrad)" height="640" width="640">
+         </rect>
+        </mask>
+       </defs>
+       <g style="opacity: 1">
+        <rect fill="url(#dotsGrid)" height="640" mask="url(#fadeMask)" opacity="0.5" width="640">
+        </rect>
+        <circle cx="320" cy="320" fill="none" r="140" stroke="rgba(255,255,255,0.07)">
+        </circle>
+        <circle cx="320" cy="320" fill="none" r="232" stroke="rgba(255,255,255,0.05)">
+        </circle>
+        <g style="transform-origin: 320px 320px; animation-duration: 130s">
+         <circle cx="320" cy="320" fill="none" r="302" stroke="rgba(255,255,255,0.09)" stroke-dasharray="2 14" stroke-width="1">
+         </circle>
+        </g>
+        <circle cx="78" cy="92" fill="rgba(200,255,46,0.5)" r="2.6">
+        </circle>
+        <circle cx="568" cy="120" fill="rgba(139,92,246,0.55)" r="2.2">
+        </circle>
+        <circle cx="600" cy="520" fill="rgba(255,107,91,0.5)" r="2.6">
+        </circle>
+        <circle cx="52" cy="500" fill="rgba(255,255,255,0.3)" r="2.2">
+        </circle>
+       </g>
+       <g transform="rotate(-22 320 320)">
+        <g style="transform-origin: 50% 50%; transform: none; opacity: 1; transform-box: fill-box">
+         <g class="orbit-spin" style="transform-origin: 320px 320px; animation-duration: 64s">
+          <ellipse cx="320" cy="320" fill="none" rx="252" ry="94" stroke="#C8FF2E" stroke-dasharray="3 11" stroke-linecap="round" stroke-opacity="0.32" stroke-width="1.4">
+          </ellipse>
+          <g>
+           <circle cx="527.9845749572389" cy="373.0763924991333" fill="#C8FF2E" opacity="0.22" r="8">
+           </circle>
+           <circle cx="527.9845749572389" cy="373.0763924991333" fill="#C8FF2E" r="3.4">
+           </circle>
+          </g>
+         </g>
+        </g>
+       </g>
+       <g transform="rotate(38 320 320)">
+        <g style="transform-origin: 50% 50%; transform: none; opacity: 1; transform-box: fill-box">
+         <g class="orbit-spin-rev" style="transform-origin: 320px 320px; animation-duration: 80s">
+          <ellipse cx="320" cy="320" fill="none" rx="210" ry="110" stroke="#A78BFA" stroke-linecap="round" stroke-opacity="0.38" stroke-width="1.4">
+          </ellipse>
+          <g>
+           <circle cx="140.05336179252106" cy="376.70515090036105" fill="#A78BFA" opacity="0.22" r="8">
+           </circle>
+           <circle cx="140.05336179252106" cy="376.70515090036105" fill="#A78BFA" r="3.4">
+           </circle>
+          </g>
+         </g>
+        </g>
+       </g>
+       <g transform="rotate(76 320 320)">
+        <g style="transform-origin: 50% 50%; transform: none; opacity: 1; transform-box: fill-box">
+         <g class="orbit-spin" style="transform-origin: 320px 320px; animation-duration: 92s">
+          <ellipse cx="320" cy="320" fill="none" rx="266" ry="62" stroke="#FF8A77" stroke-dasharray="3 11" stroke-linecap="round" stroke-opacity="0.3" stroke-width="1.4">
+          </ellipse>
+          <g>
+           <circle cx="238.24945658574046" cy="261.00067141885" fill="#FF8A77" opacity="0.22" r="8">
+           </circle>
+           <circle cx="238.24945658574046" cy="261.00067141885" fill="#FF8A77" r="3.4">
+           </circle>
+          </g>
+         </g>
+        </g>
+       </g>
+       <g style="transform-origin: 50% 50%; transform: none; opacity: 1; transform-box: fill-box">
+        <circle cx="320" cy="320" fill="url(#glowLime)" r="170">
+        </circle>
+        <circle cx="320" cy="320" fill="url(#sphereGrad)" r="106" stroke="rgba(255,255,255,0.2)" stroke-width="1">
+        </circle>
+        <ellipse cx="300" cy="286" fill="rgba(255,255,255,0.05)" rx="58" ry="36">
+        </ellipse>
+        <circle cx="320" cy="320" fill="url(#glowViolet)" r="60">
+        </circle>
+        <g style="transform-origin: 320px 320px; animation-duration: 24s">
+         <circle cx="320" cy="320" fill="none" r="42" stroke="rgba(200,255,46,0.5)" stroke-dasharray="2 7" stroke-width="1">
+         </circle>
+         <circle cx="362" cy="320" fill="#C8FF2E" r="2.4">
+         </circle>
+        </g>
+        <circle cx="320" cy="320" fill="url(#nucleusGrad)" r="26" style="transform-origin: 320px 320px">
+        </circle>
+        <g stroke="rgba(255,255,255,0.35)" stroke-width="1.4">
+         <line x1="320" x2="320" y1="198" y2="208">
+         </line>
+         <line x1="320" x2="320" y1="432" y2="442">
+         </line>
+         <line x1="198" x2="208" y1="320" y2="320">
+         </line>
+         <line x1="432" x2="442" y1="320" y2="320">
+         </line>
+        </g>
+       </g>
+      </svg>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section aria-hidden="true" class="relative z-10 overflow-hidden py-9">
+   <div class="-rotate-1 scale-[1.04]">
+    <div class="marquee-clip overflow-hidden border-y-2 border-ink/70 bg-lime py-3.5 shadow-[0_0_70px_rgba(200,255,46,0.22)]">
+     <div class="marquee-track flex">
+      <div class="flex shrink-0 items-center">
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Германия
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Финляндия
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Россия
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         США
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Нидерланды
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Эстония
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Армения
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+        VLESS
+       </span>
+       <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+       </span>
+      </div>
+      <div class="flex shrink-0 items-center">
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Германия
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Финляндия
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Россия
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         США
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Нидерланды
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Эстония
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="flex items-center">
+        <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+         Армения
+        </span>
+        <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+        </span>
+       </span>
+       <span class="px-7 font-display text-[13px] font-semibold uppercase tracking-[0.22em] text-ink">
+        VLESS
+       </span>
+       <span aria-hidden="true" class="h-1.5 w-1.5 rotate-45 bg-ink/50">
+       </span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="relative py-20 lg:py-28">
+   <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div style="opacity: 1; transform: none">
+     <div class="mb-12 max-w-2xl lg:mb-16">
+      <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.24em] text-lime">
+       / Для кого
+      </p>
+      <h2 class="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+       Работа, учёба и путешествия —
+       <span class="text-lime">
+        под защитой
+       </span>
+      </h2>
+     </div>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group h-full rounded-3xl border border-white/8 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1.5 hover:border-lime/25 hover:bg-white/[0.05]">
+       <div class="relative h-44 overflow-hidden rounded-2xl border border-white/8" style="background: radial-gradient(120% 100% at 50% 0%, rgba(200, 255, 46, 0.14) 0%, rgba(200, 255, 46, 0.04) 45%, rgba(13, 13, 24, 0) 100%), rgb(12, 12, 23)">
+        <svg aria-hidden="true" class="absolute inset-0 h-full w-full" preserveaspectratio="xMidYMid slice" viewbox="0 0 320 176">
+         <g fill="none" stroke="#C8FF2E" stroke-opacity="0.28" stroke-width="1.3">
+          <circle cx="160" cy="196" r="70" stroke-dasharray="4 9">
+          </circle>
+          <circle cx="160" cy="196" opacity="0.7" r="96" stroke-dasharray="4 12">
+          </circle>
+          <circle cx="160" cy="196" opacity="0.45" r="122" stroke-dasharray="2 14">
+          </circle>
+         </g>
+        </svg>
+        <span class="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/12 bg-ink/50 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-[54%]">
+         <svg aria-hidden="true" class="lucide lucide-fingerprint-pattern lucide-fingerprint" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" style="color: rgb(200, 255, 46)" viewbox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4">
+          </path>
+          <path d="M14 13.12c0 2.38 0 6.38-1 8.88">
+          </path>
+          <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02">
+          </path>
+          <path d="M2 12a10 10 0 0 1 18-6">
+          </path>
+          <path d="M2 16h.01">
+          </path>
+          <path d="M21.8 16c.2-2 .131-5.354 0-6">
+          </path>
+          <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2">
+          </path>
+          <path d="M8.65 22c.21-.66.45-1.32.57-2">
+          </path>
+          <path d="M9 6.8a6 6 0 0 1 9 5.2v2">
+          </path>
+         </svg>
+        </span>
+       </div>
+       <div class="px-2 pb-2 pt-5">
+        <h3 class="font-display text-[15px] font-semibold leading-snug text-white">
+         Личная безопасность в интернете
+        </h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-white/55">
+         Приватность и защита персональных данных в сети — каждый день.
+        </p>
+       </div>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group h-full rounded-3xl border border-white/8 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1.5 hover:border-lime/25 hover:bg-white/[0.05]">
+       <div class="relative h-44 overflow-hidden rounded-2xl border border-white/8" style="background: radial-gradient(120% 100% at 50% 0%, rgba(167, 139, 250, 0.14) 0%, rgba(167, 139, 250, 0.04) 45%, rgba(13, 13, 24, 0) 100%), rgb(12, 12, 23)">
+        <svg aria-hidden="true" class="absolute inset-0 h-full w-full" preserveaspectratio="xMidYMid slice" viewbox="0 0 320 176">
+         <g fill="none" stroke="#A78BFA" stroke-opacity="0.3" stroke-width="1.3">
+          <path d="M118 128 h84" stroke-linecap="round">
+          </path>
+          <path d="M132 106 h56 l6 22 h-68 z" opacity="0.7">
+          </path>
+          <path d="M160 88 a26 26 0 0 1 26 26" stroke-dasharray="3 7">
+          </path>
+          <path d="M160 74 a40 40 0 0 1 40 40" opacity="0.6" stroke-dasharray="3 8">
+          </path>
+          <path d="M160 60 a54 54 0 0 1 54 54" opacity="0.35" stroke-dasharray="2 10">
+          </path>
+         </g>
+        </svg>
+        <span class="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/12 bg-ink/50 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-[54%]">
+         <svg aria-hidden="true" class="lucide lucide-laptop" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" style="color: rgb(167, 139, 250)" viewbox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z">
+          </path>
+          <path d="M20.054 15.987H3.946">
+          </path>
+         </svg>
+        </span>
+       </div>
+       <div class="px-2 pb-2 pt-5">
+        <h3 class="font-display text-[15px] font-semibold leading-snug text-white">
+         Защита данных при удалённой работе
+        </h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-white/55">
+         Шифрованный канал для рабочих задач, документов и коммуникаций.
+        </p>
+       </div>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group h-full rounded-3xl border border-white/8 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1.5 hover:border-lime/25 hover:bg-white/[0.05]">
+       <div class="relative h-44 overflow-hidden rounded-2xl border border-white/8" style="background: radial-gradient(120% 100% at 50% 0%, rgba(255, 138, 119, 0.14) 0%, rgba(255, 138, 119, 0.04) 45%, rgba(13, 13, 24, 0) 100%), rgb(12, 12, 23)">
+        <svg aria-hidden="true" class="absolute inset-0 h-full w-full" preserveaspectratio="xMidYMid slice" viewbox="0 0 320 176">
+         <g fill="none" stroke="#FF8A77" stroke-opacity="0.3" stroke-width="1.3">
+          <path d="M60 120 h200" stroke-dasharray="5 8">
+          </path>
+          <path d="M84 136 h152" opacity="0.6" stroke-dasharray="4 10">
+          </path>
+          <path d="M110 152 h100" opacity="0.35" stroke-dasharray="3 11">
+          </path>
+          <circle cx="160" cy="88" r="34" stroke-dasharray="4 9">
+          </circle>
+         </g>
+        </svg>
+        <span class="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/12 bg-ink/50 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-[54%]">
+         <svg aria-hidden="true" class="lucide lucide-graduation-cap" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" style="color: rgb(255, 138, 119)" viewbox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z">
+          </path>
+          <path d="M22 10v6">
+          </path>
+          <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5">
+          </path>
+         </svg>
+        </span>
+       </div>
+       <div class="px-2 pb-2 pt-5">
+        <h3 class="font-display text-[15px] font-semibold leading-snug text-white">
+         Доступ к образовательным платформам
+        </h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-white/55">
+         Онлайн-курсы, вебинары и учебные ресурсы — без преград.
+        </p>
+       </div>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group h-full rounded-3xl border border-white/8 bg-white/[0.03] p-4 transition-all duration-300 hover:-translate-y-1.5 hover:border-lime/25 hover:bg-white/[0.05]">
+       <div class="relative h-44 overflow-hidden rounded-2xl border border-white/8" style="background: radial-gradient(120% 100% at 50% 0%, rgba(200, 255, 46, 0.14) 0%, rgba(200, 255, 46, 0.04) 45%, rgba(13, 13, 24, 0) 100%), rgb(12, 12, 23)">
+        <svg aria-hidden="true" class="absolute inset-0 h-full w-full" preserveaspectratio="xMidYMid slice" viewbox="0 0 320 176">
+         <g fill="none" stroke="#C8FF2E" stroke-opacity="0.32" stroke-width="1.3">
+          <path d="M36 138 Q 110 58 190 86 T 292 66" stroke-dasharray="5 8" stroke-linecap="round">
+          </path>
+          <circle cx="36" cy="138" fill="#C8FF2E" opacity="0.7" r="4" stroke="none">
+          </circle>
+          <path d="M120 152 a40 40 0 0 1 40 -40" opacity="0.5" stroke-dasharray="3 7">
+          </path>
+          <path d="M108 164 a56 56 0 0 1 56 -56" opacity="0.3" stroke-dasharray="2 9">
+          </path>
+         </g>
+        </svg>
+        <span class="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/12 bg-ink/50 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-[54%]">
+         <svg aria-hidden="true" class="lucide lucide-plane" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" style="color: rgb(200, 255, 46)" viewbox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
+          </path>
+         </svg>
+        </span>
+       </div>
+       <div class="px-2 pb-2 pt-5">
+        <h3 class="font-display text-[15px] font-semibold leading-snug text-white">
+         Защита в публичных Wi-Fi в поездках
+        </h3>
+        <p class="mt-2.5 text-sm leading-relaxed text-white/55">
+         Открытые сети в аэропортах, отелях и кафе — под контролем.
+        </p>
+       </div>
+      </article>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="relative py-20 lg:py-28" id="locations">
+   <div aria-hidden="true" class="pointer-events-none absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/[0.07] blur-[130px]">
+   </div>
+   <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+    <div style="opacity: 1; transform: none">
+     <div>
+      <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.24em] text-lime">
+       / Локации
+      </p>
+      <h2 class="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+       Схема соединений —
+       <span class="text-lime">
+        7 локаций
+       </span>
+      </h2>
+      <p class="mt-5 max-w-md text-base leading-relaxed text-white/60">
+       Точки присутствия в Европе, России, США и Армении. Выберите страну на схеме — траектория покажет защищённое соединение.
+      </p>
+      <div aria-label="Выбор локации" class="mt-7 flex flex-wrap gap-2" role="group">
+       <button aria-pressed="true" class="rounded-full border px-4 py-2 text-sm transition-all duration-200 active:scale-95 country-button" data-country="Германия">
+        Германия
+       </button>
+       <button aria-pressed="false" class="rounded-full border px-4 py-2 text-sm transition-all duration-200 active:scale-95 hover:border-lime/40 hover:text-white country-button" data-country="Финляндия">
+        Финляндия
+       </button>
+       <button aria-pressed="false" class="rounded-full border px-4 py-2 text-sm transition-all duration-200 active:scale-95 hover:border-lime/40 hover:text-white country-button" data-country="Россия">
+        Россия
+       </button>
+       <button aria-pressed="false" class="rounded-full border px-4 py-2 text-sm transition-all duration-200 active:scale-95 hover:border-lime/40 hover:text-white country-button" data-country="США">
+        США
+       </button>
+       <button aria-pressed="false" class="rounded-full border px-4 py-2 text-sm transition-all duration-200 active:scale-95 hover:border-lime/40 hover:text-white country-button" data-country="Нидерланды">
+        Нидерланды
+       </button>
+       <button aria-pressed="false" class="rounded-full border px-4 py-2 text-sm transition-all duration-200 active:scale-95 hover:border-lime/40 hover:text-white country-button" data-country="Эстония">
+        Эстония
+       </button>
+       <button aria-pressed="false" class="rounded-full border px-4 py-2 text-sm transition-all duration-200 active:scale-95 hover:border-lime/40 hover:text-white country-button" data-country="Армения">
+        Армения
+       </button>
+      </div>
+      <a class="mt-9 inline-flex items-center gap-3 rounded-full bg-lime px-7 py-3.5 font-display text-sm font-semibold text-ink shadow-[0_0_36px_rgba(200,255,46,0.22)] transition-shadow duration-200 hover:shadow-[0_0_54px_rgba(200,255,46,0.4)]" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" tabindex="0" target="_blank">
+       <svg aria-hidden="true" class="lucide lucide-send" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+        </path>
+        <path d="m21.854 2.147-10.94 10.939">
+        </path>
+       </svg>
+       Бесплатный тест
+      </a>
+     </div>
+    </div>
+    <div style="opacity: 1; transform: none">
+     <div class="relative rounded-3xl border border-white/8 bg-ink-800/60 p-3 sm:p-5">
+      <div class="absolute right-4 top-4 z-10 flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-4 py-1.5">
+       <span class="relative flex h-1.5 w-1.5">
+        <span class="absolute h-full w-full animate-ping rounded-full bg-lime opacity-70 [animation-duration:2s]">
+        </span>
+        <span class="relative h-1.5 w-1.5 rounded-full bg-lime">
+        </span>
+       </span>
+       <span aria-live="polite" class="font-mono text-xs font-medium text-lime" id="active-location" style="opacity: 1; transform: none">
+        Германия
+       </span>
+      </div>
+      <svg aria-label="Схема соединений с локациями. Выбрана: Германия" class="h-auto w-full" id="location-map" role="img" viewbox="0 0 640 560">
+       <g stroke="rgba(255,255,255,0.045)" stroke-width="1">
+        <line x1="64" x2="64" y1="0" y2="560">
+        </line>
+        <line x1="128" x2="128" y1="0" y2="560">
+        </line>
+        <line x1="192" x2="192" y1="0" y2="560">
+        </line>
+        <line x1="256" x2="256" y1="0" y2="560">
+        </line>
+        <line x1="320" x2="320" y1="0" y2="560">
+        </line>
+        <line x1="384" x2="384" y1="0" y2="560">
+        </line>
+        <line x1="448" x2="448" y1="0" y2="560">
+        </line>
+        <line x1="512" x2="512" y1="0" y2="560">
+        </line>
+        <line x1="576" x2="576" y1="0" y2="560">
+        </line>
+        <line x1="0" x2="640" y1="64" y2="64">
+        </line>
+        <line x1="0" x2="640" y1="128" y2="128">
+        </line>
+        <line x1="0" x2="640" y1="192" y2="192">
+        </line>
+        <line x1="0" x2="640" y1="256" y2="256">
+        </line>
+        <line x1="0" x2="640" y1="320" y2="320">
+        </line>
+        <line x1="0" x2="640" y1="384" y2="384">
+        </line>
+        <line x1="0" x2="640" y1="448" y2="448">
+        </line>
+        <line x1="0" x2="640" y1="512" y2="512">
+        </line>
+       </g>
+       <g data-connection="Германия">
+        <path d="M 320 292 Q 260.4558441227157 181.54415587728428 150 122" fill="none" stroke="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-width="2">
+        </path>
+        <path class="connection-line" d="M 320 292 Q 260.4558441227157 181.54415587728428 150 122" fill="none" stroke="#C8FF2E" stroke-linecap="round" stroke-width="2">
+        </path>
+       </g>
+       <g data-connection="Финляндия">
+        <path d="M 320 292 Q 353.9940510616796 181.34556270796946 316 72" fill="none" stroke="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-width="2">
+        </path>
+        <path class="connection-line" d="M 320 292 Q 353.9940510616796 181.34556270796946 316 72" fill="none" stroke="#C8FF2E" stroke-linecap="round" stroke-width="2">
+        </path>
+       </g>
+       <g data-connection="Россия">
+        <path d="M 320 292 Q 439.21963844396726 323.97933409703404 556 284" fill="none" stroke="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-width="2">
+        </path>
+        <path class="connection-line" d="M 320 292 Q 439.21963844396726 323.97933409703404 556 284" fill="none" stroke="#C8FF2E" stroke-linecap="round" stroke-width="2">
+        </path>
+       </g>
+       <g data-connection="США">
+        <path d="M 320 292 Q 376.81102587184205 404.70096423451264 486 468" fill="none" stroke="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-width="2">
+        </path>
+        <path class="connection-line" d="M 320 292 Q 376.81102587184205 404.70096423451264 486 468" fill="none" stroke="#C8FF2E" stroke-linecap="round" stroke-width="2">
+        </path>
+       </g>
+       <g data-connection="Нидерланды">
+        <path d="M 320 292 Q 204.23005058580276 252.0210203652693 86 284" fill="none" stroke="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-width="2">
+        </path>
+        <path class="connection-line" d="M 320 292 Q 204.23005058580276 252.0210203652693 86 284" fill="none" stroke="#C8FF2E" stroke-linecap="round" stroke-width="2">
+        </path>
+       </g>
+       <g data-connection="Эстония">
+        <path d="M 320 292 Q 431.15462285950605 233.75354245139908 492 124" fill="none" stroke="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-width="2">
+        </path>
+        <path class="connection-line" d="M 320 292 Q 431.15462285950605 233.75354245139908 492 124" fill="none" stroke="#C8FF2E" stroke-linecap="round" stroke-width="2">
+        </path>
+       </g>
+       <g data-connection="Армения">
+        <path d="M 320 292 Q 211.6988983828818 348.39034836316085 154 456" fill="none" stroke="rgba(255,255,255,0.08)" stroke-linecap="round" stroke-width="2">
+        </path>
+        <path class="connection-line" d="M 320 292 Q 211.6988983828818 348.39034836316085 154 456" fill="none" stroke="#C8FF2E" stroke-linecap="round" stroke-width="2">
+        </path>
+       </g>
+       <g>
+        <g class="orbit-spin" style="transform-origin: 320px 292px; animation-duration: 34s">
+         <circle cx="320" cy="292" fill="none" r="46" stroke="rgba(200,255,46,0.35)" stroke-dasharray="2 9" stroke-width="1">
+         </circle>
+         <circle cx="366" cy="292" fill="#C8FF2E" r="2.4">
+         </circle>
+        </g>
+        <circle cx="320" cy="292" fill="#10101d" r="30" stroke="#C8FF2E" stroke-width="1.5">
+        </circle>
+        <circle cx="320" cy="292" fill="none" opacity="0.15" r="30" stroke="#C8FF2E" stroke-width="6">
+        </circle>
+        <text class="font-mono" fill="#C8FF2E" font-size="12" font-weight="700" letter-spacing="2" text-anchor="middle" x="320" y="296">
+         ВЫ
+        </text>
+       </g>
+       <g aria-label="Локация: Германия" aria-pressed="true" data-country="Германия" role="button" style="cursor: pointer" tabindex="0" transform="translate(150, 122)">
+        <circle data-node-part="outer" fill="rgba(200,255,46,0.15)" r="13" stroke="#C8FF2E" stroke-width="1.5" style="transition: 0.25s">
+        </circle>
+        <circle data-node-part="inner" fill="#C8FF2E" r="5" style="transition: 0.25s">
+        </circle>
+        <text class="font-body" fill="#ffffff" font-size="13.5" style="transition: fill 0.25s" text-anchor="middle" x="0" y="-26">
+         Германия
+        </text>
+       </g>
+       <g aria-label="Локация: Финляндия" aria-pressed="false" data-country="Финляндия" role="button" style="cursor: pointer" tabindex="0" transform="translate(316, 72)">
+        <circle data-node-part="outer" fill="#10101d" r="13" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="transition: 0.25s">
+        </circle>
+        <circle data-node-part="inner" fill="rgba(255,255,255,0.35)" r="5" style="transition: 0.25s">
+        </circle>
+        <text class="font-body" fill="rgba(255,255,255,0.5)" font-size="13.5" style="transition: fill 0.25s" text-anchor="middle" x="0" y="-26">
+         Финляндия
+        </text>
+       </g>
+       <g aria-label="Локация: Россия" aria-pressed="false" data-country="Россия" role="button" style="cursor: pointer" tabindex="0" transform="translate(556, 284)">
+        <circle data-node-part="outer" fill="#10101d" r="13" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="transition: 0.25s">
+        </circle>
+        <circle data-node-part="inner" fill="rgba(255,255,255,0.35)" r="5" style="transition: 0.25s">
+        </circle>
+        <text class="font-body" fill="rgba(255,255,255,0.5)" font-size="13.5" style="transition: fill 0.25s" text-anchor="start" x="24" y="4">
+         Россия
+        </text>
+       </g>
+       <g aria-label="Локация: США" aria-pressed="false" data-country="США" role="button" style="cursor: pointer" tabindex="0" transform="translate(486, 468)">
+        <circle data-node-part="outer" fill="#10101d" r="13" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="transition: 0.25s">
+        </circle>
+        <circle data-node-part="inner" fill="rgba(255,255,255,0.35)" r="5" style="transition: 0.25s">
+        </circle>
+        <text class="font-body" fill="rgba(255,255,255,0.5)" font-size="13.5" style="transition: fill 0.25s" text-anchor="middle" x="0" y="34">
+         США
+        </text>
+       </g>
+       <g aria-label="Локация: Нидерланды" aria-pressed="false" data-country="Нидерланды" role="button" style="cursor: pointer" tabindex="0" transform="translate(86, 284)">
+        <circle data-node-part="outer" fill="#10101d" r="13" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="transition: 0.25s">
+        </circle>
+        <circle data-node-part="inner" fill="rgba(255,255,255,0.35)" r="5" style="transition: 0.25s">
+        </circle>
+        <text class="font-body" fill="rgba(255,255,255,0.5)" font-size="13.5" style="transition: fill 0.25s" text-anchor="end" x="-24" y="4">
+         Нидерланды
+        </text>
+       </g>
+       <g aria-label="Локация: Эстония" aria-pressed="false" data-country="Эстония" role="button" style="cursor: pointer" tabindex="0" transform="translate(492, 124)">
+        <circle data-node-part="outer" fill="#10101d" r="13" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="transition: 0.25s">
+        </circle>
+        <circle data-node-part="inner" fill="rgba(255,255,255,0.35)" r="5" style="transition: 0.25s">
+        </circle>
+        <text class="font-body" fill="rgba(255,255,255,0.5)" font-size="13.5" style="transition: fill 0.25s" text-anchor="middle" x="0" y="-26">
+         Эстония
+        </text>
+       </g>
+       <g aria-label="Локация: Армения" aria-pressed="false" data-country="Армения" role="button" style="cursor: pointer" tabindex="0" transform="translate(154, 456)">
+        <circle data-node-part="outer" fill="#10101d" r="13" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="transition: 0.25s">
+        </circle>
+        <circle data-node-part="inner" fill="rgba(255,255,255,0.35)" r="5" style="transition: 0.25s">
+        </circle>
+        <text class="font-body" fill="rgba(255,255,255,0.5)" font-size="13.5" style="transition: fill 0.25s" text-anchor="middle" x="0" y="34">
+         Армения
+        </text>
+       </g>
+      </svg>
+      <p class="flex items-center gap-2 px-2 pb-1 pt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
+       <svg aria-hidden="true" class="lucide lucide-arrow-up-right text-lime/60" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 7h10v10">
+        </path>
+        <path d="M7 17 17 7">
+        </path>
+       </svg>
+       Наведите или нажмите на узел, чтобы увидеть траекторию
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="py-20 lg:py-28">
+   <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="relative overflow-hidden rounded-[2.5rem] border border-violet/25 bg-violet-deep">
+     <div aria-hidden="true" class="pointer-events-none absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-lime/15 blur-[120px]">
+     </div>
+     <div aria-hidden="true" class="pointer-events-none absolute -bottom-40 -right-24 h-[460px] w-[460px] rounded-full bg-coral/20 blur-[130px]">
+     </div>
+     <div class="relative grid gap-12 p-7 sm:p-10 md:p-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:p-16">
+      <div class="lg:sticky lg:top-36 lg:self-start">
+       <div style="opacity: 1; transform: none">
+        <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.24em] text-lime">
+         / Как это работает
+        </p>
+        <h2 class="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+         Защищённый канал с
+         <span class="text-lime">
+          VLESS
+         </span>
+        </h2>
+        <p class="mt-5 max-w-md text-base leading-relaxed text-white/65">
+         Данные передаются по защищённому каналу VLESS — в том числе в открытых Wi-Fi сетях.
+        </p>
+        <span class="mt-7 inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/80">
+         <svg aria-hidden="true" class="lucide lucide-lock text-lime" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg">
+          <rect height="11" rx="2" ry="2" width="18" x="3" y="11">
+          </rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4">
+          </path>
+         </svg>
+         Протокол VLESS
+        </span>
+       </div>
+      </div>
+      <div class="relative">
+       <div aria-hidden="true" class="absolute bottom-6 left-[27px] top-6 w-px bg-white/15">
+       </div>
+       <div aria-hidden="true" class="absolute bottom-6 left-[27px] top-6 w-px origin-top bg-lime" id="technology-progress" style="transform: scaleY(0.118826)">
+       </div>
+       <ol class="space-y-2" id="technology-list">
+        <div style="opacity: 1; transform: none">
+         <li class="relative flex items-center gap-5 rounded-2xl px-2 py-4 sm:items-center">
+          <span class="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-violet-deep text-lime">
+           <svg aria-hidden="true" class="lucide lucide-activity" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2">
+            </path>
+           </svg>
+          </span>
+          <div>
+           <span class="font-mono text-[10px] tracking-[0.3em] text-lime/70">
+            01
+           </span>
+           <p class="mt-1 font-display text-[15px] font-semibold leading-snug text-white sm:text-base">
+            Стабильное подключение
+           </p>
+          </div>
+         </li>
+        </div>
+        <div style="opacity: 1; transform: none">
+         <li class="relative flex items-center gap-5 rounded-2xl px-2 py-4 sm:items-center">
+          <span class="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-violet-deep text-lime">
+           <svg aria-hidden="true" class="lucide lucide-lock" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <rect height="11" rx="2" ry="2" width="18" x="3" y="11">
+            </rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4">
+            </path>
+           </svg>
+          </span>
+          <div>
+           <span class="font-mono text-[10px] tracking-[0.3em] text-lime/70">
+            02
+           </span>
+           <p class="mt-1 font-display text-[15px] font-semibold leading-snug text-white sm:text-base">
+            Безопасность трафика
+           </p>
+          </div>
+         </li>
+        </div>
+        <div style="opacity: 1; transform: none">
+         <li class="relative flex items-center gap-5 rounded-2xl px-2 py-4 sm:items-center">
+          <span class="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-violet-deep text-lime">
+           <svg aria-hidden="true" class="lucide lucide-eye-off" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49">
+            </path>
+            <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242">
+            </path>
+            <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143">
+            </path>
+            <path d="m2 2 20 20">
+            </path>
+           </svg>
+          </span>
+          <div>
+           <span class="font-mono text-[10px] tracking-[0.3em] text-lime/70">
+            03
+           </span>
+           <p class="mt-1 font-display text-[15px] font-semibold leading-snug text-white sm:text-base">
+            Отсутствие сбора конфиденциальной информации
+           </p>
+          </div>
+         </li>
+        </div>
+        <div style="opacity: 1; transform: none">
+         <li class="relative flex items-center gap-5 rounded-2xl px-2 py-4 sm:items-center">
+          <span class="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-violet-deep text-lime">
+           <svg aria-hidden="true" class="lucide lucide-wifi" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 20h.01">
+            </path>
+            <path d="M2 8.82a15 15 0 0 1 20 0">
+            </path>
+            <path d="M5 12.859a10 10 0 0 1 14 0">
+            </path>
+            <path d="M8.5 16.429a5 5 0 0 1 7 0">
+            </path>
+           </svg>
+          </span>
+          <div>
+           <span class="font-mono text-[10px] tracking-[0.3em] text-lime/70">
+            04
+           </span>
+           <p class="mt-1 font-display text-[15px] font-semibold leading-snug text-white sm:text-base">
+            Защита в общественных сетях
+           </p>
+          </div>
+         </li>
+        </div>
+        <div style="opacity: 1; transform: none">
+         <li class="relative flex items-center gap-5 rounded-2xl px-2 py-4 sm:items-center">
+          <span class="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-violet-deep text-lime">
+           <svg aria-hidden="true" class="lucide lucide-gauge" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="m12 14 4-4">
+            </path>
+            <path d="M3.34 19a10 10 0 1 1 17.32 0">
+            </path>
+           </svg>
+          </span>
+          <div>
+           <span class="font-mono text-[10px] tracking-[0.3em] text-lime/70">
+            05
+           </span>
+           <p class="mt-1 font-display text-[15px] font-semibold leading-snug text-white sm:text-base">
+            Скорость без ограничений
+           </p>
+          </div>
+         </li>
+        </div>
+       </ol>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="relative py-20 lg:py-28">
+   <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div style="opacity: 1; transform: none">
+     <div class="mb-12 flex flex-wrap items-end justify-between gap-6 lg:mb-16">
+      <div class="max-w-xl">
+       <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.24em] text-lime">
+        / Почему выбирают нас
+       </p>
+       <h2 class="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+        Просто, быстро и
+        <span class="text-lime">
+         без лишнего
+        </span>
+       </h2>
+      </div>
+     </div>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group relative h-full overflow-hidden rounded-3xl border border-white/8 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/20">
+       <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-[70px] transition-opacity duration-500 group-hover:opacity-100" style="background-color: rgba(200, 255, 46, 0.19)">
+       </div>
+       <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl border" style="background-color: rgba(200, 255, 46, 0.1); border-color: rgba(200, 255, 46, 0.2); color: rgb(200, 255, 46)">
+        <svg aria-hidden="true" class="lucide lucide-shield-check" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+         <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+         </path>
+         <path d="m9 12 2 2 4-4">
+         </path>
+        </svg>
+       </span>
+       <h3 class="relative mt-6 font-display text-[15px] font-semibold leading-snug text-white">
+        Шифрование трафика
+       </h3>
+       <p class="relative mt-2.5 text-sm leading-relaxed text-white/55">
+        Данные передаются в зашифрованном виде по протоколу VLESS.
+       </p>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group relative h-full overflow-hidden rounded-3xl border border-white/8 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/20">
+       <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-[70px] transition-opacity duration-500 group-hover:opacity-100" style="background-color: rgba(167, 139, 250, 0.19)">
+       </div>
+       <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl border" style="background-color: rgba(167, 139, 250, 0.1); border-color: rgba(167, 139, 250, 0.2); color: rgb(167, 139, 250)">
+        <svg aria-hidden="true" class="lucide lucide-key-round" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+         <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z">
+         </path>
+         <circle cx="16.5" cy="7.5" fill="currentColor" r=".5">
+         </circle>
+        </svg>
+       </span>
+       <h3 class="relative mt-6 font-display text-[15px] font-semibold leading-snug text-white">
+        Без регистрации, логина и пароля
+       </h3>
+       <p class="relative mt-2.5 text-sm leading-relaxed text-white/55">
+        Никаких аккаунтов и паролей — только ключ доступа.
+       </p>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group relative h-full overflow-hidden rounded-3xl border border-white/8 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/20">
+       <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-[70px] transition-opacity duration-500 group-hover:opacity-100" style="background-color: rgba(255, 138, 119, 0.19)">
+       </div>
+       <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl border" style="background-color: rgba(255, 138, 119, 0.1); border-color: rgba(255, 138, 119, 0.2); color: rgb(255, 138, 119)">
+        <svg aria-hidden="true" class="lucide lucide-zap" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+         <path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z">
+         </path>
+        </svg>
+       </span>
+       <h3 class="relative mt-6 font-display text-[15px] font-semibold leading-snug text-white">
+        Настройка за две минуты
+       </h3>
+       <p class="relative mt-2.5 text-sm leading-relaxed text-white/55">
+        Установка — быстро, подключение — в один клик.
+       </p>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group relative h-full overflow-hidden rounded-3xl border border-white/8 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/20">
+       <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-[70px] transition-opacity duration-500 group-hover:opacity-100" style="background-color: rgba(200, 255, 46, 0.19)">
+       </div>
+       <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl border" style="background-color: rgba(200, 255, 46, 0.1); border-color: rgba(200, 255, 46, 0.2); color: rgb(200, 255, 46)">
+        <svg aria-hidden="true" class="lucide lucide-calendar-clock" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+         <path d="M16 14v2.2l1.6 1">
+         </path>
+         <path d="M16 2v3">
+         </path>
+         <path d="M21 7.338V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h2.338">
+         </path>
+         <path d="M3 9h5.859">
+         </path>
+         <path d="M8 2v3">
+         </path>
+         <circle cx="16" cy="16" r="6">
+         </circle>
+        </svg>
+       </span>
+       <h3 class="relative mt-6 font-display text-[15px] font-semibold leading-snug text-white">
+        Гибкий срок доступа
+       </h3>
+       <p class="relative mt-2.5 text-sm leading-relaxed text-white/55">
+        От 24 часов до трёх месяцев — решайте сами.
+       </p>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group relative h-full overflow-hidden rounded-3xl border border-white/8 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/20">
+       <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-[70px] transition-opacity duration-500 group-hover:opacity-100" style="background-color: rgba(167, 139, 250, 0.19)">
+       </div>
+       <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl border" style="background-color: rgba(167, 139, 250, 0.1); border-color: rgba(167, 139, 250, 0.2); color: rgb(167, 139, 250)">
+        <svg aria-hidden="true" class="lucide lucide-app-window" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+         <rect height="16" rx="2" width="20" x="2" y="4">
+         </rect>
+         <path d="M10 4v4">
+         </path>
+         <path d="M2 8h20">
+         </path>
+         <path d="M6 4v4">
+         </path>
+        </svg>
+       </span>
+       <h3 class="relative mt-6 font-display text-[15px] font-semibold leading-snug text-white">
+        Приложение или конфигурационный файл
+       </h3>
+       <p class="relative mt-2.5 text-sm leading-relaxed text-white/55">
+        Подключайтесь тем способом, который удобнее.
+       </p>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="group relative h-full overflow-hidden rounded-3xl border border-white/8 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/20">
+       <div aria-hidden="true" class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-[70px] transition-opacity duration-500 group-hover:opacity-100" style="background-color: rgba(255, 138, 119, 0.19)">
+       </div>
+       <span class="relative flex h-12 w-12 items-center justify-center rounded-2xl border" style="background-color: rgba(255, 138, 119, 0.1); border-color: rgba(255, 138, 119, 0.2); color: rgb(255, 138, 119)">
+        <svg aria-hidden="true" class="lucide lucide-wallet" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+         <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1">
+         </path>
+         <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4">
+         </path>
+        </svg>
+       </span>
+       <h3 class="relative mt-6 font-display text-[15px] font-semibold leading-snug text-white">
+        Онлайн-оплата
+       </h3>
+       <p class="relative mt-2.5 text-sm leading-relaxed text-white/55">
+        Оплатите подписку онлайн — в том числе криптовалютой.
+       </p>
+      </article>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="relative overflow-hidden bg-lime py-20 text-ink lg:py-28">
+   <div aria-hidden="true" class="pointer-events-none absolute -left-40 -top-40 h-[480px] w-[480px] rounded-full border-[3px] border-ink/10">
+   </div>
+   <div aria-hidden="true" class="pointer-events-none absolute -bottom-52 -right-36 h-[560px] w-[560px] rounded-full border-[3px] border-ink/10">
+   </div>
+   <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div style="opacity: 1; transform: none">
+     <div class="mx-auto max-w-2xl text-center">
+      <p class="mb-4 inline-flex items-center gap-2 rounded-full border-2 border-ink/15 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.22em] text-ink/70">
+       / Устройства
+      </p>
+      <h2 class="font-display text-2xl font-bold leading-tight tracking-tight sm:text-4xl">
+       Один ключ — все ваши устройства
+      </h2>
+      <p class="mt-4 text-base leading-relaxed text-ink/65">
+       Смартфоны, планшеты, ноутбуки и ПК — подключайте всё, чем пользуетесь.
+      </p>
+     </div>
+    </div>
+    <div style="opacity: 1; transform: none">
+     <div class="relative mt-14">
+      <div class="float-soft relative z-10 mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-ink shadow-[0_0_60px_rgba(7,7,12,0.35)]">
+       <svg aria-hidden="true" fill="none" height="34" viewbox="0 0 24 24" width="34">
+        <circle cx="12" cy="12" fill="#C8FF2E" r="3.4">
+        </circle>
+        <ellipse cx="12" cy="12" rx="9.6" ry="4.2" stroke="#C8FF2E" stroke-width="1.5" transform="rotate(-24 12 12)">
+        </ellipse>
+        <circle cx="12" cy="12" opacity="0.55" r="9.6" stroke="#C8FF2E" stroke-dasharray="2 3" stroke-width="1.5">
+        </circle>
+       </svg>
+      </div>
+      <div aria-hidden="true" class="mx-auto h-10 w-0 border-l-2 border-dashed border-ink/30">
+      </div>
+      <div class="relative">
+       <div aria-hidden="true" class="absolute left-0 right-0 top-1/2 hidden border-t-2 border-dashed border-ink/25 lg:block">
+       </div>
+       <span aria-hidden="true" class="dot-travel absolute top-1/2 z-0 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-ink lg:block" style="animation-delay: 0s">
+       </span>
+       <span aria-hidden="true" class="dot-travel absolute top-1/2 z-0 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-ink lg:block" style="animation-delay: 1.7s">
+       </span>
+       <span aria-hidden="true" class="dot-travel absolute top-1/2 z-0 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-ink lg:block" style="animation-delay: 3.4s">
+       </span>
+       <div class="relative z-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div class="group rounded-2xl border border-ink/10 bg-white p-5 text-center shadow-[0_10px_30px_rgba(7,7,12,0.08)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_44px_rgba(7,7,12,0.16)]">
+         <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-ink/[0.06] text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-lime">
+          <svg aria-hidden="true" class="lucide lucide-app-window" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+           <rect height="16" rx="2" width="20" x="2" y="4">
+           </rect>
+           <path d="M10 4v4">
+           </path>
+           <path d="M2 8h20">
+           </path>
+           <path d="M6 4v4">
+           </path>
+          </svg>
+         </span>
+         <p class="mt-3 font-display text-[13px] font-semibold">
+          Windows
+         </p>
+        </div>
+        <div class="group rounded-2xl border border-ink/10 bg-white p-5 text-center shadow-[0_10px_30px_rgba(7,7,12,0.08)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_44px_rgba(7,7,12,0.16)]">
+         <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-ink/[0.06] text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-lime">
+          <svg aria-hidden="true" class="lucide lucide-command" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+           <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3">
+           </path>
+          </svg>
+         </span>
+         <p class="mt-3 font-display text-[13px] font-semibold">
+          macOS
+         </p>
+        </div>
+        <div class="group rounded-2xl border border-ink/10 bg-white p-5 text-center shadow-[0_10px_30px_rgba(7,7,12,0.08)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_44px_rgba(7,7,12,0.16)]">
+         <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-ink/[0.06] text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-lime">
+          <svg aria-hidden="true" class="lucide lucide-smartphone" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+           <rect height="20" rx="2" ry="2" width="14" x="5" y="2">
+           </rect>
+           <path d="M12 18h.01">
+           </path>
+          </svg>
+         </span>
+         <p class="mt-3 font-display text-[13px] font-semibold">
+          Android
+         </p>
+        </div>
+        <div class="group rounded-2xl border border-ink/10 bg-white p-5 text-center shadow-[0_10px_30px_rgba(7,7,12,0.08)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_44px_rgba(7,7,12,0.16)]">
+         <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-ink/[0.06] text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-lime">
+          <svg aria-hidden="true" class="lucide lucide-tablet-smartphone" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+           <rect height="14" rx="2" width="10" x="3" y="8">
+           </rect>
+           <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4">
+           </path>
+           <path d="M8 18h.01">
+           </path>
+          </svg>
+         </span>
+         <p class="mt-3 font-display text-[13px] font-semibold">
+          iPhone / iOS
+         </p>
+        </div>
+        <div class="group rounded-2xl border border-ink/10 bg-white p-5 text-center shadow-[0_10px_30px_rgba(7,7,12,0.08)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_44px_rgba(7,7,12,0.16)]">
+         <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-ink/[0.06] text-ink transition-colors duration-300 group-hover:bg-ink group-hover:text-lime">
+          <svg aria-hidden="true" class="lucide lucide-tv" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+           <path d="m17 2-5 5-5-5">
+           </path>
+           <rect height="15" rx="2" width="20" x="2" y="7">
+           </rect>
+          </svg>
+         </span>
+         <p class="mt-3 font-display text-[13px] font-semibold">
+          Smart TV
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div style="opacity: 1; transform: none">
+     <div class="mt-12 flex flex-wrap items-center justify-center gap-2.5">
+      <span class="rounded-full border-2 border-ink/15 bg-ink/[0.04] px-5 py-2.5 text-sm font-semibold text-ink/80">
+       Безлимитная скорость
+      </span>
+      <span class="rounded-full border-2 border-ink/15 bg-ink/[0.04] px-5 py-2.5 text-sm font-semibold text-ink/80">
+       Доступная цена
+      </span>
+      <span class="rounded-full border-2 border-ink/15 bg-ink/[0.04] px-5 py-2.5 text-sm font-semibold text-ink/80">
+       Низкий пинг
+      </span>
+      <span class="rounded-full border-2 border-ink/15 bg-ink/[0.04] px-5 py-2.5 text-sm font-semibold text-ink/80">
+       Отсутствие сбора персональных данных
+      </span>
+      <span class="rounded-full border-2 border-ink/15 bg-ink/[0.04] px-5 py-2.5 text-sm font-semibold text-ink/80">
+       Помощь с настройкой
+      </span>
+      <span class="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white">
+       <svg aria-hidden="true" class="lucide lucide-message-square-heart text-lime" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z">
+        </path>
+        <path d="M7.5 9.5c0 .687.265 1.383.697 1.844l3.009 3.264a1.14 1.14 0 0 0 .407.314 1 1 0 0 0 .783-.004 1.14 1.14 0 0 0 .398-.31l3.008-3.264A2.77 2.77 0 0 0 16.5 9.5 2.5 2.5 0 0 0 12 8a2.5 2.5 0 0 0-4.5 1.5">
+        </path>
+       </svg>
+       Честные отзывы
+      </span>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="relative py-20 lg:py-28" id="connect">
+   <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div style="opacity: 1; transform: none">
+     <div class="mb-12 max-w-2xl lg:mb-16">
+      <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.24em] text-lime">
+       / Как подключить
+      </p>
+      <h2 class="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+       Пять шагов — и вы
+       <span class="text-lime">
+        под защитой
+       </span>
+      </h2>
+     </div>
+    </div>
+    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+     <div class="lg:sticky lg:top-36 lg:self-start" style="opacity: 1; transform: none">
+      <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-ink-800/70 p-8 sm:p-9">
+       <div aria-hidden="true" class="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-violet/25 blur-[80px]">
+       </div>
+       <p class="relative font-mono text-[11px] uppercase tracking-[0.24em] text-white/40" id="step-count">
+        Шаг 05 из 05
+       </p>
+       <p class="relative mt-3 font-display text-6xl font-black text-lime sm:text-7xl" id="step-current" style="opacity: 1; transform: none">
+        05
+       </p>
+       <h3 class="relative mt-4 font-display text-lg font-semibold leading-snug text-white" id="step-title" style="opacity: 1; transform: none">
+        Пользоваться
+       </h3>
+       <div aria-hidden="true" class="relative mt-7 flex gap-1.5">
+        <span class="h-1.5 flex-1 rounded-full transition-colors duration-300 bg-white/12" data-step-bar="0">
+        </span>
+        <span class="h-1.5 flex-1 rounded-full transition-colors duration-300 bg-white/12" data-step-bar="1">
+        </span>
+        <span class="h-1.5 flex-1 rounded-full transition-colors duration-300 bg-white/12" data-step-bar="2">
+        </span>
+        <span class="h-1.5 flex-1 rounded-full transition-colors duration-300 bg-white/12" data-step-bar="3">
+        </span>
+        <span class="h-1.5 flex-1 rounded-full transition-colors duration-300 bg-white/12" data-step-bar="4">
+        </span>
+       </div>
+       <div class="relative mt-8 flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+        <svg aria-hidden="true" class="lucide lucide-life-buoy mt-0.5 shrink-0 text-coral" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+         <circle cx="12" cy="12" r="10">
+         </circle>
+         <path d="m4.93 4.93 4.24 4.24">
+         </path>
+         <path d="m14.83 9.17 4.24-4.24">
+         </path>
+         <path d="m14.83 14.83 4.24 4.24">
+         </path>
+         <path d="m9.17 14.83-4.24 4.24">
+         </path>
+         <circle cx="12" cy="12" r="4">
+         </circle>
+        </svg>
+        <p class="text-sm leading-relaxed text-white/60">
+         Возникли сложности?
+         <a class="font-semibold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral" href="https://vpn-vless.com/support">
+          Напишите в поддержку
+         </a>
+         — поможем с настройкой.
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="relative">
+      <div aria-hidden="true" class="absolute bottom-6 left-6 top-6 w-px bg-white/10 sm:left-7">
+      </div>
+      <div class="space-y-4" id="connection-steps">
+       <div data-step="0">
+        <div class="relative flex gap-4 rounded-3xl border p-5 transition-all duration-300 sm:gap-5 sm:p-6 border-white/8 bg-white/[0.02] step-card">
+         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold transition-all duration-300 sm:h-14 sm:w-14 bg-white/8 text-white/50 step-number">
+          1
+         </span>
+         <div class="py-1">
+          <h3 class="font-display text-base font-semibold leading-snug text-white sm:text-lg">
+           Выбрать тариф
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">
+           Определитесь с периодом — от бесплатного теста до трёх месяцев.
+          </p>
+          <a class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-lime underline decoration-lime/40 underline-offset-4 transition-colors hover:decoration-lime" href="#tarify">
+           Выбрать тариф
+           <svg aria-hidden="true" class="lucide lucide-arrow-right" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12h14">
+            </path>
+            <path d="m12 5 7 7-7 7">
+            </path>
+           </svg>
+          </a>
+         </div>
+        </div>
+       </div>
+       <div data-step="1">
+        <div class="relative flex gap-4 rounded-3xl border p-5 transition-all duration-300 sm:gap-5 sm:p-6 border-white/8 bg-white/[0.02] step-card">
+         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold transition-all duration-300 sm:h-14 sm:w-14 bg-white/8 text-white/50 step-number">
+          2
+         </span>
+         <div class="py-1">
+          <h3 class="font-display text-base font-semibold leading-snug text-white sm:text-lg">
+           Оплатить
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">
+           Оплата онлайн — в том числе криптовалютой.
+          </p>
+         </div>
+        </div>
+       </div>
+       <div data-step="2">
+        <div class="relative flex gap-4 rounded-3xl border p-5 transition-all duration-300 sm:gap-5 sm:p-6 border-white/8 bg-white/[0.02] step-card">
+         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold transition-all duration-300 sm:h-14 sm:w-14 bg-white/8 text-white/50 step-number">
+          3
+         </span>
+         <div class="py-1">
+          <h3 class="font-display text-base font-semibold leading-snug text-white sm:text-lg">
+           Получить инструкцию и QR-код
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">
+           Бот пришлёт всё необходимое для подключения.
+          </p>
+         </div>
+        </div>
+       </div>
+       <div data-step="3">
+        <div class="relative flex gap-4 rounded-3xl border p-5 transition-all duration-300 sm:gap-5 sm:p-6 border-white/8 bg-white/[0.02] step-card">
+         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold transition-all duration-300 sm:h-14 sm:w-14 bg-white/8 text-white/50 step-number">
+          4
+         </span>
+         <div class="py-1">
+          <h3 class="font-display text-base font-semibold leading-snug text-white sm:text-lg">
+           Настроить за пару минут
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">
+           Установка занимает пару минут, подключение — в один клик.
+          </p>
+         </div>
+        </div>
+       </div>
+       <div data-step="4">
+        <div class="relative flex gap-4 rounded-3xl border p-5 transition-all duration-300 sm:gap-5 sm:p-6 border-white/8 bg-white/[0.02] step-card">
+         <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold transition-all duration-300 sm:h-14 sm:w-14 bg-white/8 text-white/50 step-number">
+          5
+         </span>
+         <div class="py-1">
+          <h3 class="font-display text-base font-semibold leading-snug text-white sm:text-lg">
+           Пользоваться
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">
+           Защищённое соединение на всех ваших устройствах.
+          </p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="relative scroll-mt-32 py-20 lg:py-28" id="tarify">
+   <div aria-hidden="true" class="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-lime/[0.05] blur-[130px]">
+   </div>
+   <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+    <div style="opacity: 1; transform: none">
+     <div class="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
+      <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.24em] text-lime">
+       / Тарифы
+      </p>
+      <h2 class="font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+       Подписка на удобный срок
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-white/60">
+       Оформите подписку на удобный для вас срок. Чем дольше подписка, тем выгоднее её стоимость.
+      </p>
+     </div>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="relative flex h-full flex-col rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-2 sm:p-7 border-lime/35 bg-lime/[0.05] hover:border-lime/60">
+       <div class="flex items-center justify-between gap-2">
+        <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-white/45">
+         24 часа
+        </span>
+        <span class="rounded-full border px-3 py-1 text-[11px] font-semibold border-lime/40 bg-lime/10 text-lime">
+         Бесплатный период
+        </span>
+       </div>
+       <div class="mt-6 flex items-baseline gap-2">
+        <span class="font-display text-[2.5rem] font-bold leading-none text-white">
+         0 ₽
+        </span>
+       </div>
+       <p class="mt-2 text-sm text-white/40">
+        Тестовый период
+       </p>
+       <ul class="mt-6 flex-1 space-y-2.5 border-t border-white/8 pt-6">
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         QR-код для подключения
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Безлимитный трафик
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Без ограничений
+        </li>
+       </ul>
+       <a class="group mt-7 inline-flex w-full items-center justify-center gap-2.5 rounded-2xl py-3.5 font-display text-sm font-semibold transition-all duration-200 active:scale-[0.97] border-2 border-lime text-lime hover:bg-lime hover:text-ink" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+        <svg aria-hidden="true" class="lucide lucide-send transition-transform duration-200 group-hover:-rotate-12" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+         <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+         </path>
+         <path d="m21.854 2.147-10.94 10.939">
+         </path>
+        </svg>
+        Бесплатно
+       </a>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="relative flex h-full flex-col rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-2 sm:p-7 border-white/10 bg-white/[0.03] hover:border-white/25">
+       <div class="flex items-center justify-between gap-2">
+        <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-white/45">
+         1 месяц
+        </span>
+        <span class="rounded-full border px-3 py-1 text-[11px] font-semibold border-white/15 bg-white/8 text-white/80">
+         Стандарт
+        </span>
+       </div>
+       <div class="mt-6 flex items-baseline gap-2">
+        <span class="font-display text-[2.5rem] font-bold leading-none text-white">
+         249 ₽
+        </span>
+       </div>
+       <p class="mt-2 text-sm text-white/40">
+        Доступ на 1 месяц
+       </p>
+       <ul class="mt-6 flex-1 space-y-2.5 border-t border-white/8 pt-6">
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         QR-код для подключения
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Безлимитный трафик
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Без ограничений
+        </li>
+        <li class="flex items-center gap-2.5 text-sm font-medium text-white">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Полный доступ
+        </li>
+       </ul>
+       <a class="group mt-7 inline-flex w-full items-center justify-center gap-2.5 rounded-2xl py-3.5 font-display text-sm font-semibold transition-all duration-200 active:scale-[0.97] bg-lime text-ink hover:shadow-[0_0_38px_rgba(200,255,46,0.4)]" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+        <svg aria-hidden="true" class="lucide lucide-send transition-transform duration-200 group-hover:-rotate-12" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+         <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+         </path>
+         <path d="m21.854 2.147-10.94 10.939">
+         </path>
+        </svg>
+        Купить
+       </a>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="relative flex h-full flex-col rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-2 sm:p-7 border-violet/30 bg-violet/[0.08] hover:border-violet/55">
+       <div class="flex items-center justify-between gap-2">
+        <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-white/45">
+         2 месяца
+        </span>
+        <span class="rounded-full border px-3 py-1 text-[11px] font-semibold border-violet/40 bg-violet/15 text-violet-soft">
+         −10%
+        </span>
+       </div>
+       <div class="mt-6 flex items-baseline gap-2">
+        <span class="font-display text-[2.5rem] font-bold leading-none text-white">
+         450 ₽
+        </span>
+       </div>
+       <p class="mt-2 text-sm text-white/40">
+        Доступ на 2 месяца
+       </p>
+       <ul class="mt-6 flex-1 space-y-2.5 border-t border-white/8 pt-6">
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         QR-код для подключения
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Безлимитный трафик
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Без ограничений
+        </li>
+        <li class="flex items-center gap-2.5 text-sm font-medium text-white">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Полный доступ
+        </li>
+       </ul>
+       <a class="group mt-7 inline-flex w-full items-center justify-center gap-2.5 rounded-2xl py-3.5 font-display text-sm font-semibold transition-all duration-200 active:scale-[0.97] bg-lime text-ink hover:shadow-[0_0_38px_rgba(200,255,46,0.4)]" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+        <svg aria-hidden="true" class="lucide lucide-send transition-transform duration-200 group-hover:-rotate-12" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+         <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+         </path>
+         <path d="m21.854 2.147-10.94 10.939">
+         </path>
+        </svg>
+        Купить
+       </a>
+      </article>
+     </div>
+     <div class="h-full" style="opacity: 1; transform: none">
+      <article class="relative flex h-full flex-col rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-2 sm:p-7 border-coral/35 bg-coral/[0.06] hover:border-coral/60">
+       <span class="absolute -top-3 left-6 rounded-full bg-coral px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white shadow-lg shadow-coral/30">
+        Выгоднее всего
+       </span>
+       <div class="flex items-center justify-between gap-2">
+        <span class="font-mono text-[11px] uppercase tracking-[0.18em] text-white/45">
+         3 месяца
+        </span>
+        <span class="rounded-full border px-3 py-1 text-[11px] font-semibold border-coral/40 bg-coral/15 text-coral-soft">
+         −20%
+        </span>
+       </div>
+       <div class="mt-6 flex items-baseline gap-2">
+        <span class="font-display text-[2.5rem] font-bold leading-none text-white">
+         600 ₽
+        </span>
+       </div>
+       <p class="mt-2 text-sm text-white/40">
+        Доступ на 3 месяца
+       </p>
+       <ul class="mt-6 flex-1 space-y-2.5 border-t border-white/8 pt-6">
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         QR-код для подключения
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Безлимитный трафик
+        </li>
+        <li class="flex items-center gap-2.5 text-sm text-white/70">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Без ограничений
+        </li>
+        <li class="flex items-center gap-2.5 text-sm font-medium text-white">
+         <svg aria-hidden="true" class="lucide lucide-check shrink-0 text-lime" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6 9 17l-5-5">
+          </path>
+         </svg>
+         Полный доступ
+        </li>
+       </ul>
+       <a class="group mt-7 inline-flex w-full items-center justify-center gap-2.5 rounded-2xl py-3.5 font-display text-sm font-semibold transition-all duration-200 active:scale-[0.97] bg-lime text-ink hover:shadow-[0_0_38px_rgba(200,255,46,0.4)]" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+        <svg aria-hidden="true" class="lucide lucide-send transition-transform duration-200 group-hover:-rotate-12" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+         <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+         </path>
+         <path d="m21.854 2.147-10.94 10.939">
+         </path>
+        </svg>
+        Купить
+       </a>
+      </article>
+     </div>
+    </div>
+    <div style="opacity: 1; transform: none">
+     <p class="mx-auto mt-10 max-w-xl text-center text-sm leading-relaxed text-white/45">
+      Оформление теста или подписки означает принятие
+      <button class="font-semibold text-white/75 underline decoration-white/30 underline-offset-4 transition-colors duration-200 hover:text-lime hover:decoration-lime" data-terms="">
+       условий использования
+      </button>
+      .
+     </p>
+    </div>
+   </div>
+  </section>
+  <section class="py-20 lg:py-28">
+   <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div style="opacity: 1; transform: none">
+     <div class="relative overflow-hidden rounded-[2.5rem] bg-coral px-6 py-16 text-center sm:px-12 md:py-24">
+      <div aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[-30%] h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-white/25 blur-[110px]">
+      </div>
+      <div aria-hidden="true" class="float-soft absolute -left-8 top-14 h-28 w-44 rotate-[-8deg] rounded-[2rem] bg-white/15 sm:left-10" style="animation-delay: 0.6s">
+      </div>
+      <div aria-hidden="true" class="float-soft absolute -right-6 bottom-12 h-24 w-40 rotate-[6deg] rounded-[2rem] bg-ink/10 sm:right-12" style="animation-delay: 1.4s">
+      </div>
+      <div class="relative">
+       <p class="mb-5 font-mono text-[11px] uppercase tracking-[0.26em] text-ink/60">
+        / Поддержка
+       </p>
+       <h2 class="mx-auto max-w-2xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
+        Остались вопросы?
+       </h2>
+       <p class="mx-auto mt-5 max-w-md text-base leading-relaxed text-ink/70 sm:text-lg">
+        Помощь по продукту и подключению — просто напишите нам.
+       </p>
+       <a class="mt-10 inline-flex items-center gap-3 rounded-full bg-ink px-9 py-4 font-display text-sm font-semibold text-white shadow-[0_18px_44px_rgba(7,7,12,0.3)] transition-shadow duration-200 hover:shadow-[0_22px_56px_rgba(7,7,12,0.4)]" href="https://vpn-vless.com/support" tabindex="0">
+        <svg aria-hidden="true" class="lucide lucide-message-circle text-lime" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="17" xmlns="http://www.w3.org/2000/svg">
+         <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719">
+         </path>
+        </svg>
+        Чат с поддержкой
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="pb-20 lg:pb-28">
+   <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div style="opacity: 1; transform: none">
+     <div class="flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-white/8 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-lime/25 md:p-12">
+      <div class="max-w-lg">
+       <p class="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-lime">
+        / Блог VLESS
+       </p>
+       <h3 class="font-display text-xl font-bold leading-snug text-white sm:text-2xl">
+        Гайды и инструкции по подключению
+       </h3>
+       <p class="mt-3 text-sm leading-relaxed text-white/55">
+        Материалы о сервисе и настройке — в блоге.
+       </p>
+      </div>
+      <a class="group inline-flex items-center gap-2.5 rounded-full border border-white/15 px-7 py-3.5 font-display text-sm font-semibold text-white transition-all duration-200 hover:border-lime/60 hover:text-lime active:scale-95" href="https://vpn-vless.com/blog">
+       Читать в блоге
+       <svg aria-hidden="true" class="lucide lucide-arrow-up-right transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 7h10v10">
+        </path>
+        <path d="M7 17 17 7">
+        </path>
+       </svg>
+      </a>
+     </div>
+    </div>
+   </div>
+  </section>
+ </main>
+ <footer class="border-t border-white/8 bg-ink-900">
+  <div class="mx-auto max-w-7xl px-5 pb-8 pt-14 sm:px-8">
+   <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_1.25fr]">
+    <div>
+     <a aria-label="VLESS VPN" class="flex items-center gap-2.5" href="./">
+      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-lime">
+       <svg aria-hidden="true" fill="none" height="19" viewbox="0 0 24 24" width="19">
+        <circle cx="12" cy="12" fill="#07070C" r="3.1">
+        </circle>
+        <ellipse cx="12" cy="12" rx="9.4" ry="4.1" stroke="#07070C" stroke-width="1.5" transform="rotate(-24 12 12)">
+        </ellipse>
+        <circle cx="12" cy="12" opacity="0.55" r="9.4" stroke="#07070C" stroke-dasharray="2 3" stroke-width="1.5">
+        </circle>
+       </svg>
+      </span>
+      <span class="font-display text-base font-bold tracking-wide text-white">
+       VLESS
+       <span class="text-lime">
+        .
+       </span>
+      </span>
+     </a>
+     <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/45">
+      Безопасное интернет-соединение для работы и поездок.
+     </p>
+    </div>
+    <nav aria-label="Навигация в подвале">
+     <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+      Навигация
+     </p>
+     <ul class="space-y-2.5">
+      <li>
+       <a class="text-sm text-white/60 transition-colors duration-200 hover:text-lime" href="./">
+        Главная
+       </a>
+      </li>
+      <li>
+       <a class="text-sm text-white/60 transition-colors duration-200 hover:text-lime" href="#tarify">
+        Тарифы
+       </a>
+      </li>
+      <li>
+       <a class="text-sm text-white/60 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/blog">
+        Блог
+       </a>
+      </li>
+      <li>
+       <a class="text-sm text-white/60 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/support">
+        Контакты
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <div>
+     <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+      Сервис
+     </p>
+     <ul class="space-y-2.5">
+      <li>
+       <a class="text-sm text-white/60 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/current-ip">
+        Мой IP
+       </a>
+      </li>
+      <li>
+       <a class="text-sm text-white/60 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/how-to-install-vless">
+        Инструкция
+       </a>
+      </li>
+      <li>
+       <a class="text-sm text-white/60 transition-colors duration-200 hover:text-lime" href="https://vpn-vless.com/support">
+        Поддержка
+       </a>
+      </li>
+      <li>
+       <button class="text-sm text-white/60 underline decoration-white/20 underline-offset-4 transition-colors duration-200 hover:text-lime hover:decoration-lime" data-terms="">
+        Условия использования
+       </button>
+      </li>
+     </ul>
+    </div>
+    <div>
+     <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+      Telegram
+     </p>
+     <div class="flex flex-col gap-2.5">
+      <a class="inline-flex w-fit items-center gap-2.5 rounded-full border border-white/12 px-5 py-2.5 text-sm text-white/70 transition-all duration-200 hover:border-lime/50 hover:text-lime active:scale-95" href="https://t.me/satano_vpn" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" class="lucide lucide-send" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+        </path>
+        <path d="m21.854 2.147-10.94 10.939">
+        </path>
+       </svg>
+       Telegram-канал
+      </a>
+      <a class="inline-flex w-fit items-center gap-2.5 rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-200 hover:shadow-[0_0_26px_rgba(200,255,46,0.35)] active:scale-95" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+       <svg aria-hidden="true" class="lucide lucide-send" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+        </path>
+        <path d="m21.854 2.147-10.94 10.939">
+        </path>
+       </svg>
+       Telegram-бот
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-white/8 pt-6 text-xs text-white/40">
+    <p>
+     © Все права защищены.
+    </p>
+    <p>
+     Satano Networks Ltd., 123 Main Street, Nicosia 1010, Cyprus
+    </p>
+   </div>
+  </div>
+ </footer>
+</div>
+<dialog aria-labelledby="terms-title" aria-modal="true" class="relative w-full max-w-lg rounded-3xl border border-white/10 bg-ink-700 p-7 shadow-2xl shadow-black/60 sm:p-9" id="terms-dialog">
+ <div class="mb-5 flex items-start justify-between gap-4">
+  <div class="flex items-center gap-3">
+   <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-lime/15 text-lime">
+    <svg aria-hidden="true" class="lucide lucide-file-text" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+     <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z">
+     </path>
+     <path d="M14 2v5a1 1 0 0 0 1 1h5">
+     </path>
+     <path d="M10 9H8">
+     </path>
+     <path d="M16 13H8">
+     </path>
+     <path d="M16 17H8">
+     </path>
+    </svg>
+   </span>
+   <h3 class="font-display text-lg font-semibold text-white" id="terms-title">
+    Условия использования
+   </h3>
+  </div>
+  <button aria-label="Закрыть окно" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition-all duration-200 hover:border-white/30 hover:text-white active:scale-90" data-close-terms="">
+   <svg aria-hidden="true" class="lucide lucide-x" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 6 6 18">
+    </path>
+    <path d="m6 6 12 12">
+    </path>
+   </svg>
+  </button>
+ </div>
+ <div class="space-y-4 text-sm leading-relaxed text-white/70">
+  <p>
+   Оформляя бесплатный тест или подписку, вы соглашаетесь с условиями использования сервиса VLESS VPN.
+  </p>
+  <p>
+   Нарушение правил использования может привести к блокировке подписки без возврата денежных средств.
+  </p>
+  <p>
+   Если что-то пошло не так — напишите в
+   <a class="font-semibold text-lime underline decoration-lime/40 underline-offset-4 transition-colors hover:decoration-lime" href="https://vpn-vless.com/support">
+    поддержку
+   </a>
+   или в
+   <a class="font-semibold text-lime underline decoration-lime/40 underline-offset-4 transition-colors hover:decoration-lime" href="https://t.me/satano_vpn_bot" rel="noopener noreferrer" target="_blank">
+    Telegram-бот
+   </a>
+   , мы поможем разобраться.
+  </p>
+ </div>
+ <button class="mt-7 w-full rounded-2xl bg-lime py-3.5 font-display text-sm font-semibold text-ink transition-all duration-200 hover:brightness-110 active:scale-[0.98]" data-close-terms="">
+  Понятно
+ </button>
+</dialog>
+
+</body>
+</html>

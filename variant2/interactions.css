@@ -1,0 +1,29 @@
+/* Native replacements for the original motion and state-driven components. */
+[hidden] { display: none !important; }
+main { overflow: clip; }
+body:has(dialog[open]) { overflow: hidden; }
+.country-button { border-color: #ffffff1f; color: #ffffff99; }
+.country-button[aria-pressed="true"] { background: #c8ff2e; border-color: #c8ff2e; color: #07070c; font-weight: 600; }
+.connection-line { visibility: hidden; }
+[data-connection].is-active .connection-line { visibility: visible; stroke-dasharray: 450; stroke-dashoffset: 0; animation: draw-connection .65s cubic-bezier(.22,1,.36,1); }
+.step-card { transition: background-color .3s, border-color .3s; }
+[data-step].is-active .step-card { border-color: #c8ff2e66; background: #c8ff2e0d; }
+[data-step].is-active .step-number { background: #c8ff2e; color: #07070c; box-shadow: 0 0 30px #c8ff2e59; }
+[data-step-bar].is-active { background: #c8ff2e; }
+#technology-progress { transform-origin: top; }
+#connection-scene { transition: transform .6s ease-out; }
+#hero h1 { overflow-wrap: anywhere; }
+.will-reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+.will-reveal.revealed { opacity: 1; transform: none; }
+#mobile-menu:not([hidden]) { animation: menu-in .25s ease-out; max-height: calc(100dvh - 110px); overflow-y: auto; }
+#terms-dialog { position: fixed; inset: 0; margin: auto; width: min(32rem,calc(100% - 2rem)); max-height: 85dvh; overflow-y: auto; color: #fff; animation: menu-in .24s ease-out; }
+#terms-dialog::backdrop { background: #050509cc; backdrop-filter: blur(5px); }
+@keyframes menu-in { from { opacity: 0; translate: 0 -12px; } to { opacity: 1; translate: 0 0; } }
+@keyframes draw-connection { from { stroke-dashoffset: 450; } to { stroke-dashoffset: 0; } }
+@media (min-width:1024px) { #mobile-menu { display: none !important; } }
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .will-reveal { opacity: 1; transform: none; }
+  #connection-scene { transform: none !important; }
+  .orbit-pulse { display: none; }
+}
