@@ -1,4 +1,15 @@
 /* The original palette remains untouched until another theme is selected. */
+:root[data-theme="ultraviolet"]{--bg:#220f30;--surface:#321d42;--line:#543665;--muted:#cab3d6;--lime:#d4a1ff;--purple:#9af5e1;--coral:#ffcc8f}
+:root[data-theme="cyberpunk"]{--bg:#201222;--surface:#311d35;--line:#513457;--muted:#cbb0ce;--lime:#ff85d5;--purple:#84efff;--coral:#f8ea7a}
+:root[data-theme="copper"]{--bg:#221b17;--surface:#322821;--line:#504135;--muted:#c6b6a7;--lime:#edbd8d;--purple:#a4d7c6;--coral:#c7bdf5}
+:root[data-theme="absinthe"]{--bg:#1a2013;--surface:#2b321f;--line:#465137;--muted:#bbc5aa;--lime:#ddef78;--purple:#b5c7ef;--coral:#eea8bf}
+:root[data-theme="riviera"]{--bg:#0d2130;--surface:#183343;--line:#305368;--muted:#a8c1d0;--lime:#82d8ff;--purple:#ffd995;--coral:#ffb9b1}
+:root[data-theme="volcano"]{--bg:#241611;--surface:#37231c;--line:#573c30;--muted:#cdb4a8;--lime:#ffad84;--purple:#f3d782;--coral:#c4b8ff}
+:root[data-theme="matcha"]{--bg:#19201c;--surface:#27332b;--line:#405447;--muted:#b7c5b9;--lime:#b5d6ad;--purple:#e8c2ab;--coral:#a9c9e3}
+:root[data-theme="berry"]{--bg:#271621;--surface:#3b2433;--line:#5c3b50;--muted:#d0b4c2;--lime:#f2a8c5;--purple:#cecdf1;--coral:#efcf87}
+:root[data-theme="peacock"]{--bg:#102322;--surface:#1b3533;--line:#345653;--muted:#abc7c2;--lime:#8cded8;--purple:#c3a7ed;--coral:#e5cb8d}
+:root[data-theme="electric"]{--bg:#161b32;--surface:#232d46;--line:#3d4a69;--muted:#b6c0d8;--lime:#b5c4ff;--purple:#94efc5;--coral:#f6b69a}
+.theme-panel{max-height:min(720px,calc(100dvh - 130px));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 :root[data-theme="lagoon"]{--bg:#101b1c;--surface:#19282a;--line:#314447;--muted:#abbcbb;--lime:#78edce;--purple:#91b8ff;--coral:#ffc69b}
 :root[data-theme="sunset"]{--bg:#201519;--surface:#302027;--line:#4d353d;--muted:#c5adb8;--lime:#ffb28e;--purple:#c5acff;--coral:#ffe69a}
 :root[data-theme="sakura"]{--bg:#1b1421;--surface:#2a2132;--line:#45374d;--muted:#beb0ca;--lime:#ffadd5;--purple:#b9b0ff;--coral:#9de7d1}

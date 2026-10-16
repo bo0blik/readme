@@ -11,6 +11,16 @@
     ['ocean', 'Океан', '#7de4f5', '#a6bcff', '#ffb39c'],
     ['iris', 'Ирис', '#c7b0ff', '#f2b7d9', '#a6e5ce'],
     ['graphite', 'Графит', '#e4e5d8', '#bcc7d6', '#ddbb9f'],
+    ['ultraviolet', 'Ультрафиолет', '#d4a1ff', '#9af5e1', '#ffcc8f'],
+    ['cyberpunk', 'Киберпанк', '#ff85d5', '#84efff', '#f8ea7a'],
+    ['copper', 'Медь и нефрит', '#edbd8d', '#a4d7c6', '#c7bdf5'],
+    ['absinthe', 'Абсент', '#ddef78', '#b5c7ef', '#eea8bf'],
+    ['riviera', 'Ривьера', '#82d8ff', '#ffd995', '#ffb9b1'],
+    ['volcano', 'Вулкан', '#ffad84', '#f3d782', '#c4b8ff'],
+    ['matcha', 'Матча', '#b5d6ad', '#e8c2ab', '#a9c9e3'],
+    ['berry', 'Ягодный бархат', '#f2a8c5', '#cecdf1', '#efcf87'],
+    ['peacock', 'Павлин', '#8cded8', '#c3a7ed', '#e5cb8d'],
+    ['electric', 'Электрик', '#b5c4ff', '#94efc5', '#f6b69a'],
   ];
   const key = 'vless-color-theme';
   let selected = 'original';
@@ -35,6 +45,7 @@
     const toggle = document.getElementById('theme-toggle');
     const panel = document.getElementById('theme-panel');
     const options = document.getElementById('theme-options');
+    document.querySelector('.theme-panel-heading > span').textContent = `${palettes.length} палитр · один VLESS`;
     const buttons = palettes.map(([id, name, ...colors]) => {
       const button = document.createElement('button');
       button.type = 'button';
