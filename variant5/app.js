@@ -14,12 +14,12 @@
     const section = document.getElementById('locations');
     const list = section.querySelector('fieldset');
     const buttons = [...list.querySelectorAll('button')];
-    const routes = section.querySelector('svg>g:nth-of-type(2)');
-    const nodes = section.querySelector('svg>g:last-of-type');
+    const routes = section.querySelector('figure>svg>g:nth-of-type(2)');
+    const nodes = section.querySelector('figure>svg>g:last-of-type');
     const map = section.querySelector('figure');
     const mapLabel = map.querySelector('figcaption');
     const label = mapLabel.querySelector('output');
-    const globe = map.querySelector('svg');
+    const globe = map.querySelector(':scope>svg');
     const origin = globe.querySelector(':scope>circle:last-of-type');
     const start = [origin.cx.baseVal.value, origin.cy.baseVal.value];
     const svg = (tag, attributes) => {
@@ -36,8 +36,10 @@
       ];
       const name = button.lastChild.textContent.trim();
       const route = svg('path', { d: `M${start} Q${cx} ${cy} ${x} ${y}` });
-      const node = svg('circle', { cx: x, cy: y, r: 5 });
-      return { button, name, route, node, x, y };
+      const flag = button.querySelector('svg');
+      const node = flag ? flag.cloneNode(true) : svg('circle', { cx: x, cy: y, r: 5 });
+      if (flag) Object.entries({ x: x - 13, y: y - 9, width: 26, height: 18 }).forEach(([key, value]) => node.setAttribute(key, value));
+      return { button, name, flag, route, node, x, y };
     });
     routes.replaceChildren(...locations.map(({ route }) => route));
     nodes.replaceChildren(...locations.map(({ node }) => node));
@@ -67,7 +69,9 @@
         label.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 450, easing: 'ease-out' });
       }
       current = index;
-      label.textContent = locations[index]?.name ?? section.querySelector('template').content.textContent;
+      const location = locations[index];
+      label.replaceChildren(...(location?.flag ? [location.flag.cloneNode(true)] : []),
+        document.createTextNode(location?.name ?? section.querySelector('template').content.textContent));
       positionLabel();
     }
     function restart() {
