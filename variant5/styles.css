@@ -52,14 +52,14 @@ body>footer>header>a:first-child>small { border: 1px solid #656569; border-radiu
 #locations>header h2 { margin: var(--space-5) 0; }
 #locations>header>p { font-size: 14px; }
 #locations fieldset { gap: var(--space-2); flex-wrap: wrap; margin: 27px 0; display: flex; }
-#locations button { border-radius: var(--radius-small); transition: all var(--motion-fast); background: 0 0; border: 1px solid #49434f; align-items: center; gap: 9px; padding: 10px 13px; font-size: 12px; display: flex; }
-#locations button>small { font-size: calc(9px + var(--small-text-bump, 0px)); }
+#locations button { border-radius: var(--radius-small); transition: background-color .45s var(--ease-out),border-color .45s var(--ease-out),color .45s var(--ease-out),box-shadow .45s var(--ease-out); background: 0 0; border: 1px solid #49434f; align-items: center; gap: 9px; padding: 10px 13px; font-size: 12px; display: flex; }
+#locations button>small { transition: color .45s var(--ease-out); font-size: calc(9px + var(--small-text-bump, 0px)); }
 #locations button:after { font-style: normal; display: none; }
 #locations button:hover { border-color: var(--accent); }
 #locations>figure { position: relative; }
 #locations>figure svg { width: 100%; display: block; overflow: visible; }
-#locations svg>g:nth-of-type(2) path { opacity: .25; stroke-width: 1px; transition: opacity var(--motion-normal); }
-#locations svg>g:nth-of-type(2) path:is([aria-pressed=true],[aria-current=true]) { opacity: 1; stroke: var(--accent); stroke-width: 2px; stroke-dasharray: 7 7; animation: 3s linear infinite route; }
+#locations svg>g:nth-of-type(2) path { opacity: .25; stroke-width: 1px; stroke: var(--pink); stroke-dasharray: 7 7; animation: 3s linear infinite route; transition: opacity .6s var(--ease-out),stroke .6s var(--ease-out),stroke-width .6s var(--ease-out); }
+#locations svg>g:nth-of-type(2) path:is([aria-pressed=true],[aria-current=true]) { opacity: 1; stroke: var(--accent); stroke-width: 2px; }
 #locations>figure>figcaption { white-space: nowrap; backdrop-filter: blur(8px); border-radius: var(--radius-small); align-items: center; gap: var(--space-2); padding: var(--space-2) 13px; border: 1px solid #7e6d90; font-size: calc(11px + var(--small-text-bump, 0px)); display: flex; position: absolute; }
 #locations>figure>small { text-align: center; letter-spacing: 1.8px; font-size: calc(8px + var(--small-text-bump, 0px)); }
 #locations svg>circle:nth-last-of-type(2) { transform-box: fill-box; transform-origin: 50%; animation: 3s infinite pulse; }
@@ -292,10 +292,10 @@ body>footer>header>p { font-size: 22px; }
   0%,20%,80%,to { transform: translate(0); }
   45% { transform: translate(6px); }
 }
-#locations svg>g:last-of-type>circle { fill: var(--pink); opacity: .65; transition: fill var(--motion-normal),opacity var(--motion-normal); }
-#locations svg>g:last-of-type>circle[aria-current=true] { fill: var(--accent); opacity: 1; }
+#locations svg>g:last-of-type>circle { fill: var(--pink); opacity: .65; transform-box: fill-box; transform-origin: center; transition: fill .6s var(--ease-out),opacity .6s var(--ease-out),scale .6s var(--ease-out); }
+#locations svg>g:last-of-type>circle[aria-current=true] { fill: var(--accent); opacity: 1; scale: 1.2; }
 #locations svg>g:nth-of-type(2) path { pointer-events: none; }
-#locations>figure>figcaption { max-width: calc(100% - 16px); top: 48%; left: 50%; transform: translate(-50%); }
+#locations>figure>figcaption { max-width: calc(100% - 16px); top: 48%; left: 50%; transform: translate(-50%); transition: left .6s var(--ease-out),top .6s var(--ease-out); }
 #locations output { text-overflow: ellipsis; overflow: hidden; }
 
 :where(#connect>footer,#order article,#support header,#blog>header,dialog form)>:is(a,button):after,#locations header>a:after { width: 19px; height: 19px; }

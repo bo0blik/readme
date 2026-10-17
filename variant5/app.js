@@ -62,6 +62,10 @@
           else element.removeAttribute('aria-current');
         });
       });
+      if (current !== index && current >= 0 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        label.getAnimations().forEach(animation => animation.cancel());
+        label.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 450, easing: 'ease-out' });
+      }
       current = index;
       label.textContent = locations[index]?.name ?? section.querySelector('template').content.textContent;
       positionLabel();
