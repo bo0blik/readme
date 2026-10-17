@@ -37,8 +37,7 @@
       const name = button.lastChild.textContent.trim();
       const route = svg('path', { d: `M${start} Q${cx} ${cy} ${x} ${y}` });
       const flag = button.querySelector('svg');
-      const node = flag ? flag.cloneNode(true) : svg('circle', { cx: x, cy: y, r: 5 });
-      if (flag) Object.entries({ x: x - 13, y: y - 9, width: 26, height: 18 }).forEach(([key, value]) => node.setAttribute(key, value));
+      const node = svg('circle', { cx: x, cy: y, r: 5 });
       return { button, name, flag, route, node, x, y };
     });
     routes.replaceChildren(...locations.map(({ route }) => route));
