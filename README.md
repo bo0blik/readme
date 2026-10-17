@@ -1,6 +1,6 @@
 # VLESS VPN design showcase
 
-Four static homepage concepts with a shared selection page. No installation or build is required.
+Five static homepage concepts with a shared selection page. No installation or build is required.
 
 The first concept includes a compact palette button beside the bot link. It offers twenty coordinated color themes and remembers the selection in local browser storage. The original colors remain the default. Theme controls support keyboard navigation, reduced motion, and browsers where storage is blocked. The palette panel scrolls to keep all twenty choices accessible on small screens.
 
@@ -25,3 +25,5 @@ Run `python3 -m http.server 8000` from this directory and open `http://localhost
 GitHub Pages publishes the `main` branch from the repository root. `.nojekyll` keeps these files static. This repository is public, and published pages can be viewed without signing in. Search-engine indexing is discouraged with a robots meta tag; this does not restrict access.
 
 The original development files, package dependencies and archive restoration files are not needed for this presentation. Other than the first concept's local heading font, web fonts may require network access. External service links and payment flows are not part of the preview checks.
+
+- `variant5/`: refined iris-colored layout with onboarding cards, animated trial ticket, responsive navigation, location rotation and blog cards. Static HTML/CSS/JS; no build required.
