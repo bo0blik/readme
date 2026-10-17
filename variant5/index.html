@@ -2,7 +2,6 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="robots" content="noindex,nofollow" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#191624" />
     <meta
@@ -10,15 +9,29 @@
       content="VLESS VPN — защищённое соединение для работы, учёбы и путешествий. Семь локаций, ваши устройства и бесплатный тест на 24 часа."
     />
     <title>VLESS VPN — на своей территории</title>
-    <link rel="stylesheet" href="styles.css?v=38d1b72" />
-    <link rel="icon" type="image/png" href="images/lynx.png" />
-    <script src="app.js?v=38d1b72" defer></script>
+    <link
+      rel="preload"
+      href="fonts/unbounded-cyrillic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/unbounded-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css?v=9c1301ba88c2" />
+    <link rel="icon" type="image/webp" href="images/lynx-128.webp" />
+    <script src="app.js?v=9c1301ba88c2" defer></script>
   </head>
   <body>
     <a href="#main">К содержанию</a>
     <header>
       <a href="#">
-        <img src="images/lynx.png" alt="" />
+        <img src="images/lynx-128.webp" srcset="images/lynx-256.webp 2x" alt="" />
         vless
         <small>VPN</small>
       </a>
@@ -323,7 +336,9 @@
               Для спокойного подключения, даже в открытых Wi-Fi сетях.
             </p>
           </header>
-          <figure aria-hidden="true"><img src="images/lynx.png" alt="" /></figure>
+          <figure aria-hidden="true">
+            <img src="images/lynx-128.webp" srcset="images/lynx-256.webp 2x" alt="" />
+          </figure>
           <footer>
             <span>Стабильное подключение</span>
             <span>Без сбора конфиденциальных данных</span>
@@ -372,12 +387,12 @@
         <figure role="img" aria-label="Ноутбук и смартфон с символом VLESS">
           <span>
             <span>
-              <img src="images/lynx.png" alt="" />
+              <img src="images/lynx-128.webp" srcset="images/lynx-256.webp 2x" alt="" />
               <small>НА СВОЕЙ ТЕРРИТОРИИ</small>
             </span>
           </span>
           <span>
-            <img src="images/lynx.png" alt="" />
+            <img src="images/lynx-128.webp" srcset="images/lynx-256.webp 2x" alt="" />
             <small>VLESS VPN</small>
             <span>Твоё соединение</span>
           </span>
@@ -608,7 +623,7 @@
     <footer>
       <header>
         <a href="#">
-          <img src="images/lynx.png" alt="" />
+          <img src="images/lynx-128.webp" srcset="images/lynx-256.webp 2x" alt="" />
           vless
           <small>VPN</small>
         </a>

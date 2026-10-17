@@ -22,7 +22,7 @@ Run `python3 -m http.server 8000` from this directory and open `http://localhost
 
 ## Hosting
 
-GitHub Pages publishes the `main` branch from the repository root. `.nojekyll` keeps these files static. This repository is public, and published pages can be viewed without signing in. Search-engine indexing is discouraged with a robots meta tag; this does not restrict access.
+GitHub Pages publishes the `main` branch from the repository root. `.nojekyll` keeps these files static. This repository is public, and published pages can be viewed without signing in. Variants 1–4 discourage search-engine indexing with a robots meta tag. Variant 5 permits indexing; all variants are publicly accessible.
 
 The original development files, package dependencies and archive restoration files are not needed for this presentation. Other than the first concept's local heading font, web fonts may require network access. External service links and payment flows are not part of the preview checks.
 
