@@ -1,5 +1,7 @@
 # VLESS VPN design showcase
 
+PUBG PC store mockup: [open the published site](https://bo0blik.github.io/readme/pubg/).
+
 Five static homepage concepts with a shared selection page. No installation or build is required.
 
 The first concept includes a compact palette button beside the bot link. It offers twenty coordinated color themes and remembers the selection in local browser storage. The original colors remain the default. Theme controls support keyboard navigation, reduced motion, and browsers where storage is blocked. The palette panel scrolls to keep all twenty choices accessible on small screens.
