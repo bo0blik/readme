@@ -155,6 +155,21 @@ html:not(.has-beat) .header .brand .brand__mark{
 @media(prefers-reduced-motion:reduce){
   html.has-beat .header .brand .brand__mark{animation:none!important;transform:none!important}
 }
+</style><style>/* FBKK_MOBILE_LOGO_SIZE */
+@media (max-width: 767px) {
+  .header .brand .brand__mark {
+    width: 94px !important;
+    height: 66px !important;
+    max-width: 94px !important;
+    object-fit: contain;
+  }
+  .header:not(.is-stuck) .brand__mark { margin-left: 0 !important; }
+  .header.is-stuck .brand .brand__mark {
+    width: 84px !important;
+    height: 59px !important;
+    max-width: 84px !important;
+  }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
