@@ -95,7 +95,24 @@
   background: linear-gradient(180deg, rgba(20,8,42,.15), rgba(20,8,42,.65));
 }
 </style>
-<style>/* FBKK_3D_LOGO */ .header__bar{padding-left:0!important} .brand__mark{margin-left:-10px!important}  .brand__text small{font-size:10px;line-height:1.35;letter-spacing:.055em;max-width:190px;display:block}  .brand__mark{width:104px!important;height:72px!important;object-fit:contain;flex-shrink:0;filter:none} .brand:hover .brand__mark{transform:translateY(-2px) scale(1.04)!important}</style><style>/* FBKK_SPONSORS */
+<style>/* FBKK_3D_LOGO */ .header__bar{padding-left:0!important} .brand__mark{margin-left:-10px!important}  .brand__text small{font-size:10px;line-height:1.35;letter-spacing:.055em;max-width:190px;display:block}  .brand__mark{width:104px!important;height:72px!important;object-fit:contain;flex-shrink:0;filter:none} .brand:hover .brand__mark{transform:translateY(-2px) scale(1.04)!important}</style><style>/* FBKK_LOGO_BEAT_112BPM */
+@keyframes fbkk-logo-beat{
+  0%,100%{transform:scale(1)}
+  10%{transform:scale(1.115)}
+  23%{transform:scale(1.035)}
+  37%{transform:scale(1.065)}
+  53%,87%{transform:scale(1)}
+}
+.brand .brand__mark{
+  transform-origin:50% 50%;
+  animation:fbkk-logo-beat 0.535714286s cubic-bezier(.2,.65,.3,1) infinite!important;
+  will-change:transform;
+}
+.brand:hover .brand__mark{animation-play-state:running!important}
+@media(prefers-reduced-motion:reduce){
+  .brand .brand__mark{animation:none!important;transform:none!important;will-change:auto}
+}
+</style><style>/* FBKK_SPONSORS */
 .sponsors{position:relative;padding:clamp(76px,10vw,140px) 0;isolation:isolate;overflow:hidden;background:linear-gradient(145deg,#f6f2ff 0%,#ede5ff 65%,#f8f6ff 100%);color:#1c1038}
 .sponsors:before{content:"";position:absolute;right:-170px;top:-170px;width:480px;height:480px;border:1px solid #8c65df44;border-radius:50%;box-shadow:0 0 0 65px #8c65df0a,0 0 0 130px #8c65df0a;pointer-events:none}
 .sponsors__head{display:flex;justify-content:space-between;align-items:end;gap:36px;margin-bottom:clamp(32px,5vw,64px)}
