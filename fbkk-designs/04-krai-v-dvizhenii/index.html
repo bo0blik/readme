@@ -750,6 +750,44 @@ html { scroll-padding-top: 0; }
   #top #heroCopy .hero__intro .hero__lead{margin-top:8px!important}
   #top #heroCopy .hero__intro .hero__cta{margin-top:10px!important}
 }
+</style><style>/* FBKK_HEADER_MOBILE_BRAND_AND_DESKTOP_RIGHT_NAV */
+.header .brand__text .brand__line{display:block;white-space:nowrap}
+@media(max-width:767px){
+  .header .header__bar,
+  .header.is-stuck .header__bar,
+  .header:not(.is-stuck) .header__bar{
+    padding-left:max(var(--gut),env(safe-area-inset-left))!important;
+    padding-right:max(var(--gut),env(safe-area-inset-right))!important;
+  }
+  .header .brand .brand__mark{
+    margin-left:0!important;
+    flex-shrink:0!important;
+  }
+  .header .brand__text{
+    flex:0 1 auto!important;
+    max-width:none!important;
+    min-width:0!important;
+  }
+  .header .brand__text small{
+    font-size:clamp(6.5px,1.65vw,8px)!important;
+    letter-spacing:.025em!important;
+    line-height:1.35!important;
+    white-space:normal!important;
+  }
+}
+@media(min-width:961px){
+  .header:not(.is-stuck) .mini-join{display:none!important}
+  .header:not(.is-stuck) .header__bar{
+    justify-content:space-between!important;
+  }
+  .header:not(.is-stuck) .nav{
+    margin-left:auto!important;
+    margin-right:0!important;
+    justify-content:flex-end!important;
+    flex-shrink:0!important;
+  }
+  .header.is-stuck .mini-join{display:inline-flex!important}
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
@@ -762,7 +800,7 @@ html { scroll-padding-top: 0; }
     <div class="header__bar">
       <a class="brand" href="#top" title="Нажмите, чтобы сменить цвет логотипа" aria-label="ФБКК — на главную">
         <img class="brand__mark" src="./assets/branding/fbkk-3d-logo-lilac-dark.svg" alt="Объёмный логотип ФБКК — лаванда с тёмно-сиреневыми буквами" width="132" height="92" decoding="async">
-        <span class="brand__text"><small>Федерация брейкинга Красноярского края</small></span>
+        <span class="brand__text"><small><span class="brand__line">Федерация брейкинга</span> <span class="brand__line">Красноярского края</span></small></span>
       </a>
 
       <nav class="nav" aria-label="Основная навигация">
