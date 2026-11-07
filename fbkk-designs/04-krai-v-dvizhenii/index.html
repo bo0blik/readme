@@ -231,6 +231,66 @@ html:not(.has-beat) .header .brand .brand__mark{
   opacity: 0 !important;
   content: none !important;
 }
+</style><style>/* FBKK_VIEWPORT_SECTION_LAYOUT */
+:root { --fbkk-screen: 100svh; }
+@supports (height: 100dvh) { :root { --fbkk-screen: 100dvh; } }
+html { scroll-padding-top: 0; }
+#top, #events, #news, #docs, #sponsors, #contacts {
+  box-sizing: border-box;
+  min-height: var(--fbkk-screen);
+  scroll-margin-top: 0;
+}
+#top { min-height: var(--fbkk-screen); }
+#events, #news, #docs, #sponsors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(72px, 8vh, 112px);
+  padding-bottom: clamp(56px, 7vh, 96px);
+}
+#events > .container, #news > .container, #docs > .container,
+#sponsors > .container { width: min(100% - 2 * var(--gut), 1360px); }
+#contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(76px, 9vh, 110px);
+  padding-bottom: clamp(32px, 5vh, 60px);
+}
+@media (min-width: 1101px) and (min-height: 700px) {
+  #top { padding-top: clamp(76px, 10vh, 112px); padding-bottom: clamp(36px, 5vh, 64px); }
+  #top .hero__map { --mh: min(63vh, 640px); }
+}
+@media (max-width: 1100px) {
+  #top { align-items: flex-start; padding-top: 88px; padding-bottom: 32px; }
+  #top .hero__grid { gap: 8px; }
+  #events, #news, #docs, #sponsors {
+    justify-content: flex-start;
+    padding-top: clamp(64px, 9svh, 94px);
+    padding-bottom: clamp(44px, 7svh, 72px);
+  }
+  #contacts { justify-content: flex-start; padding-top: 76px; }
+}
+@media (max-width: 767px) {
+  #top { padding-top: 78px; padding-bottom: 24px; }
+  #top .hero__grid { gap: 0; }
+  #top .hero__title { margin-top: 12px; }
+  #top .hero__lead { margin-top: 12px; line-height: 1.45; }
+  #top .hero__cta { margin-top: 14px; gap: 9px; }
+  #top #mapStage.hero__map { --mh: min(72vw, 30svh, 270px); }
+  #top #mapStage .info { margin-top: 6px; max-height: min(30svh, 230px); }
+  #events, #news, #docs, #sponsors {
+    padding-top: 66px;
+    padding-bottom: 48px;
+  }
+  #contacts { padding-top: 68px; }
+  #contacts .footer__cols { margin-top: 30px; }
+  #contacts .footer__word { margin-top: 30px; }
+}
+@media (max-width: 767px) and (max-height: 680px) {
+  #top #mapStage.hero__map { --mh: min(66vw, 26svh, 220px); }
+  #top #mapStage .info { max-height: 27svh; }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
