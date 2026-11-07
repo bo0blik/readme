@@ -95,7 +95,7 @@
   background: linear-gradient(180deg, rgba(20,8,42,.15), rgba(20,8,42,.65));
 }
 </style>
-<style>/* FBKK_3D_LOGO */ .header__bar{padding-left:0!important} .brand__mark{margin-left:-22px!important}  .brand__text small{font-size:10px;line-height:1.35;letter-spacing:.055em;max-width:190px;display:block}  .brand__mark{width:132px!important;height:92px!important;object-fit:contain;flex-shrink:0;filter:none} .brand:hover .brand__mark{transform:translateY(-2px) scale(1.04)!important}</style><style>/* FBKK_LOGO_BEAT_112BPM */
+<style>/* FBKK_3D_LOGO */ .header__bar{padding-left:0!important} .brand__mark{margin-left:-22px!important}  .brand__text small{font-size:10px;line-height:1.35;letter-spacing:.055em;max-width:190px;display:block}  .brand__mark{width:132px!important;height:92px!important;object-fit:contain;flex-shrink:0;filter:none} .brand:hover .brand__mark{filter:none!important}</style><style>/* FBKK_LOGO_BEAT_112BPM */
 @keyframes fbkk-logo-beat{
   0%,100%{transform:scale(1)}
   10%{transform:scale(1.115)}
@@ -108,7 +108,7 @@
   animation:fbkk-logo-beat 0.638297872s cubic-bezier(.2,.65,.3,1) infinite!important;
   will-change:transform;
 }
-.brand .brand__mark{animation:none!important;transform:none!important}
+.brand .brand__mark{animation:none!important}
 .has-beat .brand:hover .brand__mark{animation-play-state:running!important}
 @media(prefers-reduced-motion:reduce){
   .brand .brand__mark,.has-beat .brand .brand__mark{animation:none!important;transform:none!important;will-change:auto}
@@ -138,9 +138,23 @@
 @media(max-width:550px){.sponsors__grid{grid-template-columns:1fr}.sponsors__card--main{grid-column:auto}.sponsors__card{min-height:245px}.sponsors__bottom{align-items:flex-start;flex-direction:column}}
 </style><style>/* FBKK_HEADER_CONTEXT_ALIGNMENT */
 .header:not(.is-stuck) .header__bar{padding-left:0!important}
-.header:not(.is-stuck) .brand__mark{margin-left:-16px!important}
+.header:not(.is-stuck) .brand__mark{margin-left:-2px!important}
 .header.is-stuck .header__bar{padding-left:22px!important;background:rgba(255,255,255,.78)!important;box-shadow:0 10px 34px -14px rgba(46,18,115,.35),inset 0 0 0 1px rgba(255,255,255,.85)!important;-webkit-backdrop-filter:blur(18px) saturate(1.5)!important;backdrop-filter:blur(18px) saturate(1.5)!important}
 .header.is-stuck .brand__mark{margin-left:0!important}
+</style><style>/* FBKK_HEADER_PULSE_REPAIR */
+html.has-beat .header .brand .brand__mark,
+html.has-beat .header .brand:hover .brand__mark{
+  animation:fbkk-logo-beat .638297872s cubic-bezier(.2,.65,.3,1) infinite!important;
+  transform-origin:center center;
+  will-change:transform;
+}
+html:not(.has-beat) .header .brand .brand__mark{
+  animation:none!important;
+  transform:none;
+}
+@media(prefers-reduced-motion:reduce){
+  html.has-beat .header .brand .brand__mark{animation:none!important;transform:none!important}
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
