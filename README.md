@@ -29,3 +29,16 @@ GitHub Pages publishes the `main` branch from the repository root. `.nojekyll` k
 The original development files, package dependencies and archive restoration files are not needed for this presentation. Other than the first concept's local heading font, web fonts may require network access. External service links and payment flows are not part of the preview checks.
 
 - `variant5/`: refined iris-colored layout with onboarding cards, animated trial ticket, responsive navigation, location rotation and blog cards. Static HTML/CSS/JS; no build required.
+
+## Р¤Р‘РљРљ вЂ” С‡РµС‚С‹СЂРµ РІР°СЂРёР°РЅС‚Р° СЃР°Р№С‚Р°
+
+[РћС‚РєСЂС‹С‚СЊ РєР°С‚Р°Р»РѕРі РґРёР·Р°Р№РЅРѕРІ Р¤Р‘РљРљ](https://bo0blik.github.io/readme/fbkk-designs/)
+
+| Р’Р°СЂРёР°РЅС‚ | GitHub Pages |
+| --- | --- |
+| 01 вЂ” РќРµРѕРЅРѕРІР°СЏ СЂРµРґР°РєС†РёСЏ | [РћС‚РєСЂС‹С‚СЊ](https://bo0blik.github.io/readme/fbkk-designs/01-neon-editorial-krasnoyarsk/) |
+| 02 вЂ” Р“РѕСЂРѕРґСЃРєРёРµ Р±Р°С‚С‚Р»С‹ | [РћС‚РєСЂС‹С‚СЊ](https://bo0blik.github.io/readme/fbkk-designs/02-urban-breaking-events/) |
+| 03 вЂ” РўРёРїРѕРіСЂР°С„РёС‡РµСЃРєРёР№ РјР°РЅРёС„РµСЃС‚ | [РћС‚РєСЂС‹С‚СЊ](https://bo0blik.github.io/readme/fbkk-designs/03-bold-typography-manifest/) |
+| 04 вЂ” РљСЂР°Р№ РІ РґРІРёР¶РµРЅРёРё | [РћС‚РєСЂС‹С‚СЊ](https://bo0blik.github.io/readme/fbkk-designs/04-krai-v-dvizhenii/) |
+
+РЎС‚Р°С‚РёС‡РµСЃРєРёРµ HTML-РІРµСЂСЃРёРё РёСЃС…РѕРґРЅС‹С… РґРёР·Р°Р№РЅ-РєРѕРЅС†РµРїС†РёР№. Р’Р°СЂРёР°РЅС‚ 04 СЃРѕРґРµСЂР¶РёС‚ Р»РѕРєР°Р»СЊРЅС‹Рµ С„РѕС‚РѕРіСЂР°С„РёРё Рё SVG-Р»РѕРіРѕС‚РёРї. РџРµСЂРµРґ РїСѓР±Р»РёС‡РЅС‹Рј РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј С„РѕС‚РѕРіСЂР°С„РёР№ РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРѕРІРµСЂРёС‚СЊ Рё РІС‹РїРѕР»РЅРёС‚СЊ С‚СЂРµР±РѕРІР°РЅРёСЏ РёС… Р»РёС†РµРЅР·РёР№ Рё Р°С‚СЂРёР±СѓС†РёРё.
