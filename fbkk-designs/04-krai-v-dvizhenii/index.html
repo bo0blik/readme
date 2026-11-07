@@ -713,6 +713,43 @@ html { scroll-padding-top: 0; }
   html {scroll-behavior:smooth}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+</style><style>/* FBKK_MOBILE_CENTERED_HERO_INTRO */
+@media(max-width:767px){
+  #top #heroCopy{
+    display:grid!important;
+    grid-template-rows:minmax(0,1fr) auto!important;
+    align-items:stretch!important;
+    justify-items:stretch!important;
+    gap:clamp(14px,3svh,24px)!important;
+    padding-top:72px!important;
+    padding-bottom:clamp(18px,3svh,28px)!important;
+  }
+  #top #heroCopy .hero__intro{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    align-self:center;
+    width:100%;
+    min-width:0;
+  }
+  #top #heroCopy .next{
+    grid-row:2;
+    align-self:end;
+    margin-top:0!important;
+    width:100%;
+  }
+}
+@media(max-width:767px) and (max-height:680px){
+  #top #heroCopy{
+    padding-top:66px!important;
+    padding-bottom:12px!important;
+    gap:8px!important;
+  }
+  #top #heroCopy .hero__intro .hero__title{margin-top:8px!important}
+  #top #heroCopy .hero__intro .hero__lead{margin-top:8px!important}
+  #top #heroCopy .hero__intro .hero__cta{margin-top:10px!important}
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
@@ -779,6 +816,7 @@ html { scroll-padding-top: 0; }
     <section class="hero" id="top" data-section="top" aria-labelledby="hero-title">
       <div class="container hero__grid">
         <div class="hero__copy" id="heroCopy" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
+          <div class="hero__intro">
           <p class="eyebrow"><span class="live" aria-hidden="true"></span>Приём в федерацию открыт</p>
 
           <h1 class="hero__title" id="hero-title" aria-label="Край в движении">
@@ -817,6 +855,8 @@ html { scroll-padding-top: 0; }
             </div>
             <p class="cta-note">Заявка — одна минута. Взносов на этом шаге нет.</p>
           </div>
+
+          </div><!-- /.hero__intro -->
 
           <div class="next" id="next">
             <div class="next__meta">
