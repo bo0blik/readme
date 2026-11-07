@@ -605,6 +605,35 @@ html { scroll-padding-top: 0; }
     box-shadow: 0 8px 24px -14px rgba(48,20,95,.32), inset 0 -1px 0 rgba(128,83,215,.15) !important;
   }
 }
+</style><style>/* FBKK_DESKTOP_FLAT_STICKY_HEADER_ALIGNMENT */
+@media(min-width:961px){
+  .header.is-stuck .header__bar{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    align-items:center!important;
+    column-gap:clamp(12px,1.5vw,26px)!important;
+    padding:4px 18px 4px 0!important;
+    border-radius:0!important;
+  }
+  .header.is-stuck .brand{
+    justify-self:start!important;
+    margin-left:0!important;
+    padding-left:0!important;
+  }
+  .header.is-stuck .brand .brand__mark{
+    margin-left:0!important;
+  }
+  .header.is-stuck .nav{
+    margin:0!important;
+    justify-self:center!important;
+    justify-content:center!important;
+    flex-wrap:nowrap;
+  }
+  .header.is-stuck .mini-join{
+    justify-self:end!important;
+    margin-left:0!important;
+  }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
