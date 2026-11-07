@@ -695,6 +695,24 @@ html { scroll-padding-top: 0; }
     justify-content:flex-end!important;
   }
 }
+</style><style>/* FBKK_DESKTOP_FULLSCREEN_SECTION_NAV */
+@media (min-width:1101px) {
+  #top,#events,#news,#docs,#sponsors,#contacts {
+    min-height:100vh!important;
+    min-height:100dvh!important;
+    box-sizing:border-box!important;
+    scroll-margin-top:0!important;
+  }
+  #events,#news,#docs,#sponsors {
+    padding-top:clamp(76px,9vh,112px)!important;
+    padding-bottom:clamp(32px,5vh,76px)!important;
+    justify-content:center!important;
+  }
+  #contacts {padding-top:clamp(76px,9vh,110px)!important;padding-bottom:32px!important}
+  #top {padding-top:clamp(72px,9vh,108px)!important;padding-bottom:clamp(20px,3vh,40px)!important}
+  html {scroll-behavior:smooth}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
@@ -1339,4 +1357,60 @@ html { scroll-padding-top: 0; }
 <style>/* FBKK_LOGO_VARIANTS */
 .header .brand{cursor:pointer}
 .fbkk-logo-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-</style></body></html>
+</style><script>/* FBKK_DESKTOP_SECTION_WHEEL_AND_ARROW_NAV */
+(function(){
+  const ids=['top','events','news','docs','sponsors','contacts'];
+  const desktop=()=>window.matchMedia('(min-width:1101px) and (pointer:fine)').matches;
+  const reduce=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lockedUntil=0;
+  const sections=()=>ids.map(id=>document.getElementById(id)).filter(Boolean);
+  const activeIndex=(nodes)=>{
+    const y=window.scrollY;
+    let best=0,dist=Infinity;
+    nodes.forEach((node,i)=>{
+      const d=Math.abs(node.getBoundingClientRect().top);
+      if(d<dist){dist=d;best=i}
+    });
+    return best;
+  };
+  function move(direction){
+    const now=performance.now();
+    if(now<lockedUntil)return;
+    const nodes=sections(),i=activeIndex(nodes),current=nodes[i];
+    if(!current)return;
+    const rect=current.getBoundingClientRect();
+    const tall=rect.height>innerHeight+30;
+    if(tall){
+      if(direction>0 && rect.bottom>innerHeight+45){window.scrollBy({top:Math.min(innerHeight*.82,rect.bottom-innerHeight),behavior:reduce()?'instant':'smooth'});lockedUntil=now+420;return}
+      if(direction<0 && rect.top< -45){window.scrollBy({top:-Math.min(innerHeight*.82,-rect.top),behavior:reduce()?'instant':'smooth'});lockedUntil=now+420;return}
+    }
+    const next=nodes[Math.max(0,Math.min(nodes.length-1,i+direction))];
+    if(next===current)return;
+    lockedUntil=now+(reduce()?180:680);
+    next.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'start'});
+  }
+  function editable(el){return !!el?.closest('input,textarea,select,[contenteditable="true"],[role="dialog"],[role="listbox"]')}
+  function insideScrollable(el,dy){
+    for(let node=el;node&&node!==document.body;node=node.parentElement){
+      if(!(node instanceof HTMLElement))continue;
+      const cs=getComputedStyle(node);
+      if(!/(auto|scroll)/.test(cs.overflowY)||node.scrollHeight<=node.clientHeight+3)continue;
+      if(dy>0 && node.scrollTop+node.clientHeight<node.scrollHeight-3)return true;
+      if(dy<0 && node.scrollTop>3)return true;
+    }
+    return false;
+  }
+  window.addEventListener('wheel',e=>{
+    if(!desktop()||e.ctrlKey||e.metaKey||e.shiftKey||Math.abs(e.deltaY)<4||editable(e.target))return;
+    if(insideScrollable(e.target,e.deltaY))return;
+    e.preventDefault();
+    move(Math.sign(e.deltaY));
+  },{passive:false});
+  window.addEventListener('keydown',e=>{
+    if(!desktop()||e.altKey||e.ctrlKey||e.metaKey||editable(e.target))return;
+    if(e.key!=='ArrowDown'&&e.key!=='ArrowUp'&&e.key!=='PageDown'&&e.key!=='PageUp')return;
+    e.preventDefault();
+    move(e.key==='ArrowDown'||e.key==='PageDown'?1:-1);
+  });
+})();
+</script></body></html>
