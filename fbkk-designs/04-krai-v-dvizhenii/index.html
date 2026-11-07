@@ -884,6 +884,121 @@ html { scroll-padding-top: 0; }
 :root[data-fbkk-theme] .nav a.is-active{color:var(--v-700)!important}
 :root[data-fbkk-theme] .burger{transition:background .4s ease}
 :root[data-fbkk-theme] body{transition:background-color .5s ease,color .4s ease}
+</style><style>/* FBKK_THEME_MAP_CTA_SPONSORS_FIX */
+:root{
+  --map-hue:0deg;
+  --theme-cta-top:#8458f5;
+  --theme-cta-mid:#6a35e6;
+  --theme-cta-bottom:#5324c8;
+  --theme-cta-border:#ab8cff;
+}
+:root[data-fbkk-theme="cyan"]{
+  --map-hue:100deg;
+  --theme-cta-top:#24c9e7;
+  --theme-cta-mid:#009cc6;
+  --theme-cta-bottom:#086d98;
+  --theme-cta-border:#91edfa;
+}
+:root[data-fbkk-theme="lime"]{
+  --map-hue:195deg;
+  --theme-cta-top:#c3eb50;
+  --theme-cta-mid:#85b41d;
+  --theme-cta-bottom:#4d7510;
+  --theme-cta-border:#e1ff9a;
+}
+:root[data-fbkk-theme="sunset"]{
+  --map-hue:-48deg;
+  --theme-cta-top:#f777b9;
+  --theme-cta-mid:#dc398d;
+  --theme-cta-bottom:#9c205e;
+  --theme-cta-border:#ffd0e8;
+}
+:root[data-fbkk-theme] .cta__face{
+  background:linear-gradient(180deg,var(--theme-cta-top),var(--theme-cta-mid) 55%,var(--theme-cta-bottom))!important;
+  transition:background .4s ease,transform .24s var(--pop)!important;
+}
+:root[data-fbkk-theme] .cta__shock i{
+  border-color:color-mix(in srgb,var(--theme-cta-mid) 56%,transparent)!important;
+}
+:root[data-fbkk-theme] .cta-wrap{
+  --theme-cta-glow:var(--theme-cta-border);
+}
+:root[data-fbkk-theme] .cta__disc{
+  background:var(--acid)!important;
+}
+:root[data-fbkk-theme] .cta__eq i{
+  background:var(--acid)!important;
+}
+/* SVG polygons are generated dynamically; filter the actual map layers,
+   not the unused canvas selector. Keep pins, labels and tooltips unfiltered. */
+:root[data-fbkk-theme] #mapLayers{
+  filter:hue-rotate(var(--map-hue));
+  transition:filter .55s ease!important;
+}
+:root[data-fbkk-theme] #mapScene .cypher,
+:root[data-fbkk-theme] #mapScene .cypher__text{
+  color:var(--v-600)!important;
+}
+:root[data-fbkk-theme] #mapScene .cypher__dot{
+  fill:var(--acid)!important;
+}
+:root[data-fbkk-theme] .sponsors{
+  background:linear-gradient(145deg,var(--bg) 0%,var(--v-100) 65%,color-mix(in srgb,var(--bg) 76%,white) 100%)!important;
+  color:var(--ink)!important;
+  transition:background .5s ease,color .4s ease;
+}
+:root[data-fbkk-theme] .sponsors:before{
+  border-color:color-mix(in srgb,var(--v-500) 28%,transparent)!important;
+  box-shadow:0 0 0 65px color-mix(in srgb,var(--v-500) 4%,transparent),0 0 0 130px color-mix(in srgb,var(--v-500) 4%,transparent)!important;
+}
+:root[data-fbkk-theme] .sponsors__head .sec-title em,
+:root[data-fbkk-theme] .sponsors__number,
+:root[data-fbkk-theme] .sponsors__symbol{
+  color:var(--v-600)!important;
+}
+:root[data-fbkk-theme] .sponsors__intro,
+:root[data-fbkk-theme] .sponsors__card p{
+  color:var(--ink-2)!important;
+}
+:root[data-fbkk-theme] .sponsors__card{
+  background:color-mix(in srgb,var(--bg) 70%,white)!important;
+  border-color:var(--v-200)!important;
+}
+:root[data-fbkk-theme] .sponsors__card:hover{
+  border-color:var(--v-600)!important;
+  box-shadow:0 18px 42px color-mix(in srgb,var(--v-900) 12%,transparent)!important;
+}
+:root[data-fbkk-theme] .sponsors__card--main{
+  background:var(--v-900)!important;
+  border-color:var(--v-900)!important;
+  color:#fff!important;
+}
+:root[data-fbkk-theme] .sponsors__card--main .sponsors__number,
+:root[data-fbkk-theme] .sponsors__card--main .sponsors__symbol{
+  color:var(--acid)!important;
+}
+:root[data-fbkk-theme] .sponsors__card--main p{
+  color:var(--v-200)!important;
+}
+:root[data-fbkk-theme] .sponsors__bottom{
+  border-color:var(--v-200)!important;
+}
+:root[data-fbkk-theme] .sponsors__bottom>span{
+  color:var(--mute)!important;
+}
+:root[data-fbkk-theme] .sponsors__link{
+  color:var(--v-900)!important;
+  border-color:var(--v-600)!important;
+}
+:root[data-fbkk-theme] .sponsors__link:hover{
+  color:var(--v-600)!important;
+}
+@media(prefers-reduced-motion:reduce){
+  :root[data-fbkk-theme] #mapLayers,
+  :root[data-fbkk-theme] .cta__face{
+    transition:none!important;
+  }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
