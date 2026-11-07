@@ -530,6 +530,60 @@ html { scroll-padding-top: 0; }
   .header .brand__text small{font-size:6px!important}
   .header .brand .brand__mark{width:67px!important;flex-basis:67px!important}
 }
+</style><style>/* FBKK_COMPACT_DESKTOP_STICKY_HEADER */
+@media (min-width: 961px) {
+  .header.is-stuck {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  .header.is-stuck .header__bar {
+    box-sizing: border-box;
+    min-height: 66px;
+    max-height: 66px;
+    padding: 4px 10px 4px 14px !important;
+    gap: clamp(8px, 1.3vw, 18px);
+    border-radius: 20px;
+    background: rgba(249,246,255,.92) !important;
+    box-shadow: 0 8px 28px -16px rgba(48,20,95,.28), inset 0 0 0 1px rgba(128,83,215,.13) !important;
+  }
+  .header.is-stuck .brand {
+    gap: 7px;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+  .header.is-stuck .brand .brand__mark {
+    width: 87px !important;
+    height: 60px !important;
+    max-width: 87px !important;
+    margin-left: 0 !important;
+  }
+  .header.is-stuck .brand__text small {
+    font-size: 8px !important;
+    line-height: 1.25 !important;
+    letter-spacing: .04em !important;
+    max-width: 165px !important;
+  }
+  .header.is-stuck .nav {
+    gap: 0;
+  }
+  .header.is-stuck .nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px clamp(7px, .8vw, 12px);
+    font-size: clamp(12px, .95vw, 13px);
+  }
+  .header.is-stuck .nav a .nav-icon {
+    width: 15px;
+    height: 15px;
+  }
+  .header.is-stuck .mini-join {
+    height: 38px;
+    padding: 0 15px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
