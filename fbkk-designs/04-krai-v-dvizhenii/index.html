@@ -1267,7 +1267,89 @@ html { scroll-padding-top: 0; }
  --theme-glow-soft:color-mix(in srgb,#A1EFE0 24%,transparent);
 }
 </style>
-</head>
+<style>/* FBKK_DESKTOP_EVENTS_ONE_VIEWPORT */
+@media(min-width:1101px){
+ #events.events{
+  min-height:100svh;
+  padding-top:clamp(58px,8.5svh,94px)!important;
+  padding-bottom:clamp(12px,2svh,24px)!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+ }
+ #events>.container{flex:none}
+ #events .sec-head{
+  margin-bottom:clamp(8px,1.4svh,16px);
+  gap:18px 30px;
+ }
+ #events .sec-title{
+  margin-top:8px;
+  font-size:clamp(2.7rem,4.5vw,4.45rem);
+  line-height:.98;
+ }
+ #events .sec-lead{
+  margin-top:10px;
+  font-size:clamp(13px,1vw,16px);
+  line-height:1.42;
+  max-width:43em;
+ }
+ #events .seg button{padding:10px 16px;font-size:13px}
+ #events .track{
+  --pt:clamp(65px,9svh,82px);
+  --axis:clamp(46px,6.6svh,61px);
+  flex:1 1 auto;
+  min-height:0;
+ }
+ #events .track__inner{
+  gap:clamp(17px,1.7vw,25px);
+  padding-bottom:clamp(10px,2svh,22px);
+ }
+ #events .ev{
+  flex-basis:clamp(260px,21vw,306px);
+  margin-top:calc(var(--odd,0)*clamp(16px,3svh,27px));
+ }
+ #events .ev__card{border-radius:22px}
+ #events .ev__cover{height:clamp(125px,19svh,174px)}
+ #events .ev__body{
+  padding:32px 17px 16px;
+  gap:clamp(6px,.85svh,9px);
+ }
+ #events .ev__body h3{
+  font-size:clamp(15px,1.13vw,18px);
+  line-height:1.16;
+ }
+ #events .ev__place{font-size:12px;line-height:1.28;gap:6px}
+ #events .ev__place svg{width:15px;height:15px;margin-top:0}
+ #events .ev__meta{gap:4px}
+ #events .ev__meta li{padding:5px 8px;font-size:10px}
+ #events .ev__seats{gap:5px;font-size:11.5px;margin-top:1px}
+ #events .ev__done{font-size:11.5px;margin-top:1px}
+ #events .bar{height:5px}
+ #events .ev__act{height:39px;font-size:13px;border-radius:12px;margin-top:1px}
+ #events .ev__type{top:11px;left:11px;padding:6px 9px;font-size:9px}
+ #events .ev__date{
+  width:60px;left:14px;bottom:-23px;
+  padding:8px 0 7px;border-radius:14px;
+ }
+ #events .ev__date b{font-size:24px}
+ #events .ev__date span{font-size:9px;margin-top:3px}
+ #events .ev__node{width:15px;height:15px;border-width:3px}
+}
+/* Short desktop/laptop viewports: preserve button visibility and
+   horizontal track while avoiding changes to the mobile layout. */
+@media(min-width:1101px) and (max-height:760px){
+ #events.events{padding-top:clamp(48px,7svh,65px)!important;padding-bottom:8px!important}
+ #events .sec-title{font-size:clamp(2.4rem,4vw,3.6rem)}
+ #events .sec-lead{margin-top:7px;font-size:13px}
+ #events .sec-head{margin-bottom:5px}
+ #events .track{--pt:58px;--axis:43px}
+ #events .ev{margin-top:calc(var(--odd,0)*12px)}
+ #events .ev__cover{height:clamp(100px,16svh,130px)}
+ #events .ev__body{padding:28px 14px 11px;gap:5px}
+ #events .ev__body h3{font-size:15px}
+ #events .ev__act{height:35px}
+}
+</style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
 
