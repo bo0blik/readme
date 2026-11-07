@@ -182,6 +182,25 @@ html:not(.has-beat) .header .brand .brand__mark{
 .header .nav a:hover .nav-icon,.header .nav a.is-active .nav-icon{opacity:1;transform:translateY(-1px)}
 .menu__nav a{align-items:center!important;gap:13px}
 .menu__nav .nav-icon{width:25px;height:25px;flex:none;color:var(--acid)}
+</style><style>/* FBKK_MOBILE_EVENT_CENTER_SNAP */
+@media (max-width: 767px) {
+  .events .track {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .events .track__inner {
+    --mobile-card-width: min(80vw, 340px);
+    --mobile-side-space: max(0px, calc((100vw - var(--mobile-card-width)) / 2));
+    padding-left: var(--mobile-side-space);
+    padding-right: var(--mobile-side-space);
+  }
+  .events .track .ev {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
