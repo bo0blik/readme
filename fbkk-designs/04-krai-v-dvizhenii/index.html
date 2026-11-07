@@ -840,6 +840,50 @@ html { scroll-padding-top: 0; }
     transition:none!important;
   }
 }
+</style><style>/* FBKK_FOUR_COORDINATED_SITE_THEMES */
+:root{--theme-hue:0deg;--theme-glow:rgba(139,92,246,.2);--theme-glow-soft:rgba(196,176,255,.22);--theme-header:rgba(247,243,255,.96)}
+:root[data-fbkk-theme="cyan"]{
+ --bg:#EFFBFF;--ink:#082D48;--ink-2:#315A73;--mute:#597E94;
+ --v-950:#06283C;--v-900:#07394F;--v-800:#08536F;--v-700:#087B9F;--v-600:#009CC6;--v-500:#18C8E5;
+ --v-300:#87E4F2;--v-200:#B9F1F8;--v-100:#E1FAFE;--acid:#D9FF4D;--rose:#DA4E8B;
+ --theme-hue:102deg;--theme-glow:rgba(0,171,218,.18);--theme-glow-soft:rgba(75,207,235,.20);--theme-header:rgba(239,251,255,.96);
+}
+:root[data-fbkk-theme="lime"]{
+ --bg:#F8FDEC;--ink:#243610;--ink-2:#4E6035;--mute:#6C8053;
+ --v-950:#1B3008;--v-900:#2D460C;--v-800:#41650D;--v-700:#608C0D;--v-600:#7EAB0C;--v-500:#A6D72B;
+ --v-300:#D3F17F;--v-200:#E5F7B8;--v-100:#F1FBDD;--acid:#D2FF40;--rose:#CB508A;
+ --theme-hue:222deg;--theme-glow:rgba(153,203,40,.18);--theme-glow-soft:rgba(191,235,93,.22);--theme-header:rgba(248,253,236,.96);
+}
+:root[data-fbkk-theme="sunset"]{
+ --bg:#FFF2F8;--ink:#3B1236;--ink-2:#71455F;--mute:#986C86;
+ --v-950:#380C2C;--v-900:#531039;--v-800:#78154D;--v-700:#AD216C;--v-600:#DC398D;--v-500:#F46AAF;
+ --v-300:#FFC1DE;--v-200:#FFDBEC;--v-100:#FFEDF5;--acid:#FFE477;--rose:#D52C66;
+ --theme-hue:320deg;--theme-glow:rgba(236,77,153,.17);--theme-glow-soft:rgba(248,156,203,.22);--theme-header:rgba(255,242,248,.96);
+}
+:root[data-fbkk-theme] .bg{
+ background:radial-gradient(55vmax 45vmax at 88% 6%,var(--theme-glow),transparent 62%),
+ radial-gradient(48vmax 40vmax at 0% 100%,color-mix(in srgb,var(--acid) 18%,transparent),transparent 60%),
+ radial-gradient(40vmax 40vmax at 45% 55%,var(--theme-glow-soft),transparent 65%)!important;
+}
+:root[data-fbkk-theme] .bg:after{
+ background-image:radial-gradient(color-mix(in srgb,var(--v-700) 20%,transparent) 1px,transparent 1.4px)!important;
+}
+@media(max-width:767px){
+ :root[data-fbkk-theme] .header .header__bar{background:var(--theme-header)!important}
+ :root[data-fbkk-theme] .header .burger{background:var(--v-600)!important;box-shadow:inset 0 -2px 0 var(--v-800),0 3px 9px color-mix(in srgb,var(--v-600) 20%,transparent)!important}
+}
+@media(min-width:961px){
+ :root[data-fbkk-theme] .header.is-stuck .header__bar{background:var(--theme-header)!important}
+}
+:root[data-fbkk-theme]:not([data-fbkk-theme="lavender"]) #stage,
+:root[data-fbkk-theme]:not([data-fbkk-theme="lavender"]) #mapStage canvas{
+ filter:hue-rotate(var(--theme-hue));
+}
+:root[data-fbkk-theme] .hero__title .hero__title--accent,
+:root[data-fbkk-theme] .hero__title em{color:var(--v-600)}
+:root[data-fbkk-theme] .nav a.is-active{color:var(--v-700)!important}
+:root[data-fbkk-theme] .burger{transition:background .4s ease}
+:root[data-fbkk-theme] body{transition:background-color .5s ease,color .4s ease}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
@@ -1457,16 +1501,13 @@ html { scroll-padding-top: 0; }
   const logo=brand?.querySelector('.brand__mark');
   if(!brand||!logo)return;
   const variants=[
-    {file:'fbkk-3d-logo.svg',name:'Фиолетовый неон'},
-    {file:'fbkk-3d-logo-glass.svg',name:'Контурный'},
-    {file:'fbkk-3d-logo-cyan.svg',name:'Графит и лайм'},
-    {file:'fbkk-3d-logo-sunset.svg',name:'Ультрафиолет'},
-    {file:'fbkk-3d-logo-ivory-dark.svg',name:'Слоновая кость / тёмный'},
-    {file:'fbkk-3d-logo-lilac-dark.svg',name:'Лаванда / тёмный'},
-    {file:'fbkk-3d-logo-silver-dark.svg',name:'Серебро / тёмный'},
-    {file:'fbkk-3d-logo-mint-dark.svg',name:'Мята / тёмный'}
+    {file:'fbkk-3d-logo-lilac-dark.svg',name:'Лаванда',theme:'lavender'},
+    {file:'fbkk-3d-logo-theme-cyan.svg',name:'Циан',theme:'cyan'},
+    {file:'fbkk-3d-logo-theme-lime.svg',name:'Лайм',theme:'lime'},
+    {file:'fbkk-3d-logo-theme-sunset.svg',name:'Закат',theme:'sunset'}
   ];
-  let current=5;
+  let current=0;
+  document.documentElement.dataset.fbkkTheme='lavender';
   const status=document.createElement('span');
   status.className='fbkk-logo-status';
   status.setAttribute('role','status');
@@ -1479,7 +1520,8 @@ html { scroll-padding-top: 0; }
     const variant=variants[current];
     logo.src='./assets/branding/'+variant.file;
     logo.alt='Логотип ФБКК — '+variant.name;
-    status.textContent=variant.name;
+    document.documentElement.dataset.fbkkTheme=variant.theme;
+    status.textContent='Тема сайта: '+variant.name;
     brand.title='Вариант: '+variant.name+'. Нажмите для смены';
   });
 })();
