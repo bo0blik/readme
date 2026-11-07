@@ -641,6 +641,31 @@ html { scroll-padding-top: 0; }
     padding-right:max(var(--gut),calc((100vw - 1360px) / 2))!important;
   }
 }
+</style><style>/* FBKK_DESKTOP_RIGHT_GROUPED_NAV */
+@media(min-width:961px){
+  .header.is-stuck .header__bar{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:clamp(12px,1.3vw,20px)!important;
+  }
+  .header.is-stuck .brand{
+    margin-right:auto!important;
+    flex:0 0 auto!important;
+  }
+  .header.is-stuck .nav{
+    margin-left:auto!important;
+    margin-right:0!important;
+    justify-content:flex-end!important;
+    justify-self:auto!important;
+    flex:0 1 auto!important;
+    gap:0!important;
+  }
+  .header.is-stuck .mini-join{
+    flex:0 0 auto!important;
+    margin-left:0!important;
+  }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
