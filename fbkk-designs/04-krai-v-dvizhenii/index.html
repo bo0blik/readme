@@ -146,7 +146,7 @@
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
     <div class="header__bar">
-      <a class="brand" href="#top" aria-label="ФБКК — на главную">
+      <a class="brand" href="#top" title="Нажмите, чтобы сменить цвет логотипа" aria-label="ФБКК — на главную">
         <img class="brand__mark" src="./assets/branding/fbkk-3d-logo.svg" alt="Объёмный логотип ФБКК" width="104" height="72" decoding="async">
         <span class="brand__text"><small>Федерация брейкинга Красноярского края</small></span>
       </a>
@@ -741,4 +741,36 @@
 
 
 
-</body></html>
+<script>/* FBKK_LOGO_VARIANT_SWITCHER */
+(function(){
+  const brand=document.querySelector('.header .brand');
+  const logo=brand?.querySelector('.brand__mark');
+  if(!brand||!logo)return;
+  const variants=[
+    {file:'fbkk-3d-logo.svg',name:'Фиолетовый'},
+    {file:'fbkk-3d-logo-glass.svg',name:'Прозрачные грани'},
+    {file:'fbkk-3d-logo-cyan.svg',name:'Бирюзовый'},
+    {file:'fbkk-3d-logo-sunset.svg',name:'Закат'}
+  ];
+  let current=0;
+  const status=document.createElement('span');
+  status.className='fbkk-logo-status';
+  status.setAttribute('role','status');
+  status.setAttribute('aria-live','polite');
+  brand.appendChild(status);
+  brand.setAttribute('aria-label','Сменить вариант логотипа ФБКК');
+  brand.addEventListener('click',function(e){
+    e.preventDefault();
+    current=(current+1)%variants.length;
+    const variant=variants[current];
+    logo.src='./assets/branding/'+variant.file;
+    logo.alt='Логотип ФБКК — '+variant.name;
+    status.textContent=variant.name;
+    brand.title='Вариант: '+variant.name+'. Нажмите для смены';
+  });
+})();
+</script>
+<style>/* FBKK_LOGO_VARIANTS */
+.header .brand{cursor:pointer}
+.fbkk-logo-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+</style></body></html>
