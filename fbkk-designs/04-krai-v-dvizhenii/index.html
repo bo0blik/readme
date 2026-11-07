@@ -672,6 +672,29 @@ html { scroll-padding-top: 0; }
     bottom: clamp(6px, calc(6vh - 30px), 34px) !important;
   }
 }
+</style><style>/* FBKK_DESKTOP_HERO_NAV_RIGHT_ALIGNMENT */
+@media(min-width:961px){
+  .header:not(.is-stuck) .header__bar{
+    box-sizing:border-box;
+    width:min(calc(100% - 2 * var(--gut)),1360px)!important;
+    max-width:1360px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+  }
+  .header:not(.is-stuck) .brand{
+    flex:0 0 auto!important;
+    margin-right:auto!important;
+  }
+  .header:not(.is-stuck) .nav{
+    flex:0 0 auto!important;
+    margin-left:auto!important;
+    margin-right:0!important;
+    justify-content:flex-end!important;
+  }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
