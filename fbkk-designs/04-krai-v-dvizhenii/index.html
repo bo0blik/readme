@@ -201,6 +201,30 @@ html:not(.has-beat) .header .brand .brand__mark{
     scroll-snap-stop: always;
   }
 }
+</style><style>/* FBKK_MOBILE_COMPACT_MAP_AND_CARD */
+@media (max-width: 767px) {
+  #mapStage.hero__map {
+    --mh: min(82vw, 38svh, 340px);
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    gap: 0;
+  }
+  #mapStage .map-scene {
+    width: calc(var(--mh) * 456 / 586);
+    height: var(--mh);
+    margin-right: 0;
+  }
+  #mapStage .info {
+    margin-top: 8px;
+    max-height: min(35svh, 280px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+@media (max-width: 767px) and (max-height: 680px) {
+  #mapStage.hero__map { --mh: min(75vw, 32svh, 260px); }
+  #mapStage .info { max-height: 32svh; }
+}
 </style></head>
 <body>
   <a class="skip" href="#main">Перейти к содержимому</a>
