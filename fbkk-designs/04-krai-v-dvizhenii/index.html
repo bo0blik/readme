@@ -1039,32 +1039,11 @@ html { scroll-padding-top: 0; }
  --theme-cta-top:#C84DF5;--theme-cta-mid:#8E40EF;--theme-cta-bottom:#3B39AD;
  --theme-header:rgba(240,241,255,.96);--theme-glow:rgba(142,64,239,.2);--theme-glow-soft:rgba(155,230,255,.20);
 }
-/* Map polygons share the exact same primary tone as the CTA.
-   Vary brightness per facet to retain the original low-poly volume. */
+/* Preserve the map's original individually shaded polygon texture.
+   Theme colors are applied per facet by the script below. */
 :root[data-fbkk-theme] #mapLayers{filter:none!important}
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) polygon,
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) path{
- fill:var(--theme-cta-mid)!important;
-}
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) polygon:nth-of-type(5n + 1),
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) path:nth-of-type(5n + 1){
- fill:color-mix(in srgb,var(--theme-cta-mid) 75%,white)!important;
-}
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) polygon:nth-of-type(5n + 2),
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) path:nth-of-type(5n + 2){
- fill:color-mix(in srgb,var(--theme-cta-mid) 78%,black)!important;
-}
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) polygon:nth-of-type(5n + 3),
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) path:nth-of-type(5n + 3){
- fill:var(--theme-cta-top)!important;
-}
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) polygon:nth-of-type(5n + 4),
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) path:nth-of-type(5n + 4){
- fill:var(--theme-cta-bottom)!important;
-}
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) polygon,
-:root[data-fbkk-theme] #mapLayers .layer:not(.layer--shadow) path{
- transition:fill .42s ease;
+:root[data-fbkk-theme] #mapLayers #shards .shard{
+ transition:fill .42s ease!important;
 }
 :root[data-fbkk-theme] .cta__face{
  background:linear-gradient(180deg,var(--theme-cta-top),var(--theme-cta-mid) 55%,var(--theme-cta-bottom))!important;
@@ -1778,5 +1757,60 @@ html { scroll-padding-top: 0; }
     e.preventDefault();
     move(e.key==='ArrowDown'||e.key==='PageDown'?1:-1);
   });
+})();
+</script><script>/* FBKK_RESTORE_MAP_FACET_TEXTURES */
+(function(){
+  const map=document.getElementById('mapLayers');
+  if(!map)return;
+  const palettes={
+    lavender:'#6A35E6',
+    ocean:'#008FBE',
+    coral:'#E64A65',
+    emerald:'#008D73',
+    gold:'#BB8525',
+    neon:'#8E40EF'
+  };
+  const hexRgb=hex=>{
+    const v=hex.replace('#','');
+    return [0,2,4].map(i=>parseInt(v.slice(i,i+2),16));
+  };
+  const toHsl=rgb=>{
+    const [r,g,b]=rgb.map(x=>x/255);
+    const max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;
+    let h=0,s=0,l=(max+min)/2;
+    if(d){
+      s=d/(1-Math.abs(2*l-1));
+      switch(max){case r:h=((g-b)/d)%6;break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4}
+      h=(h*60+360)%360;
+    }
+    return [h,s,l];
+  };
+  function repaint(){
+    const theme=document.documentElement.dataset.fbkkTheme||'lavender';
+    const facets=map.querySelectorAll('#shards .shard');
+    if(!facets.length)return;
+    const [h,s,baseL]=toHsl(hexRgb(palettes[theme]||palettes.lavender));
+    facets.forEach(poly=>{
+      const original=poly.getAttribute('fill');
+      if(!original||!/^#[0-9a-f]{6}$/i.test(original))return;
+      if(theme==='lavender'){
+        poly.style.removeProperty('fill');
+        return;
+      }
+      const [,,oldL]=toHsl(hexRgb(original));
+      /* Preserve each original facet's relative luminance and thus the
+         geometric low-poly texture, rather than flattening to 5 colors. */
+      const newL=Math.max(.16,Math.min(.83,baseL+(oldL-.44)*.78));
+      const newS=Math.max(.42,Math.min(.94,s*.92));
+      poly.style.setProperty('fill','hsl('+h.toFixed(1)+' '+(newS*100).toFixed(1)+'% '+(newL*100).toFixed(1)+'%)','important');
+    });
+  }
+  const observer=new MutationObserver(records=>{
+    if(records.some(record=>record.type==='childList'))repaint();
+  });
+  observer.observe(map,{childList:true});
+  const themeObserver=new MutationObserver(repaint);
+  themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-fbkk-theme']});
+  repaint();
 })();
 </script></body></html>
